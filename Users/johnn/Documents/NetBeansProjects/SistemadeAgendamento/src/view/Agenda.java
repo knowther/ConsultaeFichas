@@ -375,7 +375,7 @@ public class Agenda extends javax.swing.JFrame {
                         .addComponent(t41, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
                         .addComponent(t42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,7 +456,7 @@ public class Agenda extends javax.swing.JFrame {
                             .addComponent(t12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(t13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(t14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         AnoPag1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -479,10 +479,10 @@ public class Agenda extends javax.swing.JFrame {
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
+                        .addGap(478, 478, 478)
                         .addComponent(AnoPag1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(472, 472, 472)
+                        .addGap(696, 696, 696)
                         .addComponent(jLabel3)))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
@@ -498,7 +498,7 @@ public class Agenda extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(350, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -920,72 +920,187 @@ public class Agenda extends javax.swing.JFrame {
                         break;
                     case 20:
                         t20.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t20.setForeground(Color.red);
+                        }else{
+                            t20.setForeground(Color.black);
+                        }
                         break;
                     case 21:
                         t21.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t21.setForeground(Color.red);
+                        }else{
+                            t21.setForeground(Color.black);
+                        }
                         break;
                     case 22:
                         t22.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t22.setForeground(Color.red);
+                        }else{
+                            t22.setForeground(Color.black);
+                        }
                         break;
                     case 23:
                         t23.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t23.setForeground(Color.red);
+                        }else{
+                            t23.setForeground(Color.black);
+                        }
                         break;   
                     case 24:
                         t24.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t24.setForeground(Color.red);
+                        }else{
+                            t24.setForeground(Color.black);
+                        }
                         break; 
                     case 25:
                         t25.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t25.setForeground(Color.red);
+                        }else{
+                            t25.setForeground(Color.black);
+                        }
                         break; 
                     case 26:
                         t26.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t26.setForeground(Color.red);
+                        }else{
+                            t26.setForeground(Color.black);
+                        }
                         break;  
                     case 27:
                         t27.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t27.setForeground(Color.red);
+                        }else{
+                            t27.setForeground(Color.black);
+                        }
                         break; 
                     case 28:
                         t28.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t28.setForeground(Color.red);
+                        }else{
+                            t28.setForeground(Color.black);
+                        }
                         break;    
                     case 29:
                         t29.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t29.setForeground(Color.red);
+                        }else{
+                            t29.setForeground(Color.black);
+                        }
                         break; 
                     case 30:
                         t30.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t30.setForeground(Color.red);
+                        }else{
+                            t30.setForeground(Color.black);
+                        }
                         break;
                     case 31:
-                        t30.setText("" + i);
+                        t31.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t31.setForeground(Color.red);
+                        }else{
+                            t31.setForeground(Color.black);
+                        }
                         break;
                     case 32:
                         t32.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t32.setForeground(Color.red);
+                        }else{
+                            t32.setForeground(Color.black);
+                        }
                         break;  
                     case 33:
                         t33.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t33.setForeground(Color.red);
+                        }else{
+                            t33.setForeground(Color.black);
+                        }
                         break;  
                     case 34:
                         t34.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t34.setForeground(Color.red);
+                        }else{
+                            t34.setForeground(Color.black);
+                        }
                         break;
                     case 35:
                         t35.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t35.setForeground(Color.red);
+                        }else{
+                            t35.setForeground(Color.black);
+                        }
                         break;
                     case 36:
                         t36.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t36.setForeground(Color.red);
+                        }else{
+                            t36.setForeground(Color.black);
+                        }
                         break;
                     case 37:
                         t37.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t37.setForeground(Color.red);
+                        }else{
+                            t37.setForeground(Color.black);
+                        }
                         break;
                     case 38:
                         t38.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t38.setForeground(Color.red);
+                        }else{
+                            t38.setForeground(Color.black);
+                        }
                         break;
                     case 39:
                         t39.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t39.setForeground(Color.red);
+                        }else{
+                            t39.setForeground(Color.black);
+                        }
                         break;
                     case 40:
                         t40.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t40.setForeground(Color.red);
+                        }else{
+                            t40.setForeground(Color.black);
+                        }
                         break;
                     case 41:
                         t41.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t41.setForeground(Color.red);
+                        }else{
+                            t41.setForeground(Color.black);
+                        }
                         break; 
                     case 42:
                         t42.setText("" + i);
+                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
+                            t42.setForeground(Color.red);
+                        }else{
+                            t42.setForeground(Color.black);
+                        }
                         break;     
                 }
                 SetaDia ++;
