@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report133" language="groovy" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21128135-05cb-4d4f-84e3-5709296e5805">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<parameter name="DATA_1" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT
+     sessao_has_paciente.`idsessao_has_paciente` AS idsessaoHasPaciente,
+     sessao_has_paciente.`sessao_idsessao` AS sessao,
+     sessao_has_paciente.`paciente_idpaciente` AS paciente,
+     paciente.`idpaciente` AS `paciente.idpaciente`,
+     paciente.`dia_iddia` AS `paciente.dia`,
+     paciente.`turno_idturno` AS `paciente.turno`,
+     sessao.`idsessao` AS `sessao.idsessao`,
+     sessao.`diasessao` AS `sessao.diasessao`,
+     paciente.`nome` AS `paciente.nome`
+FROM
+     `paciente` paciente INNER JOIN `sessao_has_paciente` sessao_has_paciente ON paciente.`idpaciente` = sessao_has_paciente.`paciente_idpaciente`
+     INNER JOIN `sessao` sessao ON sessao_has_paciente.`sessao_idsessao` = sessao.`idsessao`]]>
+	</queryString>
+	<field name="idsessaoHasPaciente" class="java.lang.Integer"/>
+	<field name="sessao" class="java.lang.Integer"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="paciente.idpaciente" class="java.lang.Integer"/>
+	<field name="paciente.dia" class="java.lang.Integer"/>
+	<field name="paciente.turno" class="java.lang.Integer"/>
+	<field name="sessao.idsessao" class="java.lang.Integer"/>
+	<field name="sessao.diasessao" class="java.sql.Date"/>
+	<field name="paciente.nome" class="java.lang.String"/>
+	<variable name="sessao_diasessao_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{sessao.diasessao}]]></variableExpression>
+	</variable>
+	<variable name="sessao_diasessao_2" class="java.lang.Integer" resetType="Group" resetGroup="paciente" calculation="Count">
+		<variableExpression><![CDATA[$F{sessao.diasessao}]]></variableExpression>
+	</variable>
+	<variable name="DAY_TOSTRING" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("dd").format($F{sessao.diasessao}).toString()]]></variableExpression>
+	</variable>
+	<variable name="DAY_FORMATTER" class="java.lang.String" resetType="Group" resetGroup="paciente">
+		<variableExpression><![CDATA[$V{DAY_FORMATTER} != null ? $V{DAY_FORMATTER} + ", " + $V{DAY_TOSTRING} : $V{DAY_TOSTRING}]]></variableExpression>
+	</variable>
+	<group name="paciente">
+		<groupExpression><![CDATA[$F{paciente}]]></groupExpression>
+		<groupHeader>
+			<band height="80">
+				<textField evaluationTime="Page" pattern="" isBlankWhenNull="false">
+					<reportElement mode="Transparent" x="17" y="12" width="518" height="59" forecolor="#000000" backcolor="#FFFFFF" uuid="3df07601-8ce2-4289-ae52-25fe9308be1c"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="html">
+						<font fontName="Tahoma" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" Declaro para os devidos fins o Sr.(a), " + "<b>" + $F{paciente.nome}.toUpperCase() + "</b>" + ", realizou nesta unidade " + "<b>" + $V{sessao_diasessao_2} + "</b>" + " sessões de hemodiálise no mês de " + "<b>" + new SimpleDateFormat("MMMMM").format($F{sessao.diasessao}).toUpperCase() + "</b>" + " de " + "<b>" +new SimpleDateFormat("YYYY").format($F{sessao.diasessao}).toUpperCase() + "</b>" + " nas datas descriminadas: " + $V{DAY_FORMATTER} + "."]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="152">
+				<break>
+					<reportElement x="0" y="128" width="100" height="1" printWhenGroupChanges="paciente" uuid="7cbb2214-c950-4698-a1e4-f18e2c5d2aa1"/>
+				</break>
+				<staticText>
+					<reportElement x="0" y="17" width="555" height="20" uuid="17ed2aa9-4e0d-4ece-83ec-201aa02ad243"/>
+					<box leftPadding="0">
+						<pen lineWidth="0.0" lineStyle="Solid"/>
+						<topPen lineWidth="0.0" lineStyle="Solid"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Book Antiqua" size="13" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Edjailza Caçula]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="37" width="555" height="20" uuid="073048a2-3c18-4ade-a8bd-0ec791d17b5b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Consolas"/>
+					</textElement>
+					<text><![CDATA[Assistente Social]]></text>
+				</staticText>
+				<image>
+					<reportElement x="188" y="58" width="269" height="91" uuid="436f8e53-fd80-45b0-9b0d-b9aaaaab8b5b"/>
+					<imageExpression><![CDATA["D:\\johnn\\Downloads\\edja.ass.jpg"]]></imageExpression>
+				</image>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="320" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="25" width="555" height="28" uuid="61cdf2a1-5b2c-4e06-8d2c-09de3c636ab6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="24" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Clínica do Rim do Carpina - Unidade II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="87" width="555" height="20" uuid="aff640be-42a9-456b-8f42-8b72c977103b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[C.N.P.J.:69.943.892/0002-41]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="71" width="555" height="20" uuid="2215b17a-bae7-428e-9d07-8aa1f30bac80"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[Fone - 3621-0148 / email:Crcunidade02@yahoo.com.br]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="555" height="20" uuid="7a757aea-0a55-49a5-b43d-e1a78c59a08a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Av. Congresso Eucarístico Internacional, 158 - São José - Carpina/PE]]></text>
+			</staticText>
+			<textField pattern="&apos;Carpina, &apos;dd &apos;de&apos; MMMM &apos;de&apos; YYYY">
+				<reportElement x="337" y="159" width="198" height="20" uuid="695f07b3-c985-4820-a3be-626fac266afa"/>
+				<textElement>
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20"/>
+	</detail>
+	<pageFooter>
+		<band height="108" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

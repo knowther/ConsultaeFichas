@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportpeleleu" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14e09dc2-c5c6-4f13-b807-e061f34cb9b7">
+	<property name="ireport.zoom" value="1.2100000000000262"/>
+	<property name="ireport.x" value="94"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MES_FICHA" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT
+     fichasala.`idfichasala` AS idfichasala,
+     fichasala.`paciente_idpaciente` AS paciente,
+     fichasala.`heparina` AS heparina,
+     fichasala.`ferro` AS ferro,
+     fichasala.`eritropoetina` AS eritropoetina,
+     fichasala.`obs` AS obs,
+     paciente.`idpaciente` AS `paciente.idpaciente`,
+     paciente.`dia_iddia` AS `paciente.dia`,
+     paciente.`turno_idturno` AS `paciente.turno`,
+     paciente.`nome` AS `paciente.nome`,
+     paciente.`apelido` AS `paciente.apelido`,
+     paciente.`cep` AS `paciente.cep`,
+     paciente.`cpf` AS `paciente.cpf`,
+     paciente.`datainiciohd` AS `paciente.datainiciohd`,
+     paciente.`datanascimento` AS `paciente.datanascimento`,
+     paciente.`pesoseco` AS `paciente.pesoseco`,
+     paciente.`prontuario` AS `paciente.prontuario`,
+     paciente.`tiposanguineo_idtiposanguineo` AS `paciente.tiposanguineo`,
+     paciente.`frequenciahd_idfrequenciahd` AS `paciente.frequenciahd`,
+     paciente.`duracaohd_idduracaohd` AS `paciente.duracaohd`
+FROM
+     `paciente` paciente INNER JOIN `fichasala` fichasala ON paciente.`idpaciente` = fichasala.`paciente_idpaciente`
+
+
+]]>
+	</queryString>
+	<field name="idfichasala" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente" class="java.lang.Integer"/>
+	<field name="heparina" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ferro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="eritropoetina" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="obs" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente.idpaciente" class="java.lang.Integer"/>
+	<field name="paciente.dia" class="java.lang.Integer"/>
+	<field name="paciente.turno" class="java.lang.Integer"/>
+	<field name="paciente.nome" class="java.lang.String"/>
+	<field name="paciente.apelido" class="java.lang.String"/>
+	<field name="paciente.cep" class="java.lang.String"/>
+	<field name="paciente.cpf" class="java.lang.String"/>
+	<field name="paciente.datainiciohd" class="java.sql.Date"/>
+	<field name="paciente.datanascimento" class="java.sql.Date"/>
+	<field name="paciente.pesoseco" class="java.lang.Float"/>
+	<field name="paciente.prontuario" class="java.lang.String"/>
+	<field name="paciente.tiposanguineo" class="java.lang.String"/>
+	<field name="paciente.frequenciahd" class="java.lang.String"/>
+	<field name="paciente.duracaohd" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String">
+		<variableExpression><![CDATA[$P{MES_FICHA}.toString()]]></variableExpression>
+	</variable>
+	<variable name="variable2" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<group name="fichasala_idfichasala">
+		<groupExpression><![CDATA[$F{idfichasala}]]></groupExpression>
+		<groupHeader>
+			<band height="478">
+				<rectangle>
+					<reportElement x="0" y="50" width="802" height="39" backcolor="#FFFFFF" uuid="45926bc7-20b4-4313-a51b-41400d65260e"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="125" width="802" height="24" backcolor="#CCCCCC" uuid="9116c4da-cff7-460a-98ae-56c14764731f"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="5" y="50" width="100" height="16" uuid="70141986-c807-494f-932d-1733341754f4"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[NOME:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="5" y="65" width="407" height="20" uuid="1a8e6a8e-04ba-4824-8513-5ade30fa867f"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.nome}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="89" width="802" height="39" backcolor="#FFFFFF" uuid="9d6c0671-a1fb-4cde-bad4-5f6e867ec274"/>
+				</rectangle>
+				<line>
+					<reportElement x="412" y="50" width="1" height="39" uuid="94e5f7b4-6af2-417c-8e4f-4b1bb7e6868c"/>
+				</line>
+				<line>
+					<reportElement x="542" y="50" width="1" height="39" uuid="fe983231-4b68-41f1-a67b-f4de521c6b6d"/>
+				</line>
+				<staticText>
+					<reportElement x="418" y="50" width="109" height="17" uuid="07c3313a-1c30-4893-a269-7446a66fc386"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[DATA NASCIMENTO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="548" y="50" width="109" height="17" uuid="947eaa6a-eb18-42d6-a560-5c48e387b7ae"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[INÍCIO HD:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="672" y="50" width="1" height="39" uuid="7fe4f4f4-f147-4847-98b0-895986152dc7"/>
+				</line>
+				<staticText>
+					<reportElement x="678" y="50" width="109" height="17" uuid="3fa2f3da-e34d-40e9-93d6-cec5ab323b75"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PRONTUÁRIO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="89" width="100" height="16" uuid="82f16d7c-b6e5-4bf2-bfa8-118e1635e7ac"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PESO SECO:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="103" y="86" width="1" height="39" uuid="6e4e5393-221f-4a3e-aadc-5bf3f58a0456"/>
+				</line>
+				<textField pattern="###.##&apos; KG&apos;" isBlankWhenNull="true">
+					<reportElement x="5" y="104" width="100" height="20" uuid="bbda63a9-a367-4889-9750-f1598846b596"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.pesoseco}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="109" y="89" width="100" height="16" uuid="1f5aba38-4ecc-46a4-87b6-1fbe2316b8b0"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[HEPARINA:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="206" y="86" width="1" height="39" uuid="4a20f695-7dd3-4efc-b18a-ab5556845c9e"/>
+				</line>
+				<textField>
+					<reportElement x="5" y="0" width="408" height="49" uuid="c0e4acdd-fac8-4d4f-88e6-bbef8620ccd7"/>
+					<textElement>
+						<font fontName="Tahoma" size="36" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.apelido}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="149" width="802" height="28" backcolor="#FFFFFF" uuid="2b60a5e2-55aa-42cc-95f1-19d6b37db4cb"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="175" width="802" height="20" backcolor="#FFFFFF" uuid="4458f62d-2db0-4911-bec4-819885de410c"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="195" width="802" height="20" backcolor="#FFFFFF" uuid="0bfab294-e8d6-40d4-8fd4-515f5d9c3771"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="215" width="802" height="20" backcolor="#FFFFFF" uuid="ef1cbc47-4ff0-4e89-ac9b-b42e4d36e5fa"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="235" width="802" height="20" backcolor="#FFFFFF" uuid="17712768-5d53-47e7-aa94-1923f10e5878"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="255" width="802" height="20" backcolor="#FFFFFF" uuid="7c91e219-6db8-4955-a24c-2c3483a58d01"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="275" width="802" height="20" backcolor="#FFFFFF" uuid="d39cdb5a-c0fa-42b0-91fa-2e06291443f1"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="295" width="802" height="20" backcolor="#FFFFFF" uuid="faf705f9-9ccd-48f1-8998-9e2bf867912a"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="315" width="802" height="20" backcolor="#FFFFFF" uuid="a752f860-8322-4cc3-be06-8bc03ff3c531"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="335" width="802" height="20" backcolor="#FFFFFF" uuid="eac99d8a-c7f3-41fe-80f8-3789fd0a4bcf"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="355" width="802" height="20" backcolor="#FFFFFF" uuid="6fd19f4c-50e9-4ea6-a9bd-6a8c11f6ab2d"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="375" width="802" height="20" backcolor="#FFFFFF" uuid="e38e472c-22f1-45f5-91c9-ff466a363b29"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="395" width="802" height="20" backcolor="#FFFFFF" uuid="68a1a8a2-1a5f-442b-b68a-42e20fba7f5b"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="415" width="802" height="20" backcolor="#FFFFFF" uuid="677f53d6-037c-4795-8332-c9ca7c963b16"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="435" width="802" height="20" backcolor="#FFFFFF" uuid="8e464aeb-b24c-476c-8ad0-d04427db7b8a"/>
+				</rectangle>
+				<textField pattern="MMMM/YYYY">
+					<reportElement x="563" y="11" width="239" height="38" uuid="c657ae69-2bbc-4173-a531-3dfde1756340"/>
+					<textElement>
+						<font fontName="Tahoma" size="23" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{MES_FICHA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="315" y="104" width="96" height="20" uuid="56bc540a-f86f-4b3f-b89e-f269b96fa5b1"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.duracaohd}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="418" y="104" width="124" height="20" uuid="0560ddbf-c6db-4bb9-9e44-20fa31f6aeb8"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.tiposanguineo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="678" y="65" width="124" height="20" uuid="ce2e7213-607e-4068-8133-767f478166fe"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.prontuario}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="209" y="104" width="100" height="20" uuid="c52857b5-29a4-4656-b3cf-4d98f748d510"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.frequenciahd}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="680" y="104" width="121" height="20" uuid="e89f9f16-d083-4b97-955c-03a495d69334"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{eritropoetina}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="455" width="802" height="20" backcolor="#FFFFFF" uuid="e6f916ec-5047-4146-a2db-4d124ccfa26d"/>
+				</rectangle>
+				<line>
+					<reportElement x="87" y="149" width="1" height="326" uuid="be46870c-f4f6-4815-b640-a726a8c3246f"/>
+				</line>
+				<line>
+					<reportElement x="137" y="149" width="1" height="326" uuid="a049da78-49e4-4d35-a9af-bf20bbb1fb97"/>
+				</line>
+				<line>
+					<reportElement x="178" y="149" width="1" height="326" uuid="88909f69-4441-4f16-9957-661f30152e04"/>
+				</line>
+				<line>
+					<reportElement x="218" y="149" width="1" height="326" uuid="e0a49c98-5c55-434b-976f-3d5048659c7b"/>
+				</line>
+				<line>
+					<reportElement x="248" y="149" width="1" height="326" uuid="d54eb1ff-e2ea-415c-aca0-5458ee1b7382"/>
+				</line>
+				<line>
+					<reportElement x="278" y="149" width="1" height="326" uuid="f64625cb-03d9-4731-aaf4-29d8bd0c5888"/>
+				</line>
+				<line>
+					<reportElement x="307" y="149" width="1" height="326" uuid="815e6952-84d8-438a-9e7a-50c2cf8bbdcd"/>
+				</line>
+				<line>
+					<reportElement x="337" y="149" width="1" height="326" uuid="b304abbd-cef6-4e6c-a3e6-a47569568870"/>
+				</line>
+				<line>
+					<reportElement x="378" y="149" width="1" height="326" uuid="4f5e37a1-23ee-4869-a362-cfc6dc0e5470"/>
+				</line>
+				<line>
+					<reportElement x="414" y="149" width="1" height="326" uuid="6c4e2b7c-a3b1-4256-b48e-39bb7fdea126"/>
+				</line>
+				<line>
+					<reportElement x="450" y="149" width="1" height="326" uuid="c56e6a56-2ba1-4821-9aa6-733ee2721f0c"/>
+				</line>
+				<line>
+					<reportElement x="486" y="149" width="1" height="326" uuid="db1e9a2f-8ef9-4ca2-8e01-587841bbaa07"/>
+				</line>
+				<line>
+					<reportElement x="522" y="149" width="1" height="326" uuid="46cfdc89-e73f-4c8f-b4fd-4e84063fda4b"/>
+				</line>
+				<line>
+					<reportElement x="561" y="149" width="1" height="326" uuid="7436ef26-d67b-465f-a864-da0be22384cd"/>
+				</line>
+				<line>
+					<reportElement x="594" y="149" width="1" height="326" uuid="d3a13663-be9d-4edb-82a7-764fa4495737"/>
+				</line>
+				<line>
+					<reportElement x="627" y="149" width="1" height="326" uuid="bdb26d5c-5690-42ae-ac33-72d2dc72496b"/>
+				</line>
+				<line>
+					<reportElement x="664" y="149" width="1" height="326" uuid="acc3e5b2-f675-4e5b-9e68-e15215f06219"/>
+				</line>
+				<line>
+					<reportElement x="737" y="149" width="1" height="326" uuid="bd427340-e440-4ca9-9076-24cfa2b04266"/>
+				</line>
+				<line>
+					<reportElement x="51" y="149" width="1" height="326" uuid="8974d288-1a55-4deb-b145-49cfdb0a9511"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="150" width="51" height="24" uuid="533d293b-2122-4e19-a2d0-d7a92d65056a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="52" y="152" width="35" height="22" uuid="5d12d8bd-d025-4508-bbb3-4c986528490c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Hora:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="87" y="150" width="50" height="25" uuid="5e64ba65-aa95-4052-88ab-9fa61c58da13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="Tahoma" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[TESTE RESÍDUO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="138" y="150" width="40" height="25" uuid="27151a3c-404b-4e2d-8639-eade0b0ce284"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="Tahoma" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PESO PRÉ:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="183" y="150" width="29" height="25" uuid="b8a8445d-c873-444f-b1d8-536ddd0e89f3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="Tahoma" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PA PRÉ:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="219" y="150" width="29" height="24" uuid="364fceac-e813-484a-97d9-8b86a6091d57"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[1h]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="249" y="150" width="29" height="24" uuid="99b06b84-7263-4e26-a9a8-b50ff21604cf"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[2h]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="278" y="151" width="29" height="24" uuid="db228e7a-2ce6-43c4-a329-20a7adc18351"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[3h]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="308" y="151" width="29" height="24" uuid="f8a37f47-3673-4b15-a2fa-fc19b2ed4739"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[4h]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="338" y="151" width="40" height="25" uuid="d328a081-83db-41e8-9baf-2bc8047596c0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="Tahoma" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PESO PÓS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="382" y="149" width="29" height="25" uuid="b5e8040e-3d7e-44f0-b276-28103ac00e09"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="Tahoma" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PA PÓS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="415" y="151" width="35" height="23" uuid="d836477c-f3a0-4b51-8be2-5648ebcccb05"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PRÉ:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="451" y="151" width="35" height="23" uuid="3471ea2c-f484-4491-a82f-e869c32bf742"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PÓS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="487" y="151" width="35" height="23" uuid="4fa0c8dc-9bc8-4469-873c-7a4884f28d23"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PV:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="523" y="151" width="38" height="23" uuid="6a8dace9-5fe4-4262-ae9b-cedac056a57c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[UF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="562" y="151" width="32" height="23" uuid="a796cf24-5ee4-459f-bb1c-ea3eece96102"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[FS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="595" y="151" width="32" height="23" uuid="dbdfd2c3-2183-4b06-8429-5ba7567d9815"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[FD:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="629" y="152" width="32" height="23" uuid="41829f6c-b43e-4110-b258-3d4f746689cc"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Na]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="652" y="152" width="12" height="23" uuid="898e6db6-2f03-40a0-8dce-4a8abe79a9db"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="670" y="154" width="64" height="20" uuid="2f89839f-068e-40fa-bb3c-a90e19e3e6f5"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Ass.Médico:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="739" y="150" width="62" height="26" uuid="5308cd88-eb4e-422c-9a62-3fcf35b2ff6a"/>
+					<textElement textAlignment="Center">
+						<font fontName="Tahoma" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Ass.Enfermeira:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="309" y="86" width="1" height="39" uuid="933512d6-70a7-433f-b2ce-8b2b665e5c44"/>
+				</line>
+				<staticText>
+					<reportElement x="212" y="89" width="97" height="16" uuid="83dae37f-ca6d-4627-8920-91372f812120"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[FREQUÊNCIA HD:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="412" y="86" width="1" height="39" uuid="098dd2f3-ce36-492a-a8df-ccd7daaa58f4"/>
+				</line>
+				<staticText>
+					<reportElement x="315" y="89" width="76" height="16" uuid="b81343e0-dad4-4942-a6b4-93d2293f8e7c"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[DURAÇÃO HD:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="542" y="85" width="1" height="39" uuid="839c99d9-e79d-4e83-b130-d671ec890258"/>
+				</line>
+				<staticText>
+					<reportElement x="418" y="89" width="97" height="16" uuid="9239c682-c0aa-42ee-b7e0-940f1559ba69"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[ABO/RH:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="548" y="89" width="97" height="16" uuid="5c5a5991-fb57-4c10-9f42-3d4b85294edc"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[FERRO:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="672" y="86" width="1" height="39" uuid="513f3485-441c-4068-9682-fe0a970ba827"/>
+				</line>
+				<staticText>
+					<reportElement x="678" y="89" width="97" height="16" uuid="9147d6dc-eb7e-4614-aa58-e8710155e553"/>
+					<textElement>
+						<font fontName="Tahoma" size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[ERITROPOETINIA:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="3" y="126" width="38" height="23" uuid="1702afd8-7491-4ee1-b431-9651261bf9d7"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[*OBS:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement x="548" y="66" width="122" height="22" uuid="c34053d5-4dfa-48bc-96e2-6a22ab693ef0"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.datainiciohd}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement x="418" y="66" width="124" height="20" uuid="d69a499a-a85d-420f-9a93-ec3cef888f29"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{paciente.datanascimento}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0&apos; UI&apos;" isBlankWhenNull="true">
+					<reportElement x="109" y="104" width="100" height="20" uuid="8ad6dfd0-b4b7-45e4-89e0-e8bcbbb1c832"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{heparina}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="41" y="128" width="750" height="20" uuid="4874671d-fc0b-491f-aa86-e047298c8010"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{obs}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="548" y="104" width="125" height="20" uuid="83e930b2-ee88-4f34-a20b-539f6d22c1e9"/>
+					<textElement>
+						<font fontName="Tahoma" size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ferro}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<pageHeader>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="23" uuid="d5361c60-f3c3-4ecf-b18b-f3da3b287e99"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[CLINICA DO RIM DO CARPINA – UNIDADE II
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="802" height="29" uuid="8cdb9ee8-4463-494b-b31b-3dcc790ded8a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FOLHA DE PRESCRIÇÃO E CONTROLE DE DIÁLISE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

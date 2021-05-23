@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportHDEXTRA" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1dc0a331-c53e-4508-a1ee-473a4ae3c1c6">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="132"/>
+	<property name="ireport.y" value="292"/>
+	<parameter name="DATA_PROCEDIMENTO" class="java.util.Date"/>
+	<parameter name="HORA_PROCEDIMENTO" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT
+     paciente_has_tiposdeclaracao.`idpaciente_has_tiposdeclaracao` AS idpacienteHasTiposdeclaracao,
+     paciente_has_tiposdeclaracao.`paciente_idpaciente` AS paciente,
+     paciente_has_tiposdeclaracao.`tiposdeclaracao_idtiposdeclaracao` AS tiposdeclaracao,
+     paciente.`idpaciente` AS `paciente.idpaciente`,
+     paciente.`cidade_idcidade` AS `paciente.cidade`,
+     paciente.`estado_idestado` AS `paciente.estado`,
+     tiposdeclaracao.`idtiposdeclaracao` AS `tiposdeclaracao.idtiposdeclaracao`,
+     tiposdeclaracao.`tipodadeclaracao` AS `tiposdeclaracao.tipodadeclaracao`,
+     paciente.`nome` AS `paciente.nome`,
+     paciente.`cpf` AS `paciente.cpf`
+FROM
+     `paciente` paciente INNER JOIN `paciente_has_tiposdeclaracao` paciente_has_tiposdeclaracao ON paciente.`idpaciente` = paciente_has_tiposdeclaracao.`paciente_idpaciente`
+     INNER JOIN `tiposdeclaracao` tiposdeclaracao ON paciente_has_tiposdeclaracao.`tiposdeclaracao_idtiposdeclaracao` = tiposdeclaracao.`idtiposdeclaracao`]]>
+	</queryString>
+	<field name="idpacienteHasTiposdeclaracao" class="java.lang.Integer"/>
+	<field name="paciente" class="java.lang.Integer"/>
+	<field name="tiposdeclaracao" class="java.lang.Integer"/>
+	<field name="paciente.idpaciente" class="java.lang.Integer"/>
+	<field name="paciente.cidade" class="java.lang.String"/>
+	<field name="paciente.estado" class="java.lang.String"/>
+	<field name="tiposdeclaracao.idtiposdeclaracao" class="java.lang.Integer"/>
+	<field name="tiposdeclaracao.tipodadeclaracao" class="java.lang.String"/>
+	<field name="paciente.nome" class="java.lang.String"/>
+	<field name="paciente.cpf" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String">
+		<variableExpression><![CDATA[$F{paciente.cpf}.length() == 11 ?
+java.util.regex.Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})").matcher($F{paciente.cpf}).replaceAll("\$1.\$2.\$3-\$4") :
+java.util.regex.Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})").matcher($F{paciente.cpf}).replaceAll("\$1.\$2.\$3.\$4/\$5")]]></variableExpression>
+	</variable>
+	<variable name="variable2" class="java.lang.String">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="38" uuid="f4a895c2-44fd-4b24-a9ef-027e8b39fb3c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Clínica do Rim do Carpina - Unidade II.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="555" height="20" uuid="6e18f5b7-a21c-49d2-b007-b093864d4448"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Av. Congresso Eucarístico Internacional, 158 – São José – Carpina-PE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="58" width="555" height="20" uuid="e36023f2-d5a4-4837-9d77-044fc2e72c9b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[C.N.P.J.: 69.943.892/0002- 41]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<textField pattern="EEEEE&apos;,&apos; dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement x="375" y="15" width="180" height="20" uuid="31bf0f55-eaa1-413d-8d8e-d4381a8f1a5c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="31" y="35" width="329" height="20" uuid="408cf073-474a-4186-af6b-974775b84b70"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["À Secretaria de Saúde de " + $F{paciente.cidade} + "/" + $F{paciente.estado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="55" width="303" height="20" uuid="e3a9420c-e320-4e61-bc1d-ddc5925efc98"/>
+				<textElement>
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATT.: SETOR RESPONSÁVEL PELO TRANSPORTE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="21" y="0" width="516" height="125" uuid="5ef03870-003b-4f32-956c-6f3c26b966e8"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Declaro para fins de comprovação que o paciente: " + "<b>" + $F{paciente.nome}.toUpperCase() + ", " + "</b>" + "<b>" + "CPF: " + "</b>" + "<b>" + $V{variable1}  + "</b>" + ", é portador de Insuficiência renal crônica em estágio final [(CID 10 - N18.0)] em programa de hemodiálise regular nessa clínica. Informo que o mesmo necessita compadecer" + " <b>" + new SimpleDateFormat("EEEEE").format($P{DATA_PROCEDIMENTO})+ "</b>" + " " +  "para realizar: " + "<b>" + $F{tiposdeclaracao.tipodadeclaracao}.toUpperCase() + "</b>" + " no dia"  + "<b>" + new SimpleDateFormat(" dd/MM/YY").format($P{DATA_PROCEDIMENTO})+ "</b>" + " às " + "<b>" + new SimpleDateFormat("HH:mm a").format($P{HORA_PROCEDIMENTO}) + "</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

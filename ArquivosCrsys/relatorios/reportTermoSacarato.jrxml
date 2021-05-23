@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportTermoSacarato" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="91a8a2e2-8831-48c1-b244-a5d5dbbe6dba">
+	<property name="ireport.zoom" value="1.2100000000000057"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="361"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     termos.`idtermos` AS termos_idtermos,
+     termos.`nomePaciente` AS termos_nomePaciente,
+     termos.`documentoPaciente` AS termos_documentoPaciente,
+     termos.`respLegal` AS termos_respLegal,
+     termos.`documentoRespLegal` AS termos_documentoRespLegal,
+     termos.`medicoinfo` AS termos_medicoinfo,
+     medico.`idmedico` AS medico_idmedico,
+     medico.`nome` AS medico_nome,
+     medico.`crm` AS medico_crm
+FROM
+     `termos` termos,
+     `medico` medico]]>
+	</queryString>
+	<field name="termos_idtermos" class="java.lang.Integer"/>
+	<field name="termos_nomePaciente" class="java.lang.String"/>
+	<field name="termos_documentoPaciente" class="java.lang.String"/>
+	<field name="termos_respLegal" class="java.lang.String"/>
+	<field name="termos_documentoRespLegal" class="java.lang.String"/>
+	<field name="termos_medicoinfo" class="java.lang.Integer"/>
+	<field name="medico_idmedico" class="java.lang.Integer"/>
+	<field name="medico_nome" class="java.lang.String"/>
+	<field name="medico_crm" class="java.lang.String"/>
+	<title>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="264" y="0" width="301" height="41" uuid="392c4fdc-008c-4e26-901b-54d42fc50561"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Componente Especializado da Assistência Farmacêutica –
+Portaria SAS/MS nº365, de 15 de fevereiro de 2017.
+]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="521" y="15" width="54" height="12" forecolor="#FFFFFF" backcolor="#0078D7" uuid="9ab5c348-94b3-4a6a-8005-6b8cc78b37e9"/>
+			</rectangle>
+		</band>
+	</title>
+	<detail>
+		<band height="734" splitType="Stretch">
+			<image>
+				<reportElement x="31" y="0" width="490" height="519" uuid="14e76180-2d30-4b00-afe3-cd60eb7b5b31"/>
+				<imageExpression><![CDATA["C:\\Users\\johnn\\Desktop\\TERMO DO ALFAPOETINA EDITÁVEL 3-1.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="31" y="506" width="490" height="228" uuid="b2f2a7cb-3eb0-4100-964a-022ac9476047"/>
+				<imageExpression><![CDATA["C:\\Users\\johnn\\Desktop\\TERMO DO ALFAPOETINA EDITÁVEL 3-1222.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="90" y="22" width="313" height="20" uuid="1c69cb70-62a5-4f50-8fed-616dd8b5df51"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{termos_nomePaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="91" width="277" height="20" uuid="a3261185-c958-4d94-8cb3-83533337ca09"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{medico_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="540" width="100" height="14" uuid="4cc70e17-093d-41f5-b072-cc46187de35b"/>
+				<textFieldExpression><![CDATA[$F{termos_documentoPaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="554" width="100" height="13" uuid="ecb3f683-e373-4f17-899e-8f2d9125410b"/>
+				<textFieldExpression><![CDATA[$F{termos_respLegal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="527" width="372" height="13" uuid="e5322113-1a6e-435c-9635-0efcf926d55c"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{termos_nomePaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="567" width="235" height="13" uuid="d14b2493-e42c-4b52-b99e-1c59877b4770"/>
+				<textFieldExpression><![CDATA[$F{termos_documentoRespLegal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="630" width="100" height="17" uuid="b338cd08-ddcf-44c3-87c5-6ea9a4cbd308"/>
+				<textFieldExpression><![CDATA[$F{medico_crm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="630" width="196" height="17" uuid="522e804a-d06f-4e13-9920-c113ee914e3a"/>
+				<textFieldExpression><![CDATA[$F{medico_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

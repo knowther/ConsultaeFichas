@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75bc8340-80ec-4c79-bad2-138b421fe5c0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="116"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="6d1e2c73-1985-4cc3-8371-2ecf3d56770c">
+		<queryString>
+			<![CDATA[SELECT
+     paciente.`idpaciente` AS paciente_idpaciente,
+     paciente.`prontuario` AS paciente_prontuario,
+     paciente.`dia_iddia` AS paciente_dia_iddia,
+     paciente.`turno_idturno` AS paciente_turno_idturno,
+     paciente.`medico_idmedico` AS paciente_medico_idmedico,
+     paciente.`tiposanguineo_idtiposanguineo` AS paciente_tiposanguineo_idtiposanguineo,
+     paciente.`duracaohd_idduracaohd` AS paciente_duracaohd_idduracaohd,
+     paciente.`frequenciahd_idfrequenciahd` AS paciente_frequenciahd_idfrequenciahd,
+     paciente.`cidade_idcidade` AS paciente_cidade_idcidade,
+     paciente.`estado_idestado` AS paciente_estado_idestado,
+     paciente.`profissao_idprofissao` AS paciente_profissao_idprofissao,
+     paciente.`tiposlogradouro_idtiposlogradouro` AS paciente_tiposlogradouro_idtiposlogradouro,
+     paciente.`tipodeinsuficiencia_idtipodeinsuficiencia` AS paciente_tipodeinsuficiencia_idtipodeinsuficiencia,
+     paciente.`tipodedialise_idtipodedialise` AS paciente_tipodedialise_idtipodedialise,
+     paciente.`nome` AS paciente_nome,
+     paciente.`apelido` AS paciente_apelido,
+     paciente.`bairro` AS paciente_bairro,
+     paciente.`cep` AS paciente_cep,
+     paciente.`cpf` AS paciente_cpf,
+     paciente.`rg` AS paciente_rg,
+     paciente.`datanascimento` AS paciente_datanascimento,
+     paciente.`datainiciohd` AS paciente_datainiciohd,
+     paciente.`endereco` AS paciente_endereco,
+     paciente.`numero` AS paciente_numero,
+     paciente.`foto` AS paciente_foto,
+     paciente.`unidadedeencaminhamento` AS paciente_unidadedeencaminhamento,
+     paciente.`pesoseco` AS paciente_pesoseco,
+     paciente.`complemento` AS paciente_complemento,
+     paciente.`tratamento` AS paciente_tratamento,
+     paciente.`precisadeclaracao` AS paciente_precisadeclaracao,
+     paciente.`declaracaoacompanhante` AS paciente_declaracaoacompanhante,
+     cidade.`idcidade` AS cidade_idcidade,
+     cidade.`nome` AS cidade_nome,
+     cidade.`estado_idestado` AS cidade_estado_idestado,
+     turno.`idturno` AS turno_idturno,
+     turno.`dia_iddia` AS turno_dia_iddia,
+     turno.`nome` AS turno_nome,
+     dia.`iddia` AS dia_iddia,
+     dia.`nome` AS dia_nome
+FROM
+     `cidade` cidade RIGHT OUTER JOIN `paciente` paciente ON cidade.`idcidade` = paciente.`cidade_idcidade`
+     INNER JOIN `turno` turno ON paciente.`turno_idturno` = turno.`idturno`
+     INNER JOIN `dia` dia ON paciente.`dia_iddia` = dia.`iddia`
+     AND dia.`iddia` = turno.`dia_iddia`]]>
+		</queryString>
+		<field name="paciente_idpaciente" class="java.lang.Integer"/>
+		<field name="paciente_prontuario" class="java.lang.String"/>
+		<field name="paciente_dia_iddia" class="java.lang.Integer"/>
+		<field name="paciente_turno_idturno" class="java.lang.Integer"/>
+		<field name="paciente_medico_idmedico" class="java.lang.Integer"/>
+		<field name="paciente_tiposanguineo_idtiposanguineo" class="java.lang.Integer"/>
+		<field name="paciente_duracaohd_idduracaohd" class="java.lang.Integer"/>
+		<field name="paciente_frequenciahd_idfrequenciahd" class="java.lang.Integer"/>
+		<field name="paciente_cidade_idcidade" class="java.lang.Integer"/>
+		<field name="paciente_estado_idestado" class="java.lang.Integer"/>
+		<field name="paciente_profissao_idprofissao" class="java.lang.Integer"/>
+		<field name="paciente_tiposlogradouro_idtiposlogradouro" class="java.lang.Integer"/>
+		<field name="paciente_tipodeinsuficiencia_idtipodeinsuficiencia" class="java.lang.Integer"/>
+		<field name="paciente_tipodedialise_idtipodedialise" class="java.lang.Integer"/>
+		<field name="paciente_nome" class="java.lang.String"/>
+		<field name="paciente_apelido" class="java.lang.String"/>
+		<field name="paciente_bairro" class="java.lang.String"/>
+		<field name="paciente_cep" class="java.lang.String"/>
+		<field name="paciente_cpf" class="java.lang.String"/>
+		<field name="paciente_rg" class="java.lang.String"/>
+		<field name="paciente_datanascimento" class="java.sql.Date"/>
+		<field name="paciente_datainiciohd" class="java.sql.Date"/>
+		<field name="paciente_endereco" class="java.lang.String"/>
+		<field name="paciente_numero" class="java.lang.String"/>
+		<field name="paciente_foto" class="java.lang.String"/>
+		<field name="paciente_unidadedeencaminhamento" class="java.lang.String"/>
+		<field name="paciente_pesoseco" class="java.lang.Float"/>
+		<field name="paciente_complemento" class="java.lang.String"/>
+		<field name="paciente_tratamento" class="java.lang.Integer"/>
+		<field name="paciente_precisadeclaracao" class="java.lang.Integer"/>
+		<field name="paciente_declaracaoacompanhante" class="java.lang.Integer"/>
+		<field name="cidade_idcidade" class="java.lang.Integer"/>
+		<field name="cidade_nome" class="java.lang.String"/>
+		<field name="cidade_estado_idestado" class="java.lang.Integer"/>
+		<field name="turno_idturno" class="java.lang.Integer"/>
+		<field name="turno_dia_iddia" class="java.lang.Integer"/>
+		<field name="turno_nome" class="java.lang.String"/>
+		<field name="dia_iddia" class="java.lang.Integer"/>
+		<field name="dia_nome" class="java.lang.String"/>
+		<group name="paciente_nome">
+			<groupExpression><![CDATA[$F{paciente_nome}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+     paciente.`idpaciente` AS paciente_idpaciente,
+     paciente.`prontuario` AS paciente_prontuario,
+     paciente.`dia_iddia` AS paciente_dia_iddia,
+     paciente.`turno_idturno` AS paciente_turno_idturno,
+     paciente.`medico_idmedico` AS paciente_medico_idmedico,
+     paciente.`tiposanguineo_idtiposanguineo` AS paciente_tiposanguineo_idtiposanguineo,
+     paciente.`duracaohd_idduracaohd` AS paciente_duracaohd_idduracaohd,
+     paciente.`frequenciahd_idfrequenciahd` AS paciente_frequenciahd_idfrequenciahd,
+     paciente.`cidade_idcidade` AS paciente_cidade_idcidade,
+     paciente.`estado_idestado` AS paciente_estado_idestado,
+     paciente.`profissao_idprofissao` AS paciente_profissao_idprofissao,
+     paciente.`tiposlogradouro_idtiposlogradouro` AS paciente_tiposlogradouro_idtiposlogradouro,
+     paciente.`tipodeinsuficiencia_idtipodeinsuficiencia` AS paciente_tipodeinsuficiencia_idtipodeinsuficiencia,
+     paciente.`tipodedialise_idtipodedialise` AS paciente_tipodedialise_idtipodedialise,
+     paciente.`nome` AS paciente_nome,
+     paciente.`apelido` AS paciente_apelido,
+     paciente.`bairro` AS paciente_bairro,
+     paciente.`cep` AS paciente_cep,
+     paciente.`cpf` AS paciente_cpf,
+     paciente.`rg` AS paciente_rg,
+     paciente.`datanascimento` AS paciente_datanascimento,
+     paciente.`datainiciohd` AS paciente_datainiciohd,
+     paciente.`endereco` AS paciente_endereco,
+     paciente.`numero` AS paciente_numero,
+     paciente.`foto` AS paciente_foto,
+     paciente.`unidadedeencaminhamento` AS paciente_unidadedeencaminhamento,
+     paciente.`pesoseco` AS paciente_pesoseco,
+     paciente.`complemento` AS paciente_complemento,
+     paciente.`tratamento` AS paciente_tratamento,
+     paciente.`precisadeclaracao` AS paciente_precisadeclaracao,
+     paciente.`declaracaoacompanhante` AS paciente_declaracaoacompanhante,
+     cidade.`idcidade` AS cidade_idcidade,
+     cidade.`nome` AS cidade_nome,
+     cidade.`estado_idestado` AS cidade_estado_idestado
+FROM
+     `cidade` cidade INNER JOIN `paciente` paciente ON cidade.`idcidade` = paciente.`cidade_idcidade`
+   LIMIT 1]]>
+	</queryString>
+	<field name="paciente_idpaciente" class="java.lang.Integer"/>
+	<field name="paciente_prontuario" class="java.lang.String"/>
+	<field name="paciente_dia_iddia" class="java.lang.Integer"/>
+	<field name="paciente_turno_idturno" class="java.lang.Integer"/>
+	<field name="paciente_medico_idmedico" class="java.lang.Integer"/>
+	<field name="paciente_tiposanguineo_idtiposanguineo" class="java.lang.Integer"/>
+	<field name="paciente_duracaohd_idduracaohd" class="java.lang.Integer"/>
+	<field name="paciente_frequenciahd_idfrequenciahd" class="java.lang.Integer"/>
+	<field name="paciente_cidade_idcidade" class="java.lang.Integer"/>
+	<field name="paciente_estado_idestado" class="java.lang.Integer"/>
+	<field name="paciente_profissao_idprofissao" class="java.lang.Integer"/>
+	<field name="paciente_tiposlogradouro_idtiposlogradouro" class="java.lang.Integer"/>
+	<field name="paciente_tipodeinsuficiencia_idtipodeinsuficiencia" class="java.lang.Integer"/>
+	<field name="paciente_tipodedialise_idtipodedialise" class="java.lang.Integer"/>
+	<field name="paciente_nome" class="java.lang.String"/>
+	<field name="paciente_apelido" class="java.lang.String"/>
+	<field name="paciente_bairro" class="java.lang.String"/>
+	<field name="paciente_cep" class="java.lang.String"/>
+	<field name="paciente_cpf" class="java.lang.String"/>
+	<field name="paciente_rg" class="java.lang.String"/>
+	<field name="paciente_datanascimento" class="java.sql.Date"/>
+	<field name="paciente_datainiciohd" class="java.sql.Date"/>
+	<field name="paciente_endereco" class="java.lang.String"/>
+	<field name="paciente_numero" class="java.lang.String"/>
+	<field name="paciente_foto" class="java.lang.String"/>
+	<field name="paciente_unidadedeencaminhamento" class="java.lang.String"/>
+	<field name="paciente_pesoseco" class="java.lang.Float"/>
+	<field name="paciente_complemento" class="java.lang.String"/>
+	<field name="paciente_tratamento" class="java.lang.Integer"/>
+	<field name="paciente_precisadeclaracao" class="java.lang.Integer"/>
+	<field name="paciente_declaracaoacompanhante" class="java.lang.Integer"/>
+	<field name="cidade_idcidade" class="java.lang.Integer"/>
+	<field name="cidade_nome" class="java.lang.String"/>
+	<field name="cidade_estado_idestado" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="394" y="15" width="100" height="20" uuid="aee27cb3-d5c4-4912-ba3d-9642d9b95a73"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="213" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="555" height="213" uuid="9719b94d-4faa-468e-8726-5d3b2609bda8"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="3515599a-0f87-4c21-b166-c9c7b1f75464">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="168" uuid="619f423b-7c04-43ea-ac16-359a65e9280c">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="168" height="30" uuid="5b42934a-325b-4fd5-b7af-e9f1b3de2240"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[NOME]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="168" height="20" uuid="f150d350-bb87-4b68-bc9c-0dd70d0be6ab"/>
+								<textFieldExpression><![CDATA[$F{paciente_nome}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="7aa5ca08-70b4-46d1-a1a7-0e537d2bd821">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="3" y="0" width="87" height="30" uuid="2019a4e4-2702-4296-9246-c240cec44250"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[APELIDO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="66a046c0-d731-4c19-b013-012a3e4314d6"/>
+								<textFieldExpression><![CDATA[$F{paciente_apelido}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="28ae0249-0a3f-4c15-a9ed-e0cf9767b5e7">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="88" height="30" uuid="6ef474e1-9fff-40da-8533-25a3517c500a"/>
+								<textFieldExpression><![CDATA[$F{paciente_cpf}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="240536a5-0ff6-4f25-acf1-9e54b16b4233">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="7864fdad-dd96-4327-9f8d-7b1a1e250f36"/>
+								<textFieldExpression><![CDATA[$F{paciente_datanascimento}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="4b2bdbf7-43d7-4475-96be-b2d43df36c01">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="af6f7fd1-cb53-4f77-8ed0-3c21a6acd5e4"/>
+								<textFieldExpression><![CDATA[$F{paciente_datainiciohd}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="251" uuid="6d4bf11e-01bb-48b7-835c-49d739ebe588">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="251" height="30" uuid="dafc4ab3-f97a-41f5-8dd5-292df88f0afc"/>
+								<textFieldExpression><![CDATA[$F{paciente_endereco}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

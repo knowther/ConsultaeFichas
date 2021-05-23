@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportHDEXTRA" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1dc0a331-c53e-4508-a1ee-473a4ae3c1c6">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="12"/>
+	<property name="ireport.y" value="3"/>
+	<parameter name="DATA_PROCEDIMENTO" class="java.util.Date"/>
+	<parameter name="HORA_PROCEDIMENTO" class="java.util.Date"/>
+	<parameter name="HORARIO_TURNO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     paciente_has_tiposdeclaracao.`idpaciente_has_tiposdeclaracao` AS idpacienteHasTiposdeclaracao,
+     paciente_has_tiposdeclaracao.`paciente_idpaciente` AS paciente,
+     paciente_has_tiposdeclaracao.`tiposdeclaracao_idtiposdeclaracao` AS tiposdeclaracao,
+     paciente.`idpaciente` AS `paciente.idpaciente`,
+     paciente.`cidade_idcidade` AS `paciente.cidade`,
+     paciente.`estado_idestado` AS `paciente.estado`,
+     tiposdeclaracao.`idtiposdeclaracao` AS `tiposdeclaracao.idtiposdeclaracao`,
+     tiposdeclaracao.`tipodadeclaracao` AS `tiposdeclaracao.tipodadeclaracao`,
+     paciente.`nome` AS `paciente.nome`,
+     paciente.`cpf` AS `paciente.cpf`,
+     paciente.`tiposlogradouro_idtiposlogradouro` AS `paciente.tiposlogradouro`,
+     paciente.`endereco` AS `paciente.endereco`,
+     paciente.`bairro` AS `paciente.bairro`,
+     paciente.`numero` AS `paciente.numero`,
+     paciente.`turno_idturno` AS `paciente.turno`,
+     paciente.`dia_iddia` AS `paciente.dia`
+FROM
+     `paciente` paciente INNER JOIN `paciente_has_tiposdeclaracao` paciente_has_tiposdeclaracao ON paciente.`idpaciente` = paciente_has_tiposdeclaracao.`paciente_idpaciente`
+     INNER JOIN `tiposdeclaracao` tiposdeclaracao ON paciente_has_tiposdeclaracao.`tiposdeclaracao_idtiposdeclaracao` = tiposdeclaracao.`idtiposdeclaracao`]]>
+	</queryString>
+	<field name="idpacienteHasTiposdeclaracao" class="java.lang.Integer"/>
+	<field name="paciente" class="java.lang.Integer"/>
+	<field name="tiposdeclaracao" class="java.lang.Integer"/>
+	<field name="paciente.idpaciente" class="java.lang.Integer"/>
+	<field name="paciente.cidade" class="java.lang.String"/>
+	<field name="paciente.estado" class="java.lang.String"/>
+	<field name="tiposdeclaracao.idtiposdeclaracao" class="java.lang.Integer"/>
+	<field name="tiposdeclaracao.tipodadeclaracao" class="java.lang.String"/>
+	<field name="paciente.nome" class="java.lang.String"/>
+	<field name="paciente.cpf" class="java.lang.String"/>
+	<field name="paciente.tiposlogradouro" class="java.lang.String"/>
+	<field name="paciente.endereco" class="java.lang.String"/>
+	<field name="paciente.bairro" class="java.lang.String"/>
+	<field name="paciente.numero" class="java.lang.String"/>
+	<field name="paciente.turno" class="java.lang.String"/>
+	<field name="paciente.dia" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String">
+		<variableExpression><![CDATA[$F{paciente.cpf}.length() == 11 ?
+java.util.regex.Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})").matcher($F{paciente.cpf}).replaceAll("\$1.\$2.\$3-\$4") :
+java.util.regex.Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})").matcher($F{paciente.cpf}).replaceAll("\$1.\$2.\$3.\$4/\$5")]]></variableExpression>
+	</variable>
+	<variable name="variable2" class="java.lang.String">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="147" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="38" uuid="f4a895c2-44fd-4b24-a9ef-027e8b39fb3c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Clínica do Rim do Carpina - Unidade II.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="70" width="555" height="20" uuid="f3e54cff-6912-4d21-bb9c-96d6d0d8d5ba"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[C.N.P.J.:69.943.892/0002-41]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="54" width="555" height="20" uuid="57eaadda-44ca-4834-93b4-a421819f2446"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[Fone - 3621-0148 / email:Crcunidade02@yahoo.com.br]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="34" width="555" height="20" uuid="6d4df6e2-c59a-43d0-8a50-5cc2f8da35e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Av. Congresso Eucarístico Internacional, 158 - São José - Carpina/PE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<textField pattern="EEEEE&apos;,&apos; dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement x="334" y="15" width="221" height="20" uuid="31bf0f55-eaa1-413d-8d8e-d4381a8f1a5c"/>
+				<textElement>
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="31" y="55" width="329" height="20" uuid="408cf073-474a-4186-af6b-974775b84b70"/>
+				<textElement>
+					<font fontName="Tahoma" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["À Secretaria de Saúde de " + $F{paciente.cidade} + "/" + $F{paciente.estado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="75" width="303" height="20" uuid="e3a9420c-e320-4e61-bc1d-ddc5925efc98"/>
+				<textElement>
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATT.: SETOR RESPONSÁVEL PELO TRANSPORTE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="189" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="21" y="0" width="516" height="125" uuid="5ef03870-003b-4f32-956c-6f3c26b966e8"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O(a) Sr(a): " + "<b>" + $F{paciente.nome}.toUpperCase() + ", " + "</b>" + "<b>" + "CPF: " + "</b>" + "<b>" + $V{variable1}  + "</b>" + " residente no(a) " + $F{paciente.tiposlogradouro} + " "  + $F{paciente.endereco}+ ", " + "Nº: " + $F{paciente.numero} + ", " + $F{paciente.bairro} + ", " + $F{paciente.cidade} + ", é portador de Insuficiência Renal Crônica Terminal (CID N 18.0), Iniciou tratamento hemodialítico hoje nesta Clínica. Ficou lotado no " + $F{paciente.turno} + " da " + $F{paciente.dia} + " no horário das "+ $P{HORARIO_TURNO} + ", necessitando liberação de transporte a fim de comparecer assíduo e pontualmente ao tratamento."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="142" width="555" height="20" uuid="783a140b-1426-42f1-a9e2-22cbe420783b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<text><![CDATA[Antecipadamente, agradecemos a atenção dispensada.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="162" width="555" height="20" uuid="5831c0bb-4d20-4748-8b4c-ba3a858f69eb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<text><![CDATA[Cordialmente,]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="80" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
