@@ -241,8 +241,8 @@ public class Pacientesconsulta implements Serializable {
     public Medicos getMedico() {
         return medicos;
     }
-    
-
+     
+   
     @Override
     public int hashCode() {
         int hash = 0;
