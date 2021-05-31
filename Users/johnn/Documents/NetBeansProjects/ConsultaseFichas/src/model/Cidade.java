@@ -5,24 +5,24 @@
  */
 package model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,9 +37,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cidade.findByNome", query = "SELECT c FROM Cidade c WHERE c.nome = :nome")})
 public class Cidade implements Serializable {
 
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,12 +45,11 @@ public class Cidade implements Serializable {
     private Integer idcidade;
     @Column(name = "nome")
     private String nome;
-    
-    @ManyToOne
-    private Estado estado;
-    
-    @OneToMany(mappedBy = "cidade")
-    private List<Pacientesconsulta> pacientes = new ArrayList<Pacientesconsulta>();
+    @JoinColumn(name = "estado_idestado", referencedColumnName = "idestado")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Estado estadoIdestado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cidadeIdcidade", fetch = FetchType.EAGER)
+    private List<Pacientesconsulta> pacientesconsultaList;
 
     public Cidade() {
     }
@@ -67,9 +63,7 @@ public class Cidade implements Serializable {
     }
 
     public void setIdcidade(Integer idcidade) {
-        Integer oldIdcidade = this.idcidade;
         this.idcidade = idcidade;
-        changeSupport.firePropertyChange("idcidade", oldIdcidade, idcidade);
     }
 
     public String getNome() {
@@ -77,9 +71,24 @@ public class Cidade implements Serializable {
     }
 
     public void setNome(String nome) {
-        String oldNome = this.nome;
         this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
+    }
+
+    public Estado getEstadoIdestado() {
+        return estadoIdestado;
+    }
+
+    public void setEstadoIdestado(Estado estadoIdestado) {
+        this.estadoIdestado = estadoIdestado;
+    }
+
+    @XmlTransient
+    public List<Pacientesconsulta> getPacientesconsultaList() {
+        return pacientesconsultaList;
+    }
+
+    public void setPacientesconsultaList(List<Pacientesconsulta> pacientesconsultaList) {
+        this.pacientesconsultaList = pacientesconsultaList;
     }
 
     @Override
@@ -104,15 +113,7 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "model.Cidade[ idcidade=" + idcidade + " ]";
     }
     
 }

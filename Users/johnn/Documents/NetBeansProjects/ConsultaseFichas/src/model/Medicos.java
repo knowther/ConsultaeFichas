@@ -5,14 +5,13 @@
  */
 package model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,9 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Medicos.findByCrm", query = "SELECT m FROM Medicos m WHERE m.crm = :crm")})
 public class Medicos implements Serializable {
 
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,9 +46,8 @@ public class Medicos implements Serializable {
     private String nome;
     @Column(name = "crm")
     private String crm;
-    
-    @OneToMany(mappedBy = "medicos")
-    private List<Pacientesconsulta> pacienteConsulta = new ArrayList<Pacientesconsulta>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicosIdmedicos", fetch = FetchType.EAGER)
+    private List<Pacientesconsulta> pacientesconsultaList;
 
     public Medicos() {
     }
@@ -66,9 +61,7 @@ public class Medicos implements Serializable {
     }
 
     public void setIdmedicos(Integer idmedicos) {
-        Integer oldIdmedicos = this.idmedicos;
         this.idmedicos = idmedicos;
-        changeSupport.firePropertyChange("idmedicos", oldIdmedicos, idmedicos);
     }
 
     public String getNome() {
@@ -76,9 +69,7 @@ public class Medicos implements Serializable {
     }
 
     public void setNome(String nome) {
-        String oldNome = this.nome;
         this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     public String getCrm() {
@@ -86,9 +77,16 @@ public class Medicos implements Serializable {
     }
 
     public void setCrm(String crm) {
-        String oldCrm = this.crm;
         this.crm = crm;
-        changeSupport.firePropertyChange("crm", oldCrm, crm);
+    }
+
+    @XmlTransient
+    public List<Pacientesconsulta> getPacientesconsultaList() {
+        return pacientesconsultaList;
+    }
+
+    public void setPacientesconsultaList(List<Pacientesconsulta> pacientesconsultaList) {
+        this.pacientesconsultaList = pacientesconsultaList;
     }
 
     @Override
@@ -113,15 +111,7 @@ public class Medicos implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "model.Medicos[ idmedicos=" + idmedicos + " ]";
     }
     
 }

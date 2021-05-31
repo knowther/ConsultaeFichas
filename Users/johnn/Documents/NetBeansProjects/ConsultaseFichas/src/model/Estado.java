@@ -5,22 +5,20 @@
  */
 package model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,29 +30,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Estado.findAll", query = "SELECT e FROM Estado e")
     , @NamedQuery(name = "Estado.findByIdestado", query = "SELECT e FROM Estado e WHERE e.idestado = :idestado")
-    , @NamedQuery(name = "Estado.findByNome", query = "SELECT e FROM Estado e WHERE e.nome = :nome")
-    , @NamedQuery(name = "Estado.findByUf", query = "SELECT e FROM Estado e WHERE e.uf = :uf")})
+    , @NamedQuery(name = "Estado.findByUf", query = "SELECT e FROM Estado e WHERE e.uf = :uf")
+    , @NamedQuery(name = "Estado.findByNome", query = "SELECT e FROM Estado e WHERE e.nome = :nome")})
 public class Estado implements Serializable {
-
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "idestado")
     private Integer idestado;
-    @Column(name = "nome")
-    private String nome;
     @Column(name = "uf")
     private String uf;
+    @Column(name = "nome")
+    private String nome;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoIdestado", fetch = FetchType.EAGER)
+    private List<Cidade> cidadeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoIdestado", fetch = FetchType.EAGER)
+    private List<Pacientesconsulta> pacientesconsultaList;
 
-    @OneToMany(mappedBy = "estado")
-    private List<Pacientesconsulta> pacientes = new ArrayList<Pacientesconsulta>();
-    
-    @OneToMany(mappedBy = "estado")
-    private List<Cidade> cidade = new ArrayList<Cidade>();
-    
     public Estado() {
     }
 
@@ -67,19 +60,7 @@ public class Estado implements Serializable {
     }
 
     public void setIdestado(Integer idestado) {
-        Integer oldIdestado = this.idestado;
         this.idestado = idestado;
-        changeSupport.firePropertyChange("idestado", oldIdestado, idestado);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        String oldNome = this.nome;
-        this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     public String getUf() {
@@ -87,9 +68,33 @@ public class Estado implements Serializable {
     }
 
     public void setUf(String uf) {
-        String oldUf = this.uf;
         this.uf = uf;
-        changeSupport.firePropertyChange("uf", oldUf, uf);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @XmlTransient
+    public List<Cidade> getCidadeList() {
+        return cidadeList;
+    }
+
+    public void setCidadeList(List<Cidade> cidadeList) {
+        this.cidadeList = cidadeList;
+    }
+
+    @XmlTransient
+    public List<Pacientesconsulta> getPacientesconsultaList() {
+        return pacientesconsultaList;
+    }
+
+    public void setPacientesconsultaList(List<Pacientesconsulta> pacientesconsultaList) {
+        this.pacientesconsultaList = pacientesconsultaList;
     }
 
     @Override
@@ -114,15 +119,7 @@ public class Estado implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "model.Estado[ idestado=" + idestado + " ]";
     }
     
 }

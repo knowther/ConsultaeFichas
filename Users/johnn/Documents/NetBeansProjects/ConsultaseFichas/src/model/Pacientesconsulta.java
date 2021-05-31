@@ -12,9 +12,11 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -32,7 +34,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "pacientesconsulta")
 @XmlRootElement
-
+@NamedQueries({
+    @NamedQuery(name = "Pacientesconsulta.findAll", query = "SELECT p FROM Pacientesconsulta p")
+    , @NamedQuery(name = "Pacientesconsulta.findByIdpacientesConsulta", query = "SELECT p FROM Pacientesconsulta p WHERE p.idpacientesConsulta = :idpacientesConsulta")
+    , @NamedQuery(name = "Pacientesconsulta.findByNome", query = "SELECT p FROM Pacientesconsulta p WHERE p.nome = :nome")
+    , @NamedQuery(name = "Pacientesconsulta.findByApelido", query = "SELECT p FROM Pacientesconsulta p WHERE p.apelido = :apelido")
+    , @NamedQuery(name = "Pacientesconsulta.findByIdade", query = "SELECT p FROM Pacientesconsulta p WHERE p.idade = :idade")
+    , @NamedQuery(name = "Pacientesconsulta.findByEndereco", query = "SELECT p FROM Pacientesconsulta p WHERE p.endereco = :endereco")
+    , @NamedQuery(name = "Pacientesconsulta.findByBairro", query = "SELECT p FROM Pacientesconsulta p WHERE p.bairro = :bairro")
+    , @NamedQuery(name = "Pacientesconsulta.findByCidade", query = "SELECT p FROM Pacientesconsulta p WHERE p.cidade = :cidade")
+    , @NamedQuery(name = "Pacientesconsulta.findByNumero", query = "SELECT p FROM Pacientesconsulta p WHERE p.numero = :numero")
+    , @NamedQuery(name = "Pacientesconsulta.findByTel", query = "SELECT p FROM Pacientesconsulta p WHERE p.tel = :tel")
+    , @NamedQuery(name = "Pacientesconsulta.findByTel2", query = "SELECT p FROM Pacientesconsulta p WHERE p.tel2 = :tel2")
+    , @NamedQuery(name = "Pacientesconsulta.findByDataNasc", query = "SELECT p FROM Pacientesconsulta p WHERE p.dataNasc = :dataNasc")
+    , @NamedQuery(name = "Pacientesconsulta.findByCpf", query = "SELECT p FROM Pacientesconsulta p WHERE p.cpf = :cpf")
+    , @NamedQuery(name = "Pacientesconsulta.findByRg", query = "SELECT p FROM Pacientesconsulta p WHERE p.rg = :rg")})
 public class Pacientesconsulta implements Serializable {
 
     @Transient
@@ -44,21 +60,23 @@ public class Pacientesconsulta implements Serializable {
     @Basic(optional = false)
     @Column(name = "idpacientesConsulta")
     private Integer idpacientesConsulta;
-    @Column(name = "Nome")
+    @Column(name = "nome")
     private String nome;
-    @Column(name = "Apelido")
+    @Column(name = "apelido")
     private String apelido;
-    
-    @Column (name = "numero")
-    private String numero;
-            
+    @Column(name = "idade")
+    private String idade;
     @Column(name = "endereco")
     private String endereco;
-    @Column(name = "Bairro")
+    @Column(name = "bairro")
     private String bairro;
-    @Column(name = "Tel")
+    @Column(name = "cidade")
+    private String cidade;
+    @Column(name = "numero")
+    private String numero;
+    @Column(name = "tel")
     private String tel;
-    @Column(name = "Tel2")
+    @Column(name = "tel2")
     private String tel2;
     @Column(name = "dataNasc")
     @Temporal(TemporalType.DATE)
@@ -67,19 +85,21 @@ public class Pacientesconsulta implements Serializable {
     private String cpf;
     @Column(name = "rg")
     private String rg;
-    
     @Lob
     @Column(name = "historico")
     private String historico;
-    
-    @ManyToOne
-    private Medicos medicos;
-    
-    @ManyToOne
-    private Estado estado;
-    
-    @ManyToOne
-    private Cidade cidade;
+    @JoinColumn(name = "cidade_idcidade", referencedColumnName = "idcidade")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Cidade cidadeIdcidade;
+    @JoinColumn(name = "estado_idestado", referencedColumnName = "idestado")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Estado estadoIdestado;
+    @JoinColumn(name = "medicos_idmedicos", referencedColumnName = "idmedicos")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Medicos medicosIdmedicos;
+    @JoinColumn(name = "tipodeficha_idtipodeficha", referencedColumnName = "idtipodeficha")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Tipodeficha tipodefichaIdtipodeficha;
 
     public Pacientesconsulta() {
     }
@@ -117,18 +137,16 @@ public class Pacientesconsulta implements Serializable {
         this.apelido = apelido;
         changeSupport.firePropertyChange("apelido", oldApelido, apelido);
     }
-    
-    public String getHistorico() {
-        return historico;
+
+    public String getIdade() {
+        return idade;
     }
 
-    public void setHistorico(String historico) {
-        String oldHistorico = this.historico;
-        this.historico = historico;
-        changeSupport.firePropertyChange("historico", oldHistorico, historico);
+    public void setIdade(String idade) {
+        String oldIdade = this.idade;
+        this.idade = idade;
+        changeSupport.firePropertyChange("idade", oldIdade, idade);
     }
-    
-
 
     public String getEndereco() {
         return endereco;
@@ -139,18 +157,6 @@ public class Pacientesconsulta implements Serializable {
         this.endereco = endereco;
         changeSupport.firePropertyChange("endereco", oldEndereco, endereco);
     }
-    
-     public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        String oldNumero = this.numero;
-        this.numero = numero;
-        changeSupport.firePropertyChange("numero", oldNumero, numero);
-    }
-    
-    
 
     public String getBairro() {
         return bairro;
@@ -162,24 +168,24 @@ public class Pacientesconsulta implements Serializable {
         changeSupport.firePropertyChange("bairro", oldBairro, bairro);
     }
 
-    public Cidade getCidade() {
+    public String getCidade() {
         return cidade;
     }
 
-    public void setCidade(Cidade cidade) {
-        Cidade oldCidade = this.cidade;
+    public void setCidade(String cidade) {
+        String oldCidade = this.cidade;
         this.cidade = cidade;
         changeSupport.firePropertyChange("cidade", oldCidade, cidade);
     }
-    
-    public Estado getEstado() {
-        return estado;
+
+    public String getNumero() {
+        return numero;
     }
 
-    public void setEstado(Estado estado) {
-        Estado oldEstado = this.estado;
-        this.estado = estado;
-        changeSupport.firePropertyChange("estado", oldEstado, estado);
+    public void setNumero(String numero) {
+        String oldNumero = this.numero;
+        this.numero = numero;
+        changeSupport.firePropertyChange("numero", oldNumero, numero);
     }
 
     public String getTel() {
@@ -231,18 +237,57 @@ public class Pacientesconsulta implements Serializable {
         this.rg = rg;
         changeSupport.firePropertyChange("rg", oldRg, rg);
     }
-    
-    public void setMedico(Medicos medicos) {
-        Medicos oldMedicos = this.medicos;
-        this.medicos = medicos;
-        changeSupport.firePropertyChange("medicos", oldMedicos, medicos);
+
+    public String getHistorico() {
+        return historico;
     }
 
-    public Medicos getMedico() {
-        return medicos;
+    public void setHistorico(String historico) {
+        String oldHistorico = this.historico;
+        this.historico = historico;
+        changeSupport.firePropertyChange("historico", oldHistorico, historico);
     }
-     
-   
+
+    public Cidade getCidadeIdcidade() {
+        return cidadeIdcidade;
+    }
+
+    public void setCidadeIdcidade(Cidade cidadeIdcidade) {
+        Cidade oldCidadeIdcidade = this.cidadeIdcidade;
+        this.cidadeIdcidade = cidadeIdcidade;
+        changeSupport.firePropertyChange("cidadeIdcidade", oldCidadeIdcidade, cidadeIdcidade);
+    }
+
+    public Estado getEstadoIdestado() {
+        return estadoIdestado;
+    }
+
+    public void setEstadoIdestado(Estado estadoIdestado) {
+        Estado oldEstadoIdestado = this.estadoIdestado;
+        this.estadoIdestado = estadoIdestado;
+        changeSupport.firePropertyChange("estadoIdestado", oldEstadoIdestado, estadoIdestado);
+    }
+
+    public Medicos getMedicosIdmedicos() {
+        return medicosIdmedicos;
+    }
+
+    public void setMedicosIdmedicos(Medicos medicosIdmedicos) {
+        Medicos oldMedicosIdmedicos = this.medicosIdmedicos;
+        this.medicosIdmedicos = medicosIdmedicos;
+        changeSupport.firePropertyChange("medicosIdmedicos", oldMedicosIdmedicos, medicosIdmedicos);
+    }
+
+    public Tipodeficha getTipodefichaIdtipodeficha() {
+        return tipodefichaIdtipodeficha;
+    }
+
+    public void setTipodefichaIdtipodeficha(Tipodeficha tipodefichaIdtipodeficha) {
+        Tipodeficha oldTipodefichaIdtipodeficha = this.tipodefichaIdtipodeficha;
+        this.tipodefichaIdtipodeficha = tipodefichaIdtipodeficha;
+        changeSupport.firePropertyChange("tipodefichaIdtipodeficha", oldTipodefichaIdtipodeficha, tipodefichaIdtipodeficha);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
