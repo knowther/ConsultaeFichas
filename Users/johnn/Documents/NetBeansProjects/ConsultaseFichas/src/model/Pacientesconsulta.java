@@ -89,16 +89,17 @@ public class Pacientesconsulta implements Serializable {
     @Column(name = "historico")
     private String historico;
     @JoinColumn(name = "cidade_idcidade", referencedColumnName = "idcidade")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private Cidade cidadeIdcidade;
     @JoinColumn(name = "estado_idestado", referencedColumnName = "idestado")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private Estado estadoIdestado;
     @JoinColumn(name = "medicos_idmedicos", referencedColumnName = "idmedicos")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private Medicos medicosIdmedicos;
+    
     @JoinColumn(name = "tipodeficha_idtipodeficha", referencedColumnName = "idtipodeficha")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private Tipodeficha tipodefichaIdtipodeficha;
 
     public Pacientesconsulta() {
@@ -310,7 +311,7 @@ public class Pacientesconsulta implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Pacientesconsulta[ idpacientesConsulta=" + idpacientesConsulta + " ]";
+        return nome;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

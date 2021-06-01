@@ -37,6 +37,9 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         atualizaTable();
         pegardatar();
         mudarCorLinha();
+        tabela.setShowGrid(true);
+        tabela.setAutoCreateRowSorter(true);
+        tabela.setGridColor(Color.lightGray);
         jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
         jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
         categoria = new Movimentacao();
@@ -102,9 +105,12 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         jDateChooserInicial = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jDateChooserFinal = new com.toedter.calendar.JDateChooser();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Categorias");
+        setTitle("Movimentação");
         setIconImage(null);
         setIconImages(null);
 
@@ -214,6 +220,26 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
         jLabel6.setText("Data Final:");
 
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+
+        jButton2.setText("Cadastrar categoria de transação");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
+
+        jButton5.setText("Gerar relatório de transações");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,6 +247,9 @@ public class TelaMovimentacao extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -259,6 +288,8 @@ public class TelaMovimentacao extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -347,6 +378,10 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         t.setDespesa(true);
         t.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new TelaCategoria(null, true).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void pegardatar(){
         Date date = new Date();
@@ -440,8 +475,10 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonInserir;
     private javax.swing.JButton jButtonPesquisar;
@@ -458,6 +495,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldDespesa;
     private javax.swing.JTextField jTextFieldRenda;
     private javax.swing.JTextField jTextFieldSaldo;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable tabela;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables

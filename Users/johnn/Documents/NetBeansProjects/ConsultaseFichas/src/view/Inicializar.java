@@ -42,8 +42,9 @@ public class Inicializar {
           }
           @Override
           protected void done(){
+              
+              new telaPacienteConsulta().setVisible(true);
               p.fechar();
-              new TelaPrincipalCaixa().setVisible(true);
           }
         };
         worker.execute();

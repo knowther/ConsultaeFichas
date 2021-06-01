@@ -111,7 +111,7 @@ public class Medicos implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Medicos[ idmedicos=" + idmedicos + " ]";
+        return nome;
     }
     
 }

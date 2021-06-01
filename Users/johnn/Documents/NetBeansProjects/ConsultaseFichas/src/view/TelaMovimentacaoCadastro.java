@@ -326,7 +326,7 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
     public void setDespesa(boolean despesa) {
         
         this.despesa = despesa;
-        //atualizaCombo();
+        atualizaCombo();
     }
     
     

@@ -97,7 +97,7 @@ public class Tipodeficha implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Tipodeficha[ idtipodeficha=" + idtipodeficha + " ]";
+        return tipodaficha;
     }
     
 }
