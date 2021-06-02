@@ -28,19 +28,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author johnn
  */
 @Entity
-@Table(name = "movimentacao")
+@Table(name = "movimentacaoconsultorio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Movimentacao.findAll", query = "SELECT m FROM Movimentacao m")
-    , @NamedQuery(name = "Movimentacao.findByIdmovimentacao", query = "SELECT m FROM Movimentacao m WHERE m.idmovimentacao = :idmovimentacao")
-    , @NamedQuery(name = "Movimentacao.findByValor", query = "SELECT m FROM Movimentacao m WHERE m.valor = :valor")
-    , @NamedQuery(name = "Movimentacao.findByData", query = "SELECT m FROM Movimentacao m WHERE m.data = :data")
-    , @NamedQuery(name = "Movimentacao.findByObs", query = "SELECT m FROM Movimentacao m WHERE m.obs = :obs")})
-public class Movimentacao implements Serializable {
-
-    @Column(name = "dataCadastro")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataCadastro;
+    @NamedQuery(name = "Movimentacaoconsultorio.findAll", query = "SELECT m FROM Movimentacaoconsultorio m")
+    , @NamedQuery(name = "Movimentacaoconsultorio.findByIdmovimentacao", query = "SELECT m FROM Movimentacaoconsultorio m WHERE m.idmovimentacao = :idmovimentacao")
+    , @NamedQuery(name = "Movimentacaoconsultorio.findByValor", query = "SELECT m FROM Movimentacaoconsultorio m WHERE m.valor = :valor")
+    , @NamedQuery(name = "Movimentacaoconsultorio.findByData", query = "SELECT m FROM Movimentacaoconsultorio m WHERE m.data = :data")
+    , @NamedQuery(name = "Movimentacaoconsultorio.findByObs", query = "SELECT m FROM Movimentacaoconsultorio m WHERE m.obs = :obs")
+    , @NamedQuery(name = "Movimentacaoconsultorio.findByDataCadastro", query = "SELECT m FROM Movimentacaoconsultorio m WHERE m.dataCadastro = :dataCadastro")})
+public class Movimentacaoconsultorio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,14 +53,17 @@ public class Movimentacao implements Serializable {
     private Date data;
     @Column(name = "obs")
     private String obs;
+    @Column(name = "dataCadastro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCadastro;
     @JoinColumn(name = "categoria_idcategoria", referencedColumnName = "idcategoria")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Categoria categoriaIdcategoria;
 
-    public Movimentacao() {
+    public Movimentacaoconsultorio() {
     }
 
-    public Movimentacao(Integer idmovimentacao) {
+    public Movimentacaoconsultorio(Integer idmovimentacao) {
         this.idmovimentacao = idmovimentacao;
     }
 
@@ -99,6 +99,14 @@ public class Movimentacao implements Serializable {
         this.obs = obs;
     }
 
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
     public Categoria getCategoriaIdcategoria() {
         return categoriaIdcategoria;
     }
@@ -117,10 +125,10 @@ public class Movimentacao implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Movimentacao)) {
+        if (!(object instanceof Movimentacaoconsultorio)) {
             return false;
         }
-        Movimentacao other = (Movimentacao) object;
+        Movimentacaoconsultorio other = (Movimentacaoconsultorio) object;
         if ((this.idmovimentacao == null && other.idmovimentacao != null) || (this.idmovimentacao != null && !this.idmovimentacao.equals(other.idmovimentacao))) {
             return false;
         }
@@ -129,15 +137,7 @@ public class Movimentacao implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Movimentacao[ idmovimentacao=" + idmovimentacao + " ]";
-    }
-
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+        return "model.Movimentacaoconsultorio[ idmovimentacao=" + idmovimentacao + " ]";
     }
     
 }

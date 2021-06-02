@@ -6,13 +6,14 @@
 package view;
 
 import dao.CategoriaDao;
-import dao.MovimentacaoDao;
+import dao.MovimentacaoConsultorioDao;
+import dao.MovimentacaoDraednaDao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import model.Categoria;
-import model.Movimentacao;
-import model.Movimentacao;
+import model.Movimentacaoconsultorio;
+import model.Movimentacaodraedna;
 import utils.Msg;
 
 /**
@@ -22,89 +23,108 @@ import utils.Msg;
 public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
 
     private boolean inserir;
+    public static boolean caixaconsulta;
     private boolean despesa;
-    private Movimentacao movimentacao;
+    private Movimentacaoconsultorio movimentacaoconsultorio;
+    private Movimentacaodraedna movimentacaodraedna;
     private TelaMovimentacao pai;
     private List<Categoria> listaCategoria = new ArrayList<>();
-    
+
     /**
      * Creates new form TelaMovimentacaoCadastro
      */
     public TelaMovimentacaoCadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        movimentacao = new Movimentacao();
+        movimentacaoconsultorio = new Movimentacaoconsultorio();
+        movimentacaodraedna = new Movimentacaodraedna();
+
         //atualizaCombo();
     }
-    
+
     public TelaMovimentacaoCadastro(TelaMovimentacao parent, boolean modal) {
         super(parent, modal);
         initComponents();
         atualizaCombo();
         pai = parent;
-        movimentacao = new Movimentacao();
+
+        movimentacaoconsultorio = new Movimentacaoconsultorio();
+        movimentacaodraedna = new Movimentacaodraedna();
     }
 
-   
-    public void atualizaCombo(){
+    public void atualizaCombo() {
         try {
-           jComboBoxCategoria.removeAllItems();
-           jComboBoxCategoria.addItem("<Selecione>");
-           if(isDespesa()){
-               listaCategoria = new CategoriaDao().getListFilter("Pagar");
-               
-           
-           }else{
-               listaCategoria = new CategoriaDao().getListFilter("Receber");
-               
-           }
-            
-           for (Categoria c: listaCategoria){
-               jComboBoxCategoria.addItem(c.getDescricao());
-           }
+            jComboBoxCategoria.removeAllItems();
+            jComboBoxCategoria.addItem("<Selecione>");
+            if (isDespesa()) {
+                listaCategoria = new CategoriaDao().getListFilter("Pagar");
+
+            } else {
+                listaCategoria = new CategoriaDao().getListFilter("Receber");
+
+            }
+
+            for (Categoria c : listaCategoria) {
+                jComboBoxCategoria.addItem(c.getDescricao());
+            }
         } catch (Exception e) {
             e.printStackTrace();
             Msg.ERRO(pai, "Erro ao Atualizar Dados de Categoria");
         }
     }
-    
-    
-    protected void preencherCampos(Movimentacao mov){
-        movimentacao = mov;
-        jDateChooser1.setDate(movimentacao.getData());
-        jTextFieldObs.setText(movimentacao.getObs());
-        jFormattedTextFieldValor.setText(movimentacao.getValor()+ "");
-        jComboBoxCategoria.setSelectedItem(movimentacao.getCategoriaIdcategoria().getDescricao());
+
+    protected void preencherCampos(Movimentacaoconsultorio mov) {
+        movimentacaoconsultorio = mov;
+        jDateChooser1.setDate(movimentacaoconsultorio.getData());
+        jTextFieldObs.setText(movimentacaoconsultorio.getObs());
+        jFormattedTextFieldValor.setText(movimentacaoconsultorio.getValor() + "");
+        jComboBoxCategoria.setSelectedItem(movimentacaoconsultorio.getCategoriaIdcategoria().getDescricao());
         //jComboBoxCategoria.setSelectedIndex(1);
     }
-    
-    
 
-    public Movimentacao getMovimentacao(){
-        movimentacao.setData(jDateChooser1.getDate());
-        movimentacao.setDataCadastro(new Date());
-        movimentacao.setCategoriaIdcategoria(listaCategoria.get(jComboBoxCategoria.getSelectedIndex() -1));
-        movimentacao.setObs(jTextFieldObs.getText());
-        movimentacao.setValor(Double.parseDouble(jFormattedTextFieldValor.getText().replace(",", ".")));
-       
-        return movimentacao;
+    protected void preencherCamposed(Movimentacaodraedna mov) {
+        movimentacaodraedna = mov;
+        jDateChooser1.setDate(movimentacaodraedna.getData());
+        jTextFieldObs.setText(movimentacaodraedna.getObs());
+        jFormattedTextFieldValor.setText(movimentacaodraedna.getValor() + "");
+        jComboBoxCategoria.setSelectedItem(movimentacaodraedna.getCategoriaIdcategoria().getDescricao());
+        //jComboBoxCategoria.setSelectedIndex(1);
     }
-    
-    
-    private boolean verificaCampos(){
+
+    public Movimentacaoconsultorio getMovimentacao() {
+        movimentacaoconsultorio.setData(jDateChooser1.getDate());
+        movimentacaoconsultorio.setDataCadastro(new Date());
+        movimentacaoconsultorio.setCategoriaIdcategoria(listaCategoria.get(jComboBoxCategoria.getSelectedIndex() - 1));
+        movimentacaoconsultorio.setObs(jTextFieldObs.getText());
+        movimentacaoconsultorio.setValor(Double.parseDouble(jFormattedTextFieldValor.getText().replace(",", ".")));
+
+        return movimentacaoconsultorio;
+    }
+
+    public Movimentacaodraedna getMovimentacaoedna() {
+        movimentacaodraedna.setData(jDateChooser1.getDate());
+        movimentacaodraedna.setDataCadastro(new Date());
+        movimentacaodraedna.setCategoriaIdcategoria(listaCategoria.get(jComboBoxCategoria.getSelectedIndex() - 1));
+        movimentacaodraedna.setObs(jTextFieldObs.getText());
+        movimentacaodraedna.setValor(Double.parseDouble(jFormattedTextFieldValor.getText().replace(",", ".")));
+
+        return movimentacaodraedna;
+    }
+
+    private boolean verificaCampos() {
         boolean verificar = false;
         String msg = "Campos obrigatórios! \n";
-        if(jTextFieldObs.getText().trim().equals("") || jTextFieldObs.getText().isEmpty()){
+        if (jTextFieldObs.getText().trim().equals("") || jTextFieldObs.getText().isEmpty() || jDateChooser1.getDate() == null) {
             verificar = true;
-            msg+="Descrição";
-        } if(verificar){
+            msg += "Descrição ou data";
+        }
+        if (verificar) {
             Msg.ERRO(this, msg);
         }
-        
+
         return verificar;
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -214,23 +234,42 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!verificaCampos()){
-            if(isInserir()){
-            new MovimentacaoDao().inserir(getMovimentacao());
-            Msg.informacao(this, "Registro Salvo com Sucesso!");
-            this.dispose();
-            this.pai.atualizaTable();
-        }else if(jComboBoxCategoria.getSelectedIndex() > 0){
-            new MovimentacaoDao().alterar(getMovimentacao());
-            Msg.informacao(this, "Registro Alterado com Sucesso!");
-            this.dispose();
-            this.pai.atualizaTable();
-            
+        if (!verificaCampos()) {
+            if (isCaixaconsulta()) {
+                if (isInserir()) {
+
+                    new MovimentacaoConsultorioDao().inserir(getMovimentacao());
+                    new MovimentacaoConsultorioDao().alterar(getMovimentacao());
+                    Msg.informacao(this, "Registro Alterado com Sucesso!");
+                    this.dispose();
+                    this.pai.atualizaTable();
+                } else {
+                    new MovimentacaoConsultorioDao().alterar(getMovimentacao());
+                    Msg.informacao(this, "Registro Alterado com Sucesso!");
+                    this.dispose();
+                    this.pai.atualizaTable();
+
+                }
+            } else {
+                if (isInserir()) {
+                    new MovimentacaoDraednaDao().inserir(getMovimentacaoedna());
+                    Msg.informacao(this, "Registro Alterado com Sucesso!");
+                    this.dispose();
+                    this.pai.atualizaTable();
+                } else {
+                    new MovimentacaoDraednaDao().alterar(getMovimentacaoedna());
+                    Msg.informacao(this, "Registro Alterado com Sucesso!");
+                    this.dispose();
+                    this.pai.atualizaTable();
+                }
+
+            }
+
         }else{
-            Msg.ERRO(pai, "Selecione uma categoria para o pagamento.");
+            Msg.ERRO(pai, "Está faltando campos.");
         }
-        }
-           
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -301,8 +340,7 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
     /**
      * @return the inserir
      */
-    
-     public boolean isInserir() {
+    public boolean isInserir() {
         return inserir;
     }
 
@@ -324,10 +362,23 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
      * @param despesa the despesa to set
      */
     public void setDespesa(boolean despesa) {
-        
+
         this.despesa = despesa;
         atualizaCombo();
     }
-    
-    
+
+    /**
+     * @return the caixaconsulta
+     */
+    public boolean isCaixaconsulta() {
+        return caixaconsulta;
+    }
+
+    /**
+     * @param caixaconsulta the caixaconsulta to set
+     */
+    public void setCaixaconsulta(boolean caixaconsulta) {
+        this.caixaconsulta = caixaconsulta;
+    }
+
 }

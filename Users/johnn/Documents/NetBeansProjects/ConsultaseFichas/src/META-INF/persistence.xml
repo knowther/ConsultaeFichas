@@ -12,13 +12,14 @@
     <class>view.Caixa</class>
     <class>model.Movimentacao</class>
     <class>model.Categoria</class>
+    <class>model.Movimentacaoconsultorio</class>
+    <class>model.Movimentacaodraedna</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sultest?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-     
     </properties>
   </persistence-unit>
 </persistence>

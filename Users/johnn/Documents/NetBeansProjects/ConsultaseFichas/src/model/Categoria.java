@@ -47,7 +47,9 @@ public class Categoria implements Serializable {
     @Column(name = "tipo")
     private String tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaIdcategoria", fetch = FetchType.EAGER)
-    private List<Movimentacao> movimentacaoList;
+    private List<Movimentacaodraedna> movimentacaodraednaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaIdcategoria", fetch = FetchType.EAGER)
+    private List<Movimentacaoconsultorio> movimentacaoconsultorioList;
 
     public Categoria() {
     }
@@ -81,12 +83,21 @@ public class Categoria implements Serializable {
     }
 
     @XmlTransient
-    public List<Movimentacao> getMovimentacaoList() {
-        return movimentacaoList;
+    public List<Movimentacaodraedna> getMovimentacaodraednaList() {
+        return movimentacaodraednaList;
     }
 
-    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
-        this.movimentacaoList = movimentacaoList;
+    public void setMovimentacaodraednaList(List<Movimentacaodraedna> movimentacaodraednaList) {
+        this.movimentacaodraednaList = movimentacaodraednaList;
+    }
+
+    @XmlTransient
+    public List<Movimentacaoconsultorio> getMovimentacaoconsultorioList() {
+        return movimentacaoconsultorioList;
+    }
+
+    public void setMovimentacaoconsultorioList(List<Movimentacaoconsultorio> movimentacaoconsultorioList) {
+        this.movimentacaoconsultorioList = movimentacaoconsultorioList;
     }
 
     @Override
