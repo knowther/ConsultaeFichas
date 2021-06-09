@@ -9,51 +9,52 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.Movimentacaoconsultorio;
+import model.Agendamentopermcath;
+import model.Pacientesconsulta;
 import utils.Singleton;
 
 /**
  *
  * @author johnn
  */
-public class MovimentacaoConsultorioDao {
+public class AgendamentoPermcathDao {
     private EntityManager em;
     
     
-    public MovimentacaoConsultorioDao(){
+    public AgendamentoPermcathDao(){
         em = Singleton.getConnection();
     }
-    public void inserir(Movimentacaoconsultorio mov){
+    public void inserir(Agendamentopermcath perm){
         em.getTransaction().begin();
-        em.persist(mov);
+        em.persist(perm);
         em.getTransaction().commit();
     }
-    public void alterar(Movimentacaoconsultorio mov){
+    public void alterar(Agendamentopermcath perm){
         em.getTransaction().begin();
-        em.merge(mov);
+        em.merge(perm);
         em.getTransaction().commit();
     }
-    public void excluir(Movimentacaoconsultorio mov){
+    public void excluir(Agendamentopermcath perm){
         em.getTransaction().begin();
-        em.remove(mov);
+        em.remove(perm);
         em.getTransaction().commit();
     }
-    public List getList(String mov){
+    public List getList(String perm){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT m from Movimentacaoconsultorio m where m.obs LIKE :likes ");
-       query.setParameter("likes", "%" + mov.trim() + "%");
-       List<Movimentacaoconsultorio> lista = query.getResultList();
+       Query query = em.createQuery("SELECT a from Agendamentopermcath a where a.nome LIKE :likes");
+       query.setParameter("likes", "%" + perm.trim() + "%");
+       List<Agendamentopermcath> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;
      
     }
     
-     public List getListData(String mov, Date data01, Date data02){
+    public List getListdata(String perm, Date data01, Date data02){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT m from Movimentacaoconsultorio m where m.data BETWEEN :data01 and :data02 order by m.data ");
+       Query query = em.createQuery("SELECT a from Agendamentopermcath a where a.dataencaminhamento BEETWEN :data01 and :data02");
        query.setParameter("data01", data01);
        query.setParameter("data02", data02);
-       List<Movimentacaoconsultorio> lista = query.getResultList();
+       List<Agendamentopermcath> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;
      

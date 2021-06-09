@@ -7,11 +7,17 @@ package view;
 
 import java.awt.Dimension;
 import java.beans.Beans;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import static java.util.Collections.list;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.RollbackException;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -19,6 +25,13 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import model.Estado;
 import model.Pacientesconsulta;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import org.joda.time.DateTime;
 import org.joda.time.ReadablePeriod;
 import org.joda.time.format.PeriodFormat;
@@ -105,6 +118,7 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -484,6 +498,13 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -495,6 +516,8 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -524,7 +547,8 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refreshButton)
                     .addComponent(newButton)
-                    .addComponent(saveButton))
+                    .addComponent(saveButton)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -636,6 +660,26 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         String path;
+        path = "C://Recepcaosys//Relatorios//reportFichatimbre.jrxml";
+       String caminho = new File(path).getAbsolutePath();
+             try {
+           
+                 JasperReport relatorio = JasperCompileManager.compileReport(caminho);
+                 JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(pacientesconsultaList, false);
+                  Map parametros = new HashMap();
+                 parametros.put("DATA_1", jDateChooser1.getDate());
+                 JasperPrint print = JasperFillManager.fillReport(relatorio, parametros, dados);
+                 JasperViewer view = new JasperViewer(print, false);
+                 view.setVisible(true);
+                 
+             } catch (JRException ex) {
+                 Logger.getLogger(JFrmcadpac.class.getName()).log(Level.SEVERE, null, ex);
+                 Msg.ERRO(this, "Erro ao gerar relatório\n Erro: " + ex);
+             }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static Date getDatanasc (){
         Pacientesconsulta pacC = new Pacientesconsulta();
         
@@ -661,6 +705,7 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
     private javax.persistence.EntityManager entityManager;
     private java.util.List<model.Estado> estadoList;
     private javax.persistence.Query estadoQuery;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBoxCidade;

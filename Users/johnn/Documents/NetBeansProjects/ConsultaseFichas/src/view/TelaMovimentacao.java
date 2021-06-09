@@ -28,11 +28,12 @@ import utils.Utils;
  * @author johnn
  */
 public class TelaMovimentacao extends javax.swing.JDialog {
+
     private Movimentacaoconsultorio categoria;
     private Movimentacaodraedna categoriaed;
     private List<Movimentacaoconsultorio> lista = new ArrayList<>();
     private List<Movimentacaodraedna> listaed = new ArrayList<>();
-    
+
     /**
      * Creates new form TelaMovimentacao
      */
@@ -42,6 +43,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         atualizaTable();
         pegardatar();
         mudarCorLinha();
+        atualizaValores();
         tabela.setShowGrid(true);
         tabela.setAutoCreateRowSorter(true);
         tabela.setGridColor(Color.lightGray);
@@ -50,63 +52,111 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         //categoria = new Movimentacaoconsultorio();
         categoria = new Movimentacaoconsultorio();
         categoriaed = new Movimentacaodraedna();
-        
 
-        
     }
-    
-    protected void atualizaTable(){
+
+    protected void atualizaValores() {
         double despesa = 0;
-            double renda = 0;
+        double renda = 0;
         try {
-            if(jComboBoxControleCaixa.getSelectedIndex() == 0){
-            DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-            model.setNumRows(0);
-            
-            lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
-            
-            for(Movimentacaoconsultorio c : lista){
-                if(c.getCategoriaIdcategoria().getTipo().equals("Pagar")){
-                    despesa += c.getValor();
+            if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
+                if(jCheckBox2.isSelected()){
+                    lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+                    for (Movimentacaoconsultorio c : lista) {
+                    if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
+                        despesa += c.getValor();
+                    } else {
+                        renda += c.getValor();
+                    }
+                }
                 }else{
-                    renda += c.getValor();
+                   lista = new MovimentacaoConsultorioDao().getList(txtPesquisa.getText());
+                for (Movimentacaoconsultorio c : lista) {
+                    if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
+                        despesa += c.getValor();
+                    } else {
+                        renda += c.getValor();
+                    }
+                } 
                 }
-                model.addRow(new Object[] {
-                    c.getIdmovimentacao(), c.getCategoriaIdcategoria().getDescricao(), c.getCategoriaIdcategoria().getTipo(), c.getValor(), Utils.convertData(c.getData())
-                }
-                        );
                 
+            } else {
+                if (jCheckBox2.isSelected()) {
+                    listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+                    for (Movimentacaodraedna c : listaed) {
+                        if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
+                            despesa += c.getValor();
+                        } else {
+                            renda += c.getValor();
+                        }
+                    }
+                } else {
+                    listaed = new MovimentacaoDraednaDao().getList(txtPesquisa.getText());
+                    for (Movimentacaodraedna c : listaed) {
+                        if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
+                            despesa += c.getValor();
+                        } else {
+                            renda += c.getValor();
+                        }
+                    }
+                }
             }
-            }else if (jComboBoxControleCaixa.getSelectedIndex() == 1){
-                           DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-                            
-                             model.setNumRows(0);
-                             
-            listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
-            
-            for(Movimentacaodraedna d : listaed){
-                if(d.getCategoriaIdcategoria().getTipo().equals("Pagar")){
-                    despesa += d.getValor();
-                }else{
-                    renda += d.getValor();
-                }
-                model.addRow(new Object[] {
-                    d.getIdmovimentacao(), d.getCategoriaIdcategoria().getDescricao(), d.getCategoriaIdcategoria().getTipo(), d.getValor(), Utils.convertData(d.getData())
-                }
-                        );
-                
-            }
-                
-                
-            }
-            
-            jTextFieldDespesa.setText(Utils.convertDouble(despesa));
-            jTextFieldRenda.setText(Utils.convertDouble(renda));
-            jTextFieldSaldo.setText(Utils.convertDouble(renda - despesa));
-            
         } catch (Exception e) {
             e.printStackTrace();
-            Msg.ERRO(this, "Erro ao Atualizar a Tabela\nErro: "+e.getMessage());
+            Msg.ERRO(this, "Erro ao obter saldo do caixa.");
+        }
+        jTextFieldDespesa.setText(Utils.convertDouble(despesa));
+        jTextFieldRenda.setText(Utils.convertDouble(renda));
+        jTextFieldSaldo.setText(Utils.convertDouble(renda - despesa));
+    }
+
+    protected void atualizaTable() {
+//        double despesa = 0;
+//            double renda = 0;
+        try {
+            if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
+                DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+                model.setNumRows(0);
+
+                lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+
+                for (Movimentacaoconsultorio c : lista) {
+//                if(c.getCategoriaIdcategoria().getTipo().equals("Pagar")){
+//                    despesa += c.getValor();
+//                }else{
+//                    renda += c.getValor();
+//                }
+                    model.addRow(new Object[]{
+                        c.getIdmovimentacao(), c.getCategoriaIdcategoria().getDescricao(), c.getCategoriaIdcategoria().getTipo(), c.getValor(), Utils.convertData(c.getData())
+                    }
+                    );
+
+                }
+            } else if (jComboBoxControleCaixa.getSelectedIndex() == 1) {
+                DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+
+                model.setNumRows(0);
+
+                listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+
+                for (Movimentacaodraedna d : listaed) {
+//                if(d.getCategoriaIdcategoria().getTipo().equals("Pagar")){
+//                    despesa += d.getValor();
+//                }else{
+//                    renda += d.getValor();
+//                }
+                    model.addRow(new Object[]{
+                        d.getIdmovimentacao(), d.getCategoriaIdcategoria().getDescricao(), d.getCategoriaIdcategoria().getTipo(), d.getValor(), Utils.convertData(d.getData())
+                    }
+                    );
+
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Msg.ERRO(this, "Erro ao Atualizar a Tabela\nErro: " + e.getMessage());
         }
     }
 
@@ -144,6 +194,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jComboBoxControleCaixa = new javax.swing.JComboBox<>();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Movimentação");
@@ -284,6 +335,13 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         });
         jToolBar1.add(jComboBoxControleCaixa);
 
+        jCheckBox2.setText("Filtrar valores pela data selecionada?");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,7 +355,8 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
+                                .addComponent(jCheckBox2)
+                                .addGap(58, 58, 58)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,14 +405,19 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldRenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jCheckBox2)
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -363,105 +427,97 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirActionPerformed
-        
+
         TelaMovimentacaoCadastro t = new TelaMovimentacaoCadastro(this, true);
-         if(jComboBoxControleCaixa.getSelectedIndex() == 0){
+        if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
             t.setCaixaconsulta(true);
-        }else{
-           t.setCaixaconsulta(false);
-          }
+        } else {
+            t.setCaixaconsulta(false);
+        }
         t.setInserir(true);
         System.out.println(t.isCaixaconsulta());
         //System.out.println(t.isInserir());
         t.setDespesa(false);
         t.setVisible(true);
-        
+
 
     }//GEN-LAST:event_jButtonInserirActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         TelaMovimentacaoCadastro t = new TelaMovimentacaoCadastro(this, true);
-           
-        
-        if(tabela.getSelectedRow() >= 0){
-            if(jComboBoxControleCaixa.getSelectedIndex() == 0){
+
+        if (tabela.getSelectedRow() >= 0) {
+            if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
                 t.setInserir(false);
                 t.setCaixaconsulta(true);
-                if(lista.get(tabela.getSelectedRow()).getCategoriaIdcategoria().getTipo().equals("Pagar")){
-                 t.preencherCampos(lista.get(tabela.getSelectedRow()));
-                 t.setDespesa(true);
-                 t.atualizaCombo();
-                }else{ 
-                 t.preencherCampos(lista.get(tabela.getSelectedRow()));
-                 t.setDespesa(true);
-                 t.atualizaCombo();
+                if (lista.get(tabela.getSelectedRow()).getCategoriaIdcategoria().getTipo().equals("Pagar")) {
+                    t.preencherCampos(lista.get(tabela.getSelectedRow()));
+                    t.setDespesa(true);
+                    t.atualizaCombo();
+                } else {
+                    t.preencherCampos(lista.get(tabela.getSelectedRow()));
+                    t.setDespesa(true);
+                    t.atualizaCombo();
                 }
-        }else{
+            } else {
                 t.setInserir(true);
                 t.setCaixaconsulta(false);
-                 if(listaed.get(tabela.getSelectedRow()).getCategoriaIdcategoria().getTipo().equals("Pagar")){
-                 t.preencherCamposed(listaed.get(tabela.getSelectedRow()));
-                 t.setDespesa(true);
-                 t.atualizaCombo();
-            }else{
-                     t.preencherCamposed(listaed.get(tabela.getSelectedRow()));
-                 t.setDespesa(false);
-                 t.atualizaCombo();
-                 }
+                if (listaed.get(tabela.getSelectedRow()).getCategoriaIdcategoria().getTipo().equals("Pagar")) {
+                    t.preencherCamposed(listaed.get(tabela.getSelectedRow()));
+                    t.setDespesa(true);
+                    t.atualizaCombo();
+                } else {
+                    t.preencherCamposed(listaed.get(tabela.getSelectedRow()));
+                    t.setDespesa(false);
+                    t.atualizaCombo();
+                }
             }
             t.setVisible(true);
-        }else{
+        } else {
             Msg.alert(t, "Selecione um registro.");
         }
-             
-                
-                
-                 
-                 
-            
-               
-                 
-                 
-                    
-                
-                
-           
-            
-       
-        
-      
+
+
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        atualizaTable();      
+        atualizaTable();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(tabela.getSelectedRow() > -1){  
-            if(Msg.confirmacao(this, "Deseja Realmente Excluir Este Registro?")){
-                new MovimentacaoConsultorioDao().excluir(lista.get(tabela.getSelectedRow()));
-            Msg.informacao(this, "Registro Excluído com Sucesso");
-            atualizaTable();
-        }
-        }else{
+        if (tabela.getSelectedRow() > -1) {
+            if (Msg.confirmacao(this, "Deseja Realmente Excluir Este Registro?")) {
+                if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
+                    new MovimentacaoConsultorioDao().excluir(lista.get(tabela.getSelectedRow()));
+
+                    Msg.informacao(this, "Registro Excluído com Sucesso");
+                    atualizaTable();
+                } else {
+                    new MovimentacaoDraednaDao().excluir(listaed.get(tabela.getSelectedRow()));
+
+                    Msg.informacao(this, "Registro Excluído Dra edna com Sucesso");
+                    atualizaTable();
+                }
+            }
+        } else {
             Msg.alert(this, "Selecione um Registo.");
         }
-          
+
     }//GEN-LAST:event_jButton3ActionPerformed
-    
+
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-               
+
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaMovimentacaoCadastro t = new TelaMovimentacaoCadastro(this, true);
         t.setInserir(false);
         t.setDespesa(true);
-        if(jComboBoxControleCaixa.getSelectedIndex() == 0){
+        if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
             t.setCaixaconsulta(true);
-        }else{
-           t.setCaixaconsulta(false);
-          }
+        } else {
+            t.setCaixaconsulta(false);
+        }
         t.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -471,33 +527,39 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
     private void jComboBoxControleCaixaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxControleCaixaItemStateChanged
         atualizaTable();
+        atualizaValores();
         TelaMovimentacaoCadastro t = new TelaMovimentacaoCadastro(this, true);
-        if(jComboBoxControleCaixa.getSelectedIndex() == 0){
+        if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
             t.setCaixaconsulta(true);
 //           
-        }else{
+        } else {
             t.setCaixaconsulta(false);
         }
     }//GEN-LAST:event_jComboBoxControleCaixaItemStateChanged
 
-    public void pegardatar(){
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        atualizaValores();   
+        atualizaTable();// TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    public void pegardatar() {
         Date date = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        date = cal.getTime();
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-        date = cal.getTime();
-       jDateChooserInicial.setDate(date);
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        date = cal.getTime();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(date);
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        date = cal.getTime();
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+//        date = cal.getTime();
+        jDateChooserInicial.setDate(date);
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+//        date = cal.getTime();
         jDateChooserFinal.setDate(date);
         atualizaTable();
 //        int cal.getActualMaximum(Calendar.);
-        
+
     }
-    
-    private void mudarCorLinha(){
+
+    private void mudarCorLinha() {
 //        jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 //            @Override
 //            public Component getTableCellRendererComponent(Jtable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
@@ -506,7 +568,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 //              if(jTable1)
 //            })
 //        });
-           tabela.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tabela.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -520,7 +582,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
             }
         });
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -579,6 +641,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonInserir;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBoxControleCaixa;
     private com.toedter.calendar.JDateChooser jDateChooserFinal;
     private com.toedter.calendar.JDateChooser jDateChooserInicial;

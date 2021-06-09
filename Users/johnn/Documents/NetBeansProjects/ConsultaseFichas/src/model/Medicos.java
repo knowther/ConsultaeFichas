@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -19,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -35,6 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Medicos.findByNome", query = "SELECT m FROM Medicos m WHERE m.nome = :nome")
     , @NamedQuery(name = "Medicos.findByCrm", query = "SELECT m FROM Medicos m WHERE m.crm = :crm")})
 public class Medicos implements Serializable {
+
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,7 +67,9 @@ public class Medicos implements Serializable {
     }
 
     public void setIdmedicos(Integer idmedicos) {
+        Integer oldIdmedicos = this.idmedicos;
         this.idmedicos = idmedicos;
+        changeSupport.firePropertyChange("idmedicos", oldIdmedicos, idmedicos);
     }
 
     public String getNome() {
@@ -69,7 +77,9 @@ public class Medicos implements Serializable {
     }
 
     public void setNome(String nome) {
+        String oldNome = this.nome;
         this.nome = nome;
+        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     public String getCrm() {
@@ -77,7 +87,9 @@ public class Medicos implements Serializable {
     }
 
     public void setCrm(String crm) {
+        String oldCrm = this.crm;
         this.crm = crm;
+        changeSupport.firePropertyChange("crm", oldCrm, crm);
     }
 
     @XmlTransient
@@ -112,6 +124,14 @@ public class Medicos implements Serializable {
     @Override
     public String toString() {
         return nome;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

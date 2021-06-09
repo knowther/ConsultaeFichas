@@ -34,21 +34,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "pacientesconsulta")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Pacientesconsulta.findAll", query = "SELECT p FROM Pacientesconsulta p")
-    , @NamedQuery(name = "Pacientesconsulta.findByIdpacientesConsulta", query = "SELECT p FROM Pacientesconsulta p WHERE p.idpacientesConsulta = :idpacientesConsulta")
-    , @NamedQuery(name = "Pacientesconsulta.findByNome", query = "SELECT p FROM Pacientesconsulta p WHERE p.nome = :nome")
-    , @NamedQuery(name = "Pacientesconsulta.findByApelido", query = "SELECT p FROM Pacientesconsulta p WHERE p.apelido = :apelido")
-    , @NamedQuery(name = "Pacientesconsulta.findByIdade", query = "SELECT p FROM Pacientesconsulta p WHERE p.idade = :idade")
-    , @NamedQuery(name = "Pacientesconsulta.findByEndereco", query = "SELECT p FROM Pacientesconsulta p WHERE p.endereco = :endereco")
-    , @NamedQuery(name = "Pacientesconsulta.findByBairro", query = "SELECT p FROM Pacientesconsulta p WHERE p.bairro = :bairro")
-    , @NamedQuery(name = "Pacientesconsulta.findByCidade", query = "SELECT p FROM Pacientesconsulta p WHERE p.cidade = :cidade")
-    , @NamedQuery(name = "Pacientesconsulta.findByNumero", query = "SELECT p FROM Pacientesconsulta p WHERE p.numero = :numero")
-    , @NamedQuery(name = "Pacientesconsulta.findByTel", query = "SELECT p FROM Pacientesconsulta p WHERE p.tel = :tel")
-    , @NamedQuery(name = "Pacientesconsulta.findByTel2", query = "SELECT p FROM Pacientesconsulta p WHERE p.tel2 = :tel2")
-    , @NamedQuery(name = "Pacientesconsulta.findByDataNasc", query = "SELECT p FROM Pacientesconsulta p WHERE p.dataNasc = :dataNasc")
-    , @NamedQuery(name = "Pacientesconsulta.findByCpf", query = "SELECT p FROM Pacientesconsulta p WHERE p.cpf = :cpf")
-    , @NamedQuery(name = "Pacientesconsulta.findByRg", query = "SELECT p FROM Pacientesconsulta p WHERE p.rg = :rg")})
+//@NamedQueries({
+//    @NamedQuery(name = "Pacientesconsulta.findAll", query = "SELECT p FROM Pacientesconsulta p")
+//    , @NamedQuery(name = "Pacientesconsulta.findByIdpacientesConsulta", query = "SELECT p FROM Pacientesconsulta p WHERE p.idpacientesConsulta = :idpacientesConsulta")
+//    , @NamedQuery(name = "Pacientesconsulta.findByNome", query = "SELECT p FROM Pacientesconsulta p WHERE p.nome = :nome")
+//    , @NamedQuery(name = "Pacientesconsulta.findByApelido", query = "SELECT p FROM Pacientesconsulta p WHERE p.apelido = :apelido")
+//    , @NamedQuery(name = "Pacientesconsulta.findByIdade", query = "SELECT p FROM Pacientesconsulta p WHERE p.idade = :idade")
+//    , @NamedQuery(name = "Pacientesconsulta.findByEndereco", query = "SELECT p FROM Pacientesconsulta p WHERE p.endereco = :endereco")
+//    , @NamedQuery(name = "Pacientesconsulta.findByBairro", query = "SELECT p FROM Pacientesconsulta p WHERE p.bairro = :bairro")
+//    , @NamedQuery(name = "Pacientesconsulta.findByCidade", query = "SELECT p FROM Pacientesconsulta p WHERE p.cidade = :cidade")
+//    , @NamedQuery(name = "Pacientesconsulta.findByNumero", query = "SELECT p FROM Pacientesconsulta p WHERE p.numero = :numero")
+//    , @NamedQuery(name = "Pacientesconsulta.findByTel", query = "SELECT p FROM Pacientesconsulta p WHERE p.tel = :tel")
+//    , @NamedQuery(name = "Pacientesconsulta.findByTel2", query = "SELECT p FROM Pacientesconsulta p WHERE p.tel2 = :tel2")
+//    , @NamedQuery(name = "Pacientesconsulta.findByDataNasc", query = "SELECT p FROM Pacientesconsulta p WHERE p.dataNasc = :dataNasc")
+//    , @NamedQuery(name = "Pacientesconsulta.findByCpf", query = "SELECT p FROM Pacientesconsulta p WHERE p.cpf = :cpf")
+//    , @NamedQuery(name = "Pacientesconsulta.findByRg", query = "SELECT p FROM Pacientesconsulta p WHERE p.rg = :rg")})
 public class Pacientesconsulta implements Serializable {
 
     @Transient
@@ -68,10 +68,16 @@ public class Pacientesconsulta implements Serializable {
     private String idade;
     @Column(name = "endereco")
     private String endereco;
+    @Column(name = "peso")
+    private Float peso;
+    @Column(name = "temperatura")
+    private Float temperatura;
+    @Column(name = "altura")
+    private Float altura;
+    @Column(name = "pa")
+    private String pa;
     @Column(name = "bairro")
     private String bairro;
-    @Column(name = "cidade")
-    private String cidade;
     @Column(name = "numero")
     private String numero;
     @Column(name = "tel")
@@ -169,15 +175,7 @@ public class Pacientesconsulta implements Serializable {
         changeSupport.firePropertyChange("bairro", oldBairro, bairro);
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        String oldCidade = this.cidade;
-        this.cidade = cidade;
-        changeSupport.firePropertyChange("cidade", oldCidade, cidade);
-    }
+   
 
     public String getNumero() {
         return numero;
@@ -188,6 +186,48 @@ public class Pacientesconsulta implements Serializable {
         this.numero = numero;
         changeSupport.firePropertyChange("numero", oldNumero, numero);
     }
+    
+    public Float getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(Float temperatura) {
+        Float oldTemperatura = this.temperatura;
+        this.temperatura = temperatura;
+        changeSupport.firePropertyChange("temperatura", oldTemperatura, temperatura);
+    }
+    
+    public Float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Float peso) {
+        Float oldPeso = this.peso;
+        this.peso = peso;
+        changeSupport.firePropertyChange("peso", oldPeso, peso);
+    }
+    
+    public Float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(Float altura) {
+        Float oldAltura = this.altura;
+        this.altura = altura;
+        changeSupport.firePropertyChange("altura", oldAltura, altura);
+    }
+    
+    public String getPa() {
+        return pa;
+    }
+
+    public void setPa(String pa) {
+        String oldPa = this.pa;
+        this.pa = pa;
+        changeSupport.firePropertyChange("pa", oldPa, pa);
+    }
+    
+    
 
     public String getTel() {
         return tel;
@@ -254,9 +294,9 @@ public class Pacientesconsulta implements Serializable {
     }
 
     public void setCidadeIdcidade(Cidade cidadeIdcidade) {
-        Cidade oldCidadeIdcidade = this.cidadeIdcidade;
+        Cidade oldCidadeidcidade = this.cidadeIdcidade;
         this.cidadeIdcidade = cidadeIdcidade;
-        changeSupport.firePropertyChange("cidadeIdcidade", oldCidadeIdcidade, cidadeIdcidade);
+        changeSupport.firePropertyChange("cidadeIdcidade", oldCidadeidcidade, cidadeIdcidade);
     }
 
     public Estado getEstadoIdestado() {
@@ -264,9 +304,9 @@ public class Pacientesconsulta implements Serializable {
     }
 
     public void setEstadoIdestado(Estado estadoIdestado) {
-        Estado oldEstadoIdestado = this.estadoIdestado;
+        Estado oldEstadoidestado = this.estadoIdestado;
         this.estadoIdestado = estadoIdestado;
-        changeSupport.firePropertyChange("estadoIdestado", oldEstadoIdestado, estadoIdestado);
+        changeSupport.firePropertyChange("estadoIdestado", oldEstadoidestado, estadoIdestado);
     }
 
     public Medicos getMedicosIdmedicos() {
@@ -274,9 +314,9 @@ public class Pacientesconsulta implements Serializable {
     }
 
     public void setMedicosIdmedicos(Medicos medicosIdmedicos) {
-        Medicos oldMedicosIdmedicos = this.medicosIdmedicos;
+        Medicos oldMedicosidmedicos = this.medicosIdmedicos;
         this.medicosIdmedicos = medicosIdmedicos;
-        changeSupport.firePropertyChange("medicosIdmedicos", oldMedicosIdmedicos, medicosIdmedicos);
+        changeSupport.firePropertyChange("medicosIdmedicos", oldMedicosidmedicos, medicosIdmedicos);
     }
 
     public Tipodeficha getTipodefichaIdtipodeficha() {
