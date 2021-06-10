@@ -17,8 +17,6 @@ public class Singleton {
     
     private static EntityManager connection;
     private static EntityManagerFactory emf;
-    private static String configDDD;
-    private static String configCidade;
     
     
     public static EntityManager getConnection(){

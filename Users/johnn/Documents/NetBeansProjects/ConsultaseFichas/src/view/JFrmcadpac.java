@@ -44,13 +44,15 @@ import utils.Msg;
  * @author johnn
  */
 public class JFrmcadpac extends javax.swing.JInternalFrame {
-
+    
+    private telaPacienteConsulta pai;
+    
     /**
      * Creates new form JFrmcadpac
      */
     public JFrmcadpac() {
         initComponents();
-         
+        pai = new telaPacienteConsulta();
    
         jDateChooser1.getJCalendar().setPreferredSize(new Dimension(280, 200));
         if (!Beans.isDesignTime()) {
@@ -654,10 +656,7 @@ public class JFrmcadpac extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formComponentRemoved
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        
-        
-        
-        
+    // pai.attentity();  
     }//GEN-LAST:event_formInternalFrameClosed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

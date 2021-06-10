@@ -124,9 +124,11 @@ public class TelaFichaAmb extends javax.swing.JInternalFrame {
 
             JasperPrint print = JasperFillManager.fillReport(relatorio, parametros, dados);
             JasperViewer view = new JasperViewer (print, false);
-            this.setBounds(view.getBounds());
-            this.getContentPane().add(view.getContentPane());
-            this.setVisible(true);
+            JDialog tela = new JDialog();
+            tela.setBounds(view.getBounds());
+            tela.getContentPane().add(view.getContentPane());
+            tela.setModal(true);
+            tela.setVisible(true);
             
            // view.setVisible(true);
 

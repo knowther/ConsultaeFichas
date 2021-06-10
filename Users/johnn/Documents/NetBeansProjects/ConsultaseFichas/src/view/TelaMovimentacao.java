@@ -235,6 +235,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButtonInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/money_add.png"))); // NOI18N
         jButtonInserir.setText("Inserir Entrada de Valor");
         jButtonInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,6 +244,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         });
         jPanel1.add(jButtonInserir);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/money_delete.png"))); // NOI18N
         jButton1.setText("Inserir Despesa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +253,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         });
         jPanel1.add(jButton1);
 
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/page_edit.png"))); // NOI18N
         jButtonAlterar.setText("Alterar");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +262,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         });
         jPanel1.add(jButtonAlterar);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/delete.png"))); // NOI18N
         jButton3.setText("Excluir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +271,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         });
         jPanel1.add(jButton3);
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/door_in.png"))); // NOI18N
         jButton4.setText("Sair");
         jPanel1.add(jButton4);
 

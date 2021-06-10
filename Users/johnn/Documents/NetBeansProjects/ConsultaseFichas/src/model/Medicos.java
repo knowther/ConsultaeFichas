@@ -8,6 +8,7 @@ package model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,6 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Medicos.findByNome", query = "SELECT m FROM Medicos m WHERE m.nome = :nome")
     , @NamedQuery(name = "Medicos.findByCrm", query = "SELECT m FROM Medicos m WHERE m.crm = :crm")})
 public class Medicos implements Serializable {
+
+    @OneToMany(mappedBy = "medicosIdmedicos")
+    private Collection<Consulta> consultaCollection;
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -132,6 +136,15 @@ public class Medicos implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
+    }
+
+    @XmlTransient
+    public Collection<Consulta> getConsultaCollection() {
+        return consultaCollection;
+    }
+
+    public void setConsultaCollection(Collection<Consulta> consultaCollection) {
+        this.consultaCollection = consultaCollection;
     }
     
 }

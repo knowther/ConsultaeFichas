@@ -22,17 +22,17 @@ public class PacientesconsultaDao {
     public PacientesconsultaDao(){
         em = Singleton.getConnection();
     }
-    protected void inserir(Pacientesconsulta pac){
+    public void inserir(Pacientesconsulta pac){
         em.getTransaction().begin();
         em.persist(pac);
         em.getTransaction().commit();
     }
-    protected void alterar(Pacientesconsulta pac){
+    public void alterar(Pacientesconsulta pac){
         em.getTransaction().begin();
         em.merge(pac);
         em.getTransaction().commit();
     }
-    protected void excluir(Pacientesconsulta pac){
+    public void excluir(Pacientesconsulta pac){
         em.getTransaction().begin();
         em.remove(pac);
         em.getTransaction().commit();

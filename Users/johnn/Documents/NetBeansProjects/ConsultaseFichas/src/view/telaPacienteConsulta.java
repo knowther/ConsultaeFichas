@@ -121,7 +121,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jRadioButtonFichaRecente = new javax.swing.JRadioButton();
         jRadioButtonFichaAntiga = new javax.swing.JRadioButton();
         jRadioButtonArquivoMorto = new javax.swing.JRadioButton();
-        jButton8 = new javax.swing.JButton();
         pacienteUnicPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -433,13 +432,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                     .addComponent(jRadioButtonArquivoMorto)))
         );
 
-        jButton8.setText("jButton8");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelaLayout = new javax.swing.GroupLayout(jPanela);
         jPanela.setLayout(jPanelaLayout);
         jPanelaLayout.setHorizontalGroup(
@@ -458,9 +450,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton8))
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelaLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -487,8 +477,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                 .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(jButton7))
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .addGap(68, 68, 68))
@@ -954,8 +943,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrmcadpac tela;
-        form.abrirFormulario(tela = new JFrmcadpac(), jDesktopPane1);
+       new TelaCadastroPaciente(this, true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void masterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masterTableMouseClicked
@@ -1173,11 +1161,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCaixa3ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-    TelaFichaAmb tela;
-        form.abrirFormulario(tela = new TelaFichaAmb(), jDesktopPane1);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1252,7 +1235,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
 //           tableModel.setRowCount(0);
 //           masterTable.setModel(tableModel);
 //           tableModel.fireTableDataChanged();
-        masterTable.invalidate();
+//        masterTable.invalidate();
     }
 
 
@@ -1270,7 +1253,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     public javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonCaixa;
     private javax.swing.JButton jButtonCaixa1;
     private javax.swing.JButton jButtonCaixa2;
