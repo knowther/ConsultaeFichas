@@ -148,7 +148,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <Component id="jComboBoxTipoficha" min="-2" pref="135" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -255,7 +255,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jFormattedTextFieldTel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jFormattedTextFieldTel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxTipoficha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                   </Group>
@@ -402,7 +402,7 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCpf">
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="jComboBoxTipoficha">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>

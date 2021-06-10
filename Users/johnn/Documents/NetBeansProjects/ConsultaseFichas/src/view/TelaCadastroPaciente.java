@@ -21,6 +21,7 @@ import utils.Utils;
 import javax.persistence.EntityManager;
 import model.Pacientesconsulta;
 import model.Tipodeficha;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  *
  * @author johnn
@@ -33,8 +34,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private Pacientesconsulta paciente;
     private EntityManager em;
     private EstadoDao estadoDao;
-    private TipodefichaDao fichadao;
+    //private TipodefichaDao fichadao;
     private PacientesconsultaDao pacienteDao;
+    //private Tipodeficha tipodeficha;
    
     /**
      * Creates new form TelaCadastroPaciente
@@ -44,9 +46,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         initComponents();
         paciente = new Pacientesconsulta();
         pacienteDao = new PacientesconsultaDao();
-        
+        //fichadao = new TipodefichaDao();
+       // tipodeficha = new Tipodeficha();
        atualizaCombo();
        atualizaComboficha();
+        AutoCompleteDecorator.decorate(jComboBoxTipoficha);
     }
 
     /**
@@ -89,7 +93,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxTipoficha = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -237,7 +241,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                                     .addComponent(jLabel19)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jComboBoxTipoficha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -314,7 +318,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldTel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxTipoficha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(157, 157, 157))
         );
 
@@ -454,10 +458,12 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public void atualizaComboficha(){
-        listaficha = new TipodefichaDao().getList();
+        listaficha = new TipodefichaDao().getList("");
         for(Tipodeficha t : listaficha){
-            jComboBox1.addItem(t.getTipodaficha());
+            jComboBoxTipoficha.addItem(t.getTipodaficha());
+            System.out.println(listaficha);
         }
+        
     }
     
     public void atualizaCombo() {
@@ -501,6 +507,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         paciente.setTel(jFormattedTextFieldTel.getText());
         paciente.setTel2(jFormattedTextFieldTel2.getText());
         paciente.setHistorico(jTextArea1.getText());
+        paciente.setTipodefichaIdtipodeficha(listaficha.get(jComboBoxTipoficha.getSelectedIndex()));
         
         return paciente;
     }
@@ -550,9 +557,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxCidade;
     private javax.swing.JComboBox<String> jComboBoxEstado;
+    private javax.swing.JComboBox<String> jComboBoxTipoficha;
     private com.toedter.calendar.JDateChooser jDateChooserDataExp;
     private com.toedter.calendar.JDateChooser jDateChooserDataNasc;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;

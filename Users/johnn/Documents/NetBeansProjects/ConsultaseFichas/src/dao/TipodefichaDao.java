@@ -8,7 +8,6 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.Pacientesconsulta;
 import model.Tipodeficha;
 import utils.Singleton;
 
@@ -17,17 +16,38 @@ import utils.Singleton;
  * @author johnn
  */
 public class TipodefichaDao {
+    
+    
     private EntityManager em;
-public void TipodefichaDao(){
-    em = Singleton.getConnection();
-}
-    public List getList(){
+    
+    
+    public TipodefichaDao(){
+        em = Singleton.getConnection();
+    }
+    public void inserir(Tipodeficha tipo){
+        em.getTransaction().begin();
+        em.persist(tipo);
+        em.getTransaction().commit();
+    }
+    public void alterar(Tipodeficha tipo){
+        em.getTransaction().begin();
+        em.merge(tipo);
+        em.getTransaction().commit();
+    }
+    public void excluir(Tipodeficha tipo){
+        em.getTransaction().begin();
+        em.remove(tipo);
+        em.getTransaction().commit();
+    }
+    public List getList(String tipo){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT t FROM Tipodeficha t");
-     //  query.setParameter("likes", "%" + pac.trim() + "%");
+       Query query = em.createQuery("SELECT t from Tipodeficha t where t.tipodaficha LIKE :likes ");
+       query.setParameter("likes", "%" + tipo.trim() + "%");
        List<Tipodeficha> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;
      
     }
+    
+    
 }
