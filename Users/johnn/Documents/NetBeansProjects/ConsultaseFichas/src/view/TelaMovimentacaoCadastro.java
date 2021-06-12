@@ -47,7 +47,6 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
         initComponents();
         atualizaCombo();
         pai = parent;
-
         movimentacaoconsultorio = new Movimentacaoconsultorio();
         movimentacaodraedna = new Movimentacaodraedna();
     }
@@ -239,15 +238,19 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
                 if (isInserir()) {
 
                     new MovimentacaoConsultorioDao().inserir(getMovimentacao());
-                    new MovimentacaoConsultorioDao().alterar(getMovimentacao());
-                    Msg.informacao(this, "Registro Alterado com Sucesso!");
-                    this.dispose();
+                   // new MovimentacaoConsultorioDao().alterar(getMovimentacao());
+                    Msg.informacao(this, "Registro Salvo com Sucesso!");
                     this.pai.atualizaTable();
+                    this.pai.atualizaValores();
+                    this.dispose();
+                    
                 } else {
                     new MovimentacaoConsultorioDao().alterar(getMovimentacao());
                     Msg.informacao(this, "Registro Alterado com Sucesso!");
-                    this.dispose();
                     this.pai.atualizaTable();
+                    this.pai.atualizaValores();
+                    this.dispose();
+                    
 
                 }
             } else {

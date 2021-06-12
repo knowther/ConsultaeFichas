@@ -54,6 +54,16 @@ import javax.xml.bind.annotation.XmlTransient;
 //    , @NamedQuery(name = "Pacientesconsulta.findByRg", query = "SELECT p FROM Pacientesconsulta p WHERE p.rg = :rg")})
 public class Pacientesconsulta implements Serializable {
 
+    @Column(name = "pacientesConsultacol")
+    private String pacientesConsultacol;
+    @Column(name = "cidade")
+    private String cidade;
+    @Column(name = "orgexp")
+    private String orgexp;
+    @Column(name = "dataexp")
+    @Temporal(TemporalType.DATE)
+    private Date dataexp;
+
 //    @OneToMany(mappedBy = "pacientesConsultaidpacientesConsulta")
 //    private Collection<Consulta> consultaCollection;
 
@@ -376,5 +386,37 @@ public class Pacientesconsulta implements Serializable {
 //    public void setConsultaCollection(Collection<Consulta> consultaCollection) {
 //        this.consultaCollection = consultaCollection;
 //    }
+
+    public String getPacientesConsultacol() {
+        return pacientesConsultacol;
+    }
+
+    public void setPacientesConsultacol(String pacientesConsultacol) {
+        this.pacientesConsultacol = pacientesConsultacol;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getOrgexp() {
+        return orgexp;
+    }
+
+    public void setOrgexp(String orgexp) {
+        this.orgexp = orgexp;
+    }
+
+    public Date getDataexp() {
+        return dataexp;
+    }
+
+    public void setDataexp(Date dataexp) {
+        this.dataexp = dataexp;
+    }
     
 }
