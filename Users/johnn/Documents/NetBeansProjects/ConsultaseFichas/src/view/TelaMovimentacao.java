@@ -40,18 +40,18 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     public TelaMovimentacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        atualizaTable();
-        pegardatar();
-        mudarCorLinha();
-        atualizaValores();
-        tabela.setShowGrid(true);
-        tabela.setAutoCreateRowSorter(true);
-        tabela.setGridColor(Color.lightGray);
-        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        //categoria = new Movimentacaoconsultorio();
-        categoria = new Movimentacaoconsultorio();
-        categoriaed = new Movimentacaodraedna();
+//        atualizaTable();
+//        pegardatar();
+//        mudarCorLinha();
+//        atualizaValores();
+//        tabela.setShowGrid(true);
+//        tabela.setAutoCreateRowSorter(true);
+//        tabela.setGridColor(Color.lightGray);
+//        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
+//        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
+//        //categoria = new Movimentacaoconsultorio();
+//        categoria = new Movimentacaoconsultorio();
+//        categoriaed = new Movimentacaodraedna();
 
     }
 
