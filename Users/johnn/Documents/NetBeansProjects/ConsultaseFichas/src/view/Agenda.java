@@ -52,51 +52,51 @@ public class Agenda extends javax.swing.JFrame {
         SelecaoAno = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         t1 = new javax.swing.JLabel();
         t2 = new javax.swing.JLabel();
-        t8 = new javax.swing.JLabel();
-        t15 = new javax.swing.JLabel();
-        t22 = new javax.swing.JLabel();
         t3 = new javax.swing.JLabel();
-        t9 = new javax.swing.JLabel();
         t4 = new javax.swing.JLabel();
         t5 = new javax.swing.JLabel();
         t6 = new javax.swing.JLabel();
         t7 = new javax.swing.JLabel();
-        t16 = new javax.swing.JLabel();
-        t23 = new javax.swing.JLabel();
+        t8 = new javax.swing.JLabel();
+        t9 = new javax.swing.JLabel();
         t10 = new javax.swing.JLabel();
-        t17 = new javax.swing.JLabel();
-        t24 = new javax.swing.JLabel();
         t11 = new javax.swing.JLabel();
-        t18 = new javax.swing.JLabel();
-        t25 = new javax.swing.JLabel();
         t12 = new javax.swing.JLabel();
-        t19 = new javax.swing.JLabel();
-        t26 = new javax.swing.JLabel();
         t13 = new javax.swing.JLabel();
-        t20 = new javax.swing.JLabel();
-        t27 = new javax.swing.JLabel();
         t14 = new javax.swing.JLabel();
+        t15 = new javax.swing.JLabel();
+        t16 = new javax.swing.JLabel();
+        t17 = new javax.swing.JLabel();
+        t18 = new javax.swing.JLabel();
+        t19 = new javax.swing.JLabel();
+        t20 = new javax.swing.JLabel();
         t21 = new javax.swing.JLabel();
+        t22 = new javax.swing.JLabel();
+        t23 = new javax.swing.JLabel();
+        t24 = new javax.swing.JLabel();
+        t25 = new javax.swing.JLabel();
+        t26 = new javax.swing.JLabel();
+        t27 = new javax.swing.JLabel();
         t28 = new javax.swing.JLabel();
         t29 = new javax.swing.JLabel();
-        t36 = new javax.swing.JLabel();
         t30 = new javax.swing.JLabel();
-        t37 = new javax.swing.JLabel();
         t31 = new javax.swing.JLabel();
-        t38 = new javax.swing.JLabel();
         t32 = new javax.swing.JLabel();
-        t39 = new javax.swing.JLabel();
         t33 = new javax.swing.JLabel();
-        t40 = new javax.swing.JLabel();
         t34 = new javax.swing.JLabel();
-        t41 = new javax.swing.JLabel();
         t35 = new javax.swing.JLabel();
+        t36 = new javax.swing.JLabel();
+        t37 = new javax.swing.JLabel();
+        t38 = new javax.swing.JLabel();
+        t39 = new javax.swing.JLabel();
+        t40 = new javax.swing.JLabel();
+        t41 = new javax.swing.JLabel();
         t42 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         DiaPag1 = new javax.swing.JLabel();
@@ -116,13 +116,28 @@ public class Agenda extends javax.swing.JFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLayeredPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(0, 153, 204));
         jLabel2.setForeground(new java.awt.Color(255, 51, 51));
         jLabel2.setText("Dom");
         jLabel2.setOpaque(true);
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 33, -1, -1));
 
         SelecaoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro ", "Novembro", "Dezembro" }));
+        SelecaoMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelecaoMesActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(SelecaoMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 91, -1));
+
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+        jLayeredPane1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 19, -1));
 
         SelecaoAno.setEditable(true);
         SelecaoAno.addActionListener(new java.awt.event.ActionListener() {
@@ -130,409 +145,217 @@ public class Agenda extends javax.swing.JFrame {
                 SelecaoAnoActionPerformed(evt);
             }
         });
+        jLayeredPane1.add(SelecaoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 1, 110, -1));
 
         jLabel3.setBackground(new java.awt.Color(0, 153, 204));
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Seg");
         jLabel3.setOpaque(true);
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 33, 26, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 153, 204));
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ter");
         jLabel4.setOpaque(true);
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 33, 26, -1));
 
-        jLabel5.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Qua");
-        jLabel5.setOpaque(true);
+        jLabel9.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Qua");
+        jLabel9.setOpaque(true);
+        jLayeredPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 33, 26, -1));
 
-        jLabel6.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Qui");
-        jLabel6.setOpaque(true);
+        jLabel10.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Qui");
+        jLabel10.setOpaque(true);
+        jLayeredPane1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 33, 26, -1));
 
-        jLabel7.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Sex");
-        jLabel7.setOpaque(true);
+        jLabel11.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Sex");
+        jLabel11.setOpaque(true);
+        jLayeredPane1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 33, 26, -1));
 
-        jLabel8.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Sáb");
-        jLabel8.setOpaque(true);
+        jLabel12.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Sáb");
+        jLabel12.setOpaque(true);
+        jLayeredPane1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 33, 26, -1));
 
-        t1.setForeground(new java.awt.Color(255, 0, 51));
         t1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t1.setText("0");
+        jLayeredPane1.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 55, 26, -1));
 
-        t2.setForeground(new java.awt.Color(0, 0, 0));
         t2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t2.setText("0");
+        jLayeredPane1.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 55, 26, -1));
 
-        t8.setForeground(new java.awt.Color(255, 0, 51));
-        t8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t8.setText("0");
-
-        t15.setForeground(new java.awt.Color(255, 0, 51));
-        t15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t15.setText("0");
-
-        t22.setForeground(new java.awt.Color(255, 0, 51));
-        t22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t22.setText("0");
-
-        t3.setForeground(new java.awt.Color(0, 0, 0));
         t3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t3.setText("0");
+        jLayeredPane1.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 55, 26, -1));
 
-        t9.setForeground(new java.awt.Color(0, 0, 0));
-        t9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t9.setText("0");
-
-        t4.setForeground(new java.awt.Color(0, 0, 0));
         t4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t4.setText("0");
+        jLayeredPane1.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 55, 26, -1));
 
-        t5.setForeground(new java.awt.Color(0, 0, 0));
         t5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t5.setText("0");
+        jLayeredPane1.add(t5, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 55, 26, -1));
 
-        t6.setForeground(new java.awt.Color(0, 0, 0));
         t6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t6.setText("0");
+        jLayeredPane1.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 55, 26, -1));
 
-        t7.setForeground(new java.awt.Color(0, 0, 0));
         t7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t7.setText("0");
+        jLayeredPane1.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 55, 26, -1));
 
-        t16.setForeground(new java.awt.Color(0, 0, 0));
-        t16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t16.setText("0");
+        t8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t8.setText("0");
+        jLayeredPane1.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 77, 26, -1));
 
-        t23.setForeground(new java.awt.Color(0, 0, 0));
-        t23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t23.setText("0");
+        t9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t9.setText("0");
+        jLayeredPane1.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 77, 26, -1));
 
-        t10.setForeground(new java.awt.Color(0, 0, 0));
         t10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t10.setText("0");
+        jLayeredPane1.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 77, 26, -1));
 
-        t17.setForeground(new java.awt.Color(0, 0, 0));
-        t17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t17.setText("0");
-
-        t24.setForeground(new java.awt.Color(0, 0, 0));
-        t24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t24.setText("0");
-
-        t11.setForeground(new java.awt.Color(0, 0, 0));
         t11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t11.setText("0");
+        jLayeredPane1.add(t11, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 77, 26, -1));
 
-        t18.setForeground(new java.awt.Color(0, 0, 0));
-        t18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t18.setText("0");
-
-        t25.setForeground(new java.awt.Color(0, 0, 0));
-        t25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t25.setText("0");
-
-        t12.setForeground(new java.awt.Color(0, 0, 0));
         t12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t12.setText("0");
+        jLayeredPane1.add(t12, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 77, 26, -1));
 
-        t19.setForeground(new java.awt.Color(0, 0, 0));
-        t19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t19.setText("0");
-
-        t26.setForeground(new java.awt.Color(0, 0, 0));
-        t26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t26.setText("0");
-
-        t13.setForeground(new java.awt.Color(0, 0, 0));
         t13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t13.setText("0");
+        jLayeredPane1.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 77, 26, -1));
 
-        t20.setForeground(new java.awt.Color(0, 0, 0));
-        t20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t20.setText("0");
-
-        t27.setForeground(new java.awt.Color(0, 0, 0));
-        t27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t27.setText("0");
-
-        t14.setForeground(new java.awt.Color(0, 0, 0));
         t14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t14.setText("0");
+        jLayeredPane1.add(t14, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 77, 26, -1));
 
-        t21.setForeground(new java.awt.Color(0, 0, 0));
+        t15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t15.setText("0");
+        jLayeredPane1.add(t15, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 99, 26, -1));
+
+        t16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t16.setText("0");
+        jLayeredPane1.add(t16, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 99, 26, -1));
+
+        t17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t17.setText("0");
+        jLayeredPane1.add(t17, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 99, 26, -1));
+
+        t18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t18.setText("0");
+        jLayeredPane1.add(t18, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 99, 26, -1));
+
+        t19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t19.setText("0");
+        jLayeredPane1.add(t19, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 99, 26, -1));
+
+        t20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t20.setText("0");
+        jLayeredPane1.add(t20, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 99, 26, -1));
+
         t21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t21.setText("0");
+        jLayeredPane1.add(t21, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 99, 26, -1));
 
-        t28.setForeground(new java.awt.Color(0, 0, 0));
+        t22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t22.setText("0");
+        jLayeredPane1.add(t22, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 121, 26, -1));
+
+        t23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t23.setText("0");
+        jLayeredPane1.add(t23, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 121, 26, -1));
+
+        t24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t24.setText("0");
+        jLayeredPane1.add(t24, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 121, 26, -1));
+
+        t25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t25.setText("0");
+        jLayeredPane1.add(t25, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 121, 26, -1));
+
+        t26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t26.setText("0");
+        jLayeredPane1.add(t26, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 121, 26, -1));
+
+        t27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t27.setText("0");
+        jLayeredPane1.add(t27, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 121, 26, -1));
+
         t28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t28.setText("0");
+        jLayeredPane1.add(t28, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 121, 26, -1));
 
-        t29.setForeground(new java.awt.Color(255, 0, 51));
         t29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t29.setText("0");
+        jLayeredPane1.add(t29, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 143, 26, -1));
 
-        t36.setForeground(new java.awt.Color(255, 0, 51));
-        t36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t36.setText("0");
-
-        t30.setForeground(new java.awt.Color(0, 0, 0));
         t30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t30.setText("0");
+        jLayeredPane1.add(t30, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 143, 26, -1));
 
-        t37.setForeground(new java.awt.Color(0, 0, 0));
-        t37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t37.setText("0");
-
-        t31.setForeground(new java.awt.Color(0, 0, 0));
         t31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t31.setText("0");
+        jLayeredPane1.add(t31, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 143, 26, -1));
 
-        t38.setForeground(new java.awt.Color(0, 0, 0));
-        t38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t38.setText("0");
-
-        t32.setForeground(new java.awt.Color(0, 0, 0));
         t32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t32.setText("0");
+        jLayeredPane1.add(t32, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 143, 26, -1));
 
-        t39.setForeground(new java.awt.Color(0, 0, 0));
-        t39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t39.setText("0");
-
-        t33.setForeground(new java.awt.Color(0, 0, 0));
         t33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t33.setText("0");
+        jLayeredPane1.add(t33, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 143, 26, -1));
 
-        t40.setForeground(new java.awt.Color(0, 0, 0));
-        t40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t40.setText("0");
-
-        t34.setForeground(new java.awt.Color(0, 0, 0));
         t34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t34.setText("0");
+        jLayeredPane1.add(t34, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 143, 26, -1));
 
-        t41.setForeground(new java.awt.Color(0, 0, 0));
-        t41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t41.setText("0");
-
-        t35.setForeground(new java.awt.Color(0, 0, 0));
         t35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t35.setText("0");
+        jLayeredPane1.add(t35, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 143, 26, -1));
 
-        t42.setForeground(new java.awt.Color(0, 0, 0));
+        t36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t36.setText("0");
+        jLayeredPane1.add(t36, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 165, 26, -1));
+
+        t37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t37.setText("0");
+        jLayeredPane1.add(t37, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 165, 26, -1));
+
+        t38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t38.setText("0");
+        jLayeredPane1.add(t38, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 165, 26, -1));
+
+        t39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t39.setText("0");
+        jLayeredPane1.add(t39, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 165, 26, -1));
+
+        t40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t40.setText("0");
+        jLayeredPane1.add(t40, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 165, 26, -1));
+
+        t41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t41.setText("0");
+        jLayeredPane1.add(t41, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 165, 26, -1));
+
         t42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t42.setText("0");
-
-        jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(SelecaoMes, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jSpinner1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(SelecaoAno, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t22, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t16, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t23, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t18, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t25, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t26, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t20, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t27, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t21, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t28, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t29, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t36, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t30, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t37, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t31, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t38, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t32, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t39, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t33, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t40, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t34, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t41, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t35, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(t42, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(SelecaoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SelecaoAno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                            .addComponent(t22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(t9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t42, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SelecaoMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelecaoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1)
-                    .addComponent(t2)
-                    .addComponent(t3)
-                    .addComponent(t4)
-                    .addComponent(t5)
-                    .addComponent(t6)
-                    .addComponent(t7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t8)
-                    .addComponent(t9)
-                    .addComponent(t10)
-                    .addComponent(t11)
-                    .addComponent(t12)
-                    .addComponent(t13)
-                    .addComponent(t14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t15)
-                    .addComponent(t16)
-                    .addComponent(t17)
-                    .addComponent(t18)
-                    .addComponent(t19)
-                    .addComponent(t20)
-                    .addComponent(t21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t22)
-                    .addComponent(t23)
-                    .addComponent(t24)
-                    .addComponent(t25)
-                    .addComponent(t26)
-                    .addComponent(t27)
-                    .addComponent(t28))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t29)
-                    .addComponent(t30)
-                    .addComponent(t31)
-                    .addComponent(t32)
-                    .addComponent(t33)
-                    .addComponent(t34)
-                    .addComponent(t35))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t36)
-                    .addComponent(t37)
-                    .addComponent(t38)
-                    .addComponent(t39)
-                    .addComponent(t40)
-                    .addComponent(t41)
-                    .addComponent(t42))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLayeredPane1.add(t42, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 165, 26, -1));
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(70, 50, 240, 190);
@@ -550,21 +373,24 @@ public class Agenda extends javax.swing.JFrame {
 
         DiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 48)); // NOI18N
         DiaPag1.setForeground(new java.awt.Color(0, 0, 0));
+        DiaPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DiaPag1.setText("7");
         getContentPane().add(DiaPag1);
-        DiaPag1.setBounds(570, 100, 60, 80);
+        DiaPag1.setBounds(320, 110, 220, 50);
 
-        SemDiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
+        SemDiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         SemDiaPag1.setForeground(new java.awt.Color(0, 0, 0));
+        SemDiaPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SemDiaPag1.setText("Quinta");
         getContentPane().add(SemDiaPag1);
-        SemDiaPag1.setBounds(360, 150, 80, 25);
+        SemDiaPag1.setBounds(320, 170, 220, 33);
 
-        MesPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
+        MesPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         MesPag1.setForeground(new java.awt.Color(0, 0, 0));
+        MesPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MesPag1.setText("Janeiro");
         getContentPane().add(MesPag1);
-        MesPag1.setBounds(360, 80, 120, 30);
+        MesPag1.setBounds(320, 80, 220, 30);
 
         MesPag2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         MesPag2.setForeground(new java.awt.Color(0, 0, 0));
@@ -594,7 +420,7 @@ public class Agenda extends javax.swing.JFrame {
         AnoPag2.setForeground(new java.awt.Color(0, 0, 0));
         AnoPag2.setText("2021");
         getContentPane().add(AnoPag2);
-        AnoPag2.setBounds(470, 80, 50, 30);
+        AnoPag2.setBounds(570, 80, 50, 30);
 
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -611,7 +437,7 @@ public class Agenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SelecaoAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoAnoActionPerformed
-    try{
+        try{
             int x = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
             DiaAltera = DiaFixo;
             Calendario();
@@ -621,6 +447,38 @@ public class Agenda extends javax.swing.JFrame {
             SelecaoAno.setSelectedItem(AnoFixo);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_SelecaoAnoActionPerformed
+
+    private void SelecaoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoMesActionPerformed
+    DiaAltera = DiaFixo;
+        Calendario();        // TODO add your handling code here:
+    }//GEN-LAST:event_SelecaoMesActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+    valorselecao = Integer.parseInt(jSpinner1.getValue().toString());
+        int x = SelecaoMes.getSelectedIndex();
+        int ano = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
+
+        if (valorselecao == -1){
+            if (SelecaoMes.getSelectedIndex() != 11){
+                SelecaoMes.setSelectedIndex(x + 1);
+            }else{
+                SelecaoMes.setSelectedIndex(0);
+                ano = ano + 1;
+                SelecaoAno.setSelectedItem(ano);
+            }
+        }
+        if (valorselecao == 1){
+            if(SelecaoMes.getSelectedIndex() != 0){
+                SelecaoMes.setSelectedIndex(x - 1);
+            }else{
+                SelecaoMes.setSelectedIndex(11);
+                ano = ano -1;
+                SelecaoAno.setSelectedItem(ano);
+            }
+        }
+        jSpinner1.setValue(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinner1StateChanged
     
     public void IniciarCalendario(){
         SimpleDateFormat Ano = new SimpleDateFormat("yyyy");
@@ -1156,6 +1014,111 @@ public class Agenda extends javax.swing.JFrame {
             }else{
                 t7.setOpaque(false);
                 
+            }if(!"".equals(t8.getText())){
+                t8.setOpaque(true);
+            }else{
+                t8.setOpaque(false);
+                
+            }if(!"".equals(t9.getText())){
+                t9.setOpaque(true);
+            }else{
+                t9.setOpaque(false);
+                
+            }if(!"".equals(t10.getText())){
+                t10.setOpaque(true);
+            }else{
+                t10.setOpaque(false);
+                
+            }if(!"".equals(t11.getText())){
+                t11.setOpaque(true);
+            }else{
+                t11.setOpaque(false);
+                
+            }if(!"".equals(t12.getText())){
+                t12.setOpaque(true);
+            }else{
+                t12.setOpaque(false);
+                
+            }if(!"".equals(t13.getText())){
+                t13.setOpaque(true);
+            }else{
+                t13.setOpaque(false);
+                
+            }if(!"".equals(t14.getText())){
+                t14.setOpaque(true);
+            }else{
+                t14.setOpaque(false);
+                
+            }if(!"".equals(t15.getText())){
+                t15.setOpaque(true);
+            }else{
+                t15.setOpaque(false);
+                
+            }if(!"".equals(t16.getText())){
+                t16.setOpaque(true);
+            }else{
+                t16.setOpaque(false);
+                
+            }if(!"".equals(t17.getText())){
+                t17.setOpaque(true);
+            }else{
+                t17.setOpaque(false);
+                
+            }if(!"".equals(t18.getText())){
+                t18.setOpaque(true);
+            }else{
+                t18.setOpaque(false);
+                
+            }if(!"".equals(t19.getText())){
+                t19.setOpaque(true);
+            }else{
+                t19.setOpaque(false);
+                
+            }if(!"".equals(t20.getText())){
+                t20.setOpaque(true);
+            }else{
+                t20.setOpaque(false);
+                
+            }if(!"".equals(t21.getText())){
+                t21.setOpaque(true);
+            }else{
+                t21.setOpaque(false);
+                
+            }if(!"".equals(t22.getText())){
+                t22.setOpaque(true);
+            }else{
+                t22.setOpaque(false);
+                
+            }if(!"".equals(t23.getText())){
+                t23.setOpaque(true);
+            }else{
+                t23.setOpaque(false);
+                
+            }if(!"".equals(t24.getText())){
+                t24.setOpaque(true);
+            }else{
+                t24.setOpaque(false);
+                
+            }if(!"".equals(t25.getText())){
+                t25.setOpaque(true);
+            }else{
+                t25.setOpaque(false);
+                
+            }if(!"".equals(t26.getText())){
+                t26.setOpaque(true);
+            }else{
+                t26.setOpaque(false);
+                
+            }if(!"".equals(t27.getText())){
+                t27.setOpaque(true);
+            }else{
+                t27.setOpaque(false);
+                
+            }if(!"".equals(t28.getText())){
+                t28.setOpaque(true);
+            }else{
+                t28.setOpaque(false);
+                
             }if(!"".equals(t29.getText())){
                 t29.setOpaque(true);
             }else{
@@ -1285,11 +1248,11 @@ public class Agenda extends javax.swing.JFrame {
         t1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t1.getText())){
-                    t1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t1.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t1.setBorder(null);
+                t1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t1.getText())){
@@ -1305,11 +1268,11 @@ public class Agenda extends javax.swing.JFrame {
         t2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t2.getText())){
-                    t2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t2.setBorder(javax.swing.BorderFactory.createEtchedBorder(1));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t2.setBorder(null);
+                t2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t2.getText())){
@@ -1325,11 +1288,11 @@ public class Agenda extends javax.swing.JFrame {
         t3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t3.getText())){
-                    t3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t3.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t3.setBorder(null);
+                t3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t3.getText())){
@@ -1345,11 +1308,11 @@ public class Agenda extends javax.swing.JFrame {
         t4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t4.getText())){
-                    t4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t4.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t4.setBorder(null);
+                t4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                if(!"".equals(t4.getText())){
@@ -1365,11 +1328,11 @@ public class Agenda extends javax.swing.JFrame {
         t5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t5.getText())){
-                    t5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t5.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t5.setBorder(null);
+                t5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t5.getText())){
@@ -1385,11 +1348,11 @@ public class Agenda extends javax.swing.JFrame {
         t6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t6.getText())){
-                    t6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t6.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t6.setBorder(null);
+                t6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t6.getText())){
@@ -1405,11 +1368,11 @@ public class Agenda extends javax.swing.JFrame {
         t7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t7.getText())){
-                    t7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t7.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t7.setBorder(null);
+                t7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t7.getText())){
@@ -1425,11 +1388,11 @@ public class Agenda extends javax.swing.JFrame {
         t8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t8.getText())){
-                    t8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t8.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t8.setBorder(null);
+                t8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t8.getText())){
@@ -1445,11 +1408,11 @@ public class Agenda extends javax.swing.JFrame {
         t9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t9.getText())){
-                    t9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t9.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t9.setBorder(null);
+                t9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t9.getText())){
@@ -1465,11 +1428,11 @@ public class Agenda extends javax.swing.JFrame {
         t10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t10.getText())){
-                    t10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t10.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t10.setBorder(null);
+                t10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t10.getText())){
@@ -1485,11 +1448,11 @@ public class Agenda extends javax.swing.JFrame {
         t11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t11.getText())){
-                    t11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t11.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t11.setBorder(null);
+                t11.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t11.getText())){
@@ -1505,11 +1468,11 @@ public class Agenda extends javax.swing.JFrame {
         t12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t12.getText())){
-                    t12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t12.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t12.setBorder(null);
+                t12.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t12.getText())){
@@ -1525,11 +1488,11 @@ public class Agenda extends javax.swing.JFrame {
         t13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t13.getText())){
-                    t13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t13.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t13.setBorder(null);
+                t13.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                if(!"".equals(t13.getText())){
@@ -1545,11 +1508,11 @@ public class Agenda extends javax.swing.JFrame {
         t14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t14.getText())){
-                    t14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t14.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t14.setBorder(null);
+                t14.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t14.getText())){
@@ -1565,11 +1528,11 @@ public class Agenda extends javax.swing.JFrame {
         t15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t15.getText())){
-                    t15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t15.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t15.setBorder(null);
+                t15.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t15.getText())){
@@ -1585,11 +1548,11 @@ public class Agenda extends javax.swing.JFrame {
         t16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t16.getText())){
-                    t16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t16.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t16.setBorder(null);
+                t16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t16.getText())){
@@ -1605,11 +1568,11 @@ public class Agenda extends javax.swing.JFrame {
         t17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t17.getText())){
-                    t17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t17.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t17.setBorder(null);
+                t17.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t17.getText())){
@@ -1625,11 +1588,11 @@ public class Agenda extends javax.swing.JFrame {
         t18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t18.getText())){
-                    t18.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t18.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t18.setBorder(null);
+                t18.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t18.getText())){
@@ -1645,11 +1608,11 @@ public class Agenda extends javax.swing.JFrame {
         t19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t19.getText())){
-                    t19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t19.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t19.setBorder(null);
+                t19.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t19.getText())){
@@ -1665,11 +1628,11 @@ public class Agenda extends javax.swing.JFrame {
         t20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t20.getText())){
-                    t20.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t20.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t20.setBorder(null);
+                t20.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t20.getText())){
@@ -1685,11 +1648,11 @@ public class Agenda extends javax.swing.JFrame {
         t21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t21.getText())){
-                    t21.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t21.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t21.setBorder(null);
+                t21.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t21.getText())){
@@ -1705,11 +1668,11 @@ public class Agenda extends javax.swing.JFrame {
         t22.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t22.getText())){
-                    t22.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t22.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t22.setBorder(null);
+                t22.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t22.getText())){
@@ -1725,11 +1688,11 @@ public class Agenda extends javax.swing.JFrame {
         t23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t23.getText())){
-                    t23.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t23.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t23.setBorder(null);
+                t23.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t23.getText())){
@@ -1745,11 +1708,11 @@ public class Agenda extends javax.swing.JFrame {
         t24.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t24.getText())){
-                    t24.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t24.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t24.setBorder(null);
+                t24.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t24.getText())){
@@ -1765,11 +1728,11 @@ public class Agenda extends javax.swing.JFrame {
         t25.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t25.getText())){
-                    t25.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t25.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t25.setBorder(null);
+                t25.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t25.getText())){
@@ -1785,11 +1748,11 @@ public class Agenda extends javax.swing.JFrame {
         t26.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t26.getText())){
-                    t26.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t26.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t26.setBorder(null);
+                t26.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t26.getText())){
@@ -1805,11 +1768,11 @@ public class Agenda extends javax.swing.JFrame {
         t27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t27.getText())){
-                    t27.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t27.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t27.setBorder(null);
+                t27.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t27.getText())){
@@ -1825,11 +1788,11 @@ public class Agenda extends javax.swing.JFrame {
         t28.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t28.getText())){
-                    t28.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t28.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t28.setBorder(null);
+                t28.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t28.getText())){
@@ -1845,11 +1808,11 @@ public class Agenda extends javax.swing.JFrame {
         t29.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t29.getText())){
-                    t29.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t29.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t29.setBorder(null);
+                t29.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t29.getText())){
@@ -1865,11 +1828,11 @@ public class Agenda extends javax.swing.JFrame {
         t30.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t30.getText())){
-                    t30.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t30.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t30.setBorder(null);
+                t30.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t30.getText())){
@@ -1885,11 +1848,11 @@ public class Agenda extends javax.swing.JFrame {
         t31.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t31.getText())){
-                    t31.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t31.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t31.setBorder(null);
+                t31.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t31.getText())){
@@ -1905,11 +1868,11 @@ public class Agenda extends javax.swing.JFrame {
         t32.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t32.getText())){
-                    t32.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t32.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t32.setBorder(null);
+                t32.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t32.getText())){
@@ -1925,11 +1888,11 @@ public class Agenda extends javax.swing.JFrame {
         t33.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t33.getText())){
-                    t33.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t33.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t33.setBorder(null);
+                t33.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t33.getText())){
@@ -1945,11 +1908,11 @@ public class Agenda extends javax.swing.JFrame {
         t34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t34.getText())){
-                    t34.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t34.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t34.setBorder(null);
+                t34.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t34.getText())){
@@ -1965,11 +1928,11 @@ public class Agenda extends javax.swing.JFrame {
         t35.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t35.getText())){
-                    t35.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t35.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t35.setBorder(null);
+                t35.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t35.getText())){
@@ -1985,11 +1948,11 @@ public class Agenda extends javax.swing.JFrame {
         t36.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t36.getText())){
-                    t36.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t36.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t36.setBorder(null);
+                t36.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t36.getText())){
@@ -2005,11 +1968,11 @@ public class Agenda extends javax.swing.JFrame {
         t37.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t37.getText())){
-                    t37.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t37.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t37.setBorder(null);
+                t37.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t37.getText())){
@@ -2025,11 +1988,11 @@ public class Agenda extends javax.swing.JFrame {
         t38.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t38.getText())){
-                    t38.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t38.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t38.setBorder(null);
+                t38.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t38.getText())){
@@ -2045,11 +2008,11 @@ public class Agenda extends javax.swing.JFrame {
         t39.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t39.getText())){
-                    t39.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t39.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t39.setBorder(null);
+                t39.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t39.getText())){
@@ -2065,11 +2028,11 @@ public class Agenda extends javax.swing.JFrame {
         t40.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t40.getText())){
-                    t40.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t40.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t40.setBorder(null);
+                t40.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t40.getText())){
@@ -2085,11 +2048,11 @@ public class Agenda extends javax.swing.JFrame {
         t41.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t41.getText())){
-                    t41.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t41.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t41.setBorder(null);
+                t41.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t41.getText())){
@@ -2105,11 +2068,11 @@ public class Agenda extends javax.swing.JFrame {
         t42.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 if(! "".equals(t42.getText())){
-                    t42.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                    t42.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                t42.setBorder(null);
+                t42.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             }
             public void mouseClicked(java.awt.event.MouseEvent evt){
                 if(!"".equals(t42.getText())){
@@ -2175,13 +2138,13 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel SemDiaPag2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel t1;
