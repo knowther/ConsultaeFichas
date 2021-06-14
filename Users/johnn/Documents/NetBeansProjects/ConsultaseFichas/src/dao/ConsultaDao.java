@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -42,6 +43,17 @@ public class ConsultaDao {
        em.getTransaction().begin();
        Query query = em.createQuery("SELECT c from Consulta c where c.nome LIKE :likes");
        query.setParameter("likes", "%" + con.trim() + "%");
+       List<Consulta> lista = query.getResultList();
+       em.getTransaction().commit();
+       return lista;
+     
+    }
+    public List getListaCon(Date datacon, Date horacon, Date horacon1){
+       em.getTransaction().begin();
+       Query query = em.createQuery("SELECT c from Consulta c where c.datasconsulta = :datacon and c.hora BETWEEN :horacon and :horacon1");
+       query.setParameter("datacon", datacon);
+       query.setParameter("horacon", horacon);
+       query.setParameter("horacon1", horacon1);
        List<Consulta> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;

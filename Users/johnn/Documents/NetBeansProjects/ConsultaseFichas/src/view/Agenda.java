@@ -5,35 +5,46 @@
  */
 package view;
 
+import com.toedter.calendar.JCalendar;
+import dao.ConsultaDao;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import model.Consulta;
 
 /**
  *
  * @author johnn
  */
 public class Agenda extends javax.swing.JFrame {
-    int AnoFixo = 0, MesFixo = 0, DiaFixo = 0;
-    int AnoAltera = 0, MesAltera = 0, DiaAltera = 0;
-    int valorselecao = 0;
-    int diaCliq = 0;
+    private Consulta consulta;
+    private List<Consulta> listacon = new ArrayList<>();
+    private Consulta con;
+    private ArrayList nomes = new ArrayList<>();
+
     /**
      * Creates new form Agenda
      */
     public Agenda() {
         initComponents();
-        IniciarCalendario();
-        Calendario();
-        calendario_evt();
+        consulta = new Consulta();
+        jCalendar1.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
+        jCalendar1.getDayChooser().setBackground(Color.yellow);
+        //listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), )
+        //nome7.setText();
         
+        //pegardatas();
     }
 
     /**
@@ -45,59 +56,6 @@ public class Agenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel2 = new javax.swing.JLabel();
-        SelecaoMes = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
-        SelecaoAno = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        t1 = new javax.swing.JLabel();
-        t2 = new javax.swing.JLabel();
-        t3 = new javax.swing.JLabel();
-        t4 = new javax.swing.JLabel();
-        t5 = new javax.swing.JLabel();
-        t6 = new javax.swing.JLabel();
-        t7 = new javax.swing.JLabel();
-        t8 = new javax.swing.JLabel();
-        t9 = new javax.swing.JLabel();
-        t10 = new javax.swing.JLabel();
-        t11 = new javax.swing.JLabel();
-        t12 = new javax.swing.JLabel();
-        t13 = new javax.swing.JLabel();
-        t14 = new javax.swing.JLabel();
-        t15 = new javax.swing.JLabel();
-        t16 = new javax.swing.JLabel();
-        t17 = new javax.swing.JLabel();
-        t18 = new javax.swing.JLabel();
-        t19 = new javax.swing.JLabel();
-        t20 = new javax.swing.JLabel();
-        t21 = new javax.swing.JLabel();
-        t22 = new javax.swing.JLabel();
-        t23 = new javax.swing.JLabel();
-        t24 = new javax.swing.JLabel();
-        t25 = new javax.swing.JLabel();
-        t26 = new javax.swing.JLabel();
-        t27 = new javax.swing.JLabel();
-        t28 = new javax.swing.JLabel();
-        t29 = new javax.swing.JLabel();
-        t30 = new javax.swing.JLabel();
-        t31 = new javax.swing.JLabel();
-        t32 = new javax.swing.JLabel();
-        t33 = new javax.swing.JLabel();
-        t34 = new javax.swing.JLabel();
-        t35 = new javax.swing.JLabel();
-        t36 = new javax.swing.JLabel();
-        t37 = new javax.swing.JLabel();
-        t38 = new javax.swing.JLabel();
-        t39 = new javax.swing.JLabel();
-        t40 = new javax.swing.JLabel();
-        t41 = new javax.swing.JLabel();
-        t42 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         DiaPag1 = new javax.swing.JLabel();
         SemDiaPag1 = new javax.swing.JLabel();
@@ -239,258 +197,16 @@ public class Agenda extends javax.swing.JFrame {
         medico173 = new javax.swing.JTextField();
         T173 = new javax.swing.JLabel();
         L173 = new javax.swing.JLabel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
         Agenda = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
-
-        jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLayeredPane1.setForeground(new java.awt.Color(0, 0, 0));
-        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel2.setText("Dom");
-        jLabel2.setOpaque(true);
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 33, -1, -1));
-
-        SelecaoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro ", "Novembro", "Dezembro" }));
-        SelecaoMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelecaoMesActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(SelecaoMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 91, -1));
-
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-        jLayeredPane1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 19, -1));
-
-        SelecaoAno.setEditable(true);
-        SelecaoAno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelecaoAnoActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(SelecaoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 1, 110, -1));
-
-        jLabel3.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Seg");
-        jLabel3.setOpaque(true);
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 33, 26, -1));
-
-        jLabel4.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Ter");
-        jLabel4.setOpaque(true);
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 33, 26, -1));
-
-        jLabel9.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Qua");
-        jLabel9.setOpaque(true);
-        jLayeredPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 33, 26, -1));
-
-        jLabel10.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Qui");
-        jLabel10.setOpaque(true);
-        jLayeredPane1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 33, 26, -1));
-
-        jLabel11.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Sex");
-        jLabel11.setOpaque(true);
-        jLayeredPane1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 33, 26, -1));
-
-        jLabel12.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Sáb");
-        jLabel12.setOpaque(true);
-        jLayeredPane1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 33, 26, -1));
-
-        t1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t1.setText("0");
-        jLayeredPane1.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 55, 26, -1));
-
-        t2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t2.setText("0");
-        jLayeredPane1.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 55, 26, -1));
-
-        t3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t3.setText("0");
-        jLayeredPane1.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 55, 26, -1));
-
-        t4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t4.setText("0");
-        jLayeredPane1.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 55, 26, -1));
-
-        t5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t5.setText("0");
-        jLayeredPane1.add(t5, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 55, 26, -1));
-
-        t6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t6.setText("0");
-        jLayeredPane1.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 55, 26, -1));
-
-        t7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t7.setText("0");
-        jLayeredPane1.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 55, 26, -1));
-
-        t8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t8.setText("0");
-        jLayeredPane1.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 77, 26, -1));
-
-        t9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t9.setText("0");
-        jLayeredPane1.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 77, 26, -1));
-
-        t10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t10.setText("0");
-        jLayeredPane1.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 77, 26, -1));
-
-        t11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t11.setText("0");
-        jLayeredPane1.add(t11, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 77, 26, -1));
-
-        t12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t12.setText("0");
-        jLayeredPane1.add(t12, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 77, 26, -1));
-
-        t13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t13.setText("0");
-        jLayeredPane1.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 77, 26, -1));
-
-        t14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t14.setText("0");
-        jLayeredPane1.add(t14, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 77, 26, -1));
-
-        t15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t15.setText("0");
-        jLayeredPane1.add(t15, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 99, 26, -1));
-
-        t16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t16.setText("0");
-        jLayeredPane1.add(t16, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 99, 26, -1));
-
-        t17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t17.setText("0");
-        jLayeredPane1.add(t17, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 99, 26, -1));
-
-        t18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t18.setText("0");
-        jLayeredPane1.add(t18, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 99, 26, -1));
-
-        t19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t19.setText("0");
-        jLayeredPane1.add(t19, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 99, 26, -1));
-
-        t20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t20.setText("0");
-        jLayeredPane1.add(t20, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 99, 26, -1));
-
-        t21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t21.setText("0");
-        jLayeredPane1.add(t21, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 99, 26, -1));
-
-        t22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t22.setText("0");
-        jLayeredPane1.add(t22, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 121, 26, -1));
-
-        t23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t23.setText("0");
-        jLayeredPane1.add(t23, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 121, 26, -1));
-
-        t24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t24.setText("0");
-        jLayeredPane1.add(t24, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 121, 26, -1));
-
-        t25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t25.setText("0");
-        jLayeredPane1.add(t25, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 121, 26, -1));
-
-        t26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t26.setText("0");
-        jLayeredPane1.add(t26, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 121, 26, -1));
-
-        t27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t27.setText("0");
-        jLayeredPane1.add(t27, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 121, 26, -1));
-
-        t28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t28.setText("0");
-        jLayeredPane1.add(t28, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 121, 26, -1));
-
-        t29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t29.setText("0");
-        jLayeredPane1.add(t29, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 143, 26, -1));
-
-        t30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t30.setText("0");
-        jLayeredPane1.add(t30, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 143, 26, -1));
-
-        t31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t31.setText("0");
-        jLayeredPane1.add(t31, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 143, 26, -1));
-
-        t32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t32.setText("0");
-        jLayeredPane1.add(t32, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 143, 26, -1));
-
-        t33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t33.setText("0");
-        jLayeredPane1.add(t33, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 143, 26, -1));
-
-        t34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t34.setText("0");
-        jLayeredPane1.add(t34, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 143, 26, -1));
-
-        t35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t35.setText("0");
-        jLayeredPane1.add(t35, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 143, 26, -1));
-
-        t36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t36.setText("0");
-        jLayeredPane1.add(t36, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 165, 26, -1));
-
-        t37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t37.setText("0");
-        jLayeredPane1.add(t37, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 165, 26, -1));
-
-        t38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t38.setText("0");
-        jLayeredPane1.add(t38, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 165, 26, -1));
-
-        t39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t39.setText("0");
-        jLayeredPane1.add(t39, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 165, 26, -1));
-
-        t40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t40.setText("0");
-        jLayeredPane1.add(t40, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 165, 26, -1));
-
-        t41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t41.setText("0");
-        jLayeredPane1.add(t41, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 165, 26, -1));
-
-        t42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t42.setText("0");
-        jLayeredPane1.add(t42, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 165, 26, -1));
-
-        getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(70, 50, 240, 190);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         jButton1.setInheritsPopupMenu(true);
@@ -567,6 +283,11 @@ public class Agenda extends javax.swing.JFrame {
         nome7.setEditable(false);
         nome7.setBorder(null);
         nome7.setOpaque(false);
+        nome7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome7MouseClicked(evt);
+            }
+        });
         nome7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nome7ActionPerformed(evt);
@@ -1332,11 +1053,38 @@ public class Agenda extends javax.swing.JFrame {
         getContentPane().add(L173);
         L173.setBounds(730, 660, 31, 16);
 
+        jCalendar1.setOpaque(false);
+        jCalendar1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jCalendar1PropertyChange(evt);
+            }
+        });
+        getContentPane().add(jCalendar1);
+        jCalendar1.setBounds(60, 40, 230, 200);
+
         Agenda.setForeground(new java.awt.Color(255, 0, 51));
         Agenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Agenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FundoAgenda.jpg"))); // NOI18N
         getContentPane().add(Agenda);
         Agenda.setBounds(-10, 0, 1390, 730);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(580, -100, 453, 403);
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(800, 100, 33, 26);
 
         setSize(new java.awt.Dimension(1366, 719));
         setLocationRelativeTo(null);
@@ -1346,52 +1094,8 @@ public class Agenda extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void SelecaoAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoAnoActionPerformed
-        try{
-            int x = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
-            DiaAltera = DiaFixo;
-            Calendario();
-            AnoPag1.setText(SelecaoAno.getSelectedItem().toString());
-            AnoPag2.setText(SelecaoAno.getSelectedItem().toString());
-        }catch (Exception e){
-            SelecaoAno.setSelectedItem(AnoFixo);
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_SelecaoAnoActionPerformed
-
-    private void SelecaoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoMesActionPerformed
-    DiaAltera = DiaFixo;
-        Calendario();        // TODO add your handling code here:
-    }//GEN-LAST:event_SelecaoMesActionPerformed
-
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-    valorselecao = Integer.parseInt(jSpinner1.getValue().toString());
-        int x = SelecaoMes.getSelectedIndex();
-        int ano = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
-
-        if (valorselecao == -1){
-            if (SelecaoMes.getSelectedIndex() != 11){
-                SelecaoMes.setSelectedIndex(x + 1);
-            }else{
-                SelecaoMes.setSelectedIndex(0);
-                ano = ano + 1;
-                SelecaoAno.setSelectedItem(ano);
-            }
-        }
-        if (valorselecao == 1){
-            if(SelecaoMes.getSelectedIndex() != 0){
-                SelecaoMes.setSelectedIndex(x - 1);
-            }else{
-                SelecaoMes.setSelectedIndex(11);
-                ano = ano -1;
-                SelecaoAno.setSelectedItem(ano);
-            }
-        }
-        jSpinner1.setValue(0);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSpinner1StateChanged
-
     private void nome7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome7ActionPerformed
-        // TODO add your handling code here:
+              // TODO add your handling code here:
     }//GEN-LAST:event_nome7ActionPerformed
 
     private void nome73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome73ActionPerformed
@@ -1481,1612 +1185,68 @@ public class Agenda extends javax.swing.JFrame {
     private void medico7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medico7MouseEntered
     medico7.setToolTipText(medico7.getText());        
     }//GEN-LAST:event_medico7MouseEntered
+
+    private void jCalendar1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendar1PropertyChange
+            Date data;
+            data = jCalendar1.getDate();
+          DateFormat dateFormatmes  = new SimpleDateFormat("MMMM");
+          DateFormat dateFormatdia  = new SimpleDateFormat("dd");
+          DateFormat dateFormatweekday  = new SimpleDateFormat("EEEE");
+          DateFormat dateFormatano  = new SimpleDateFormat("yyyy");
+          DiaPag1.setText(dateFormatdia.format(data));
+          DiaPag2.setText(dateFormatdia.format(data));
+          MesPag1.setText(dateFormatmes.format(data));
+          MesPag2.setText(dateFormatmes.format(data));
+          SemDiaPag1.setText(dateFormatweekday.format(data));
+          SemDiaPag2.setText(dateFormatweekday.format(data));
+          AnoPag1.setText(dateFormatano.format(data));
+          AnoPag2.setText(dateFormatano.format(data));
+          System.out.println(jCalendar1.getDate());
+          //inserirdatas();
+          pegardatas();
+    }//GEN-LAST:event_jCalendar1PropertyChange
+
+    private void nome7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome7MouseClicked
+     TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+     Calendar c = Calendar.getInstance();
+     c.setTime(jCalendar1.getDate());
+     c.set(Calendar.HOUR_OF_DAY, 7);
+     c.set(Calendar.MINUTE, 0);
+     t.setHora(c.getTime());
+     
+     t.setDataselecionada(jCalendar1.getDate());
+     inserirdatas();
+     t.setVisible(true);
+     //inserirdatas();
+    }//GEN-LAST:event_nome7MouseClicked
     
-    public void IniciarCalendario(){
-        SimpleDateFormat Ano = new SimpleDateFormat("yyyy");
-        SimpleDateFormat Mes = new SimpleDateFormat("MM");  
-        SimpleDateFormat Dia = new SimpleDateFormat("dd");
-        AnoFixo = Integer.parseInt(Ano.format(new Date()));
-        MesFixo = Integer.parseInt(Mes.format(new Date()));
-        DiaFixo = Integer.parseInt(Dia.format(new Date()));
-        
-        //JOptionPane.showMessageDialog(null, DiaFixo + "/" + MesFixo + "/" + AnoFixo);
-        
-        int AnoMaximo = AnoFixo + 50;
-        for (int i = 2000; i < AnoMaximo; i++){
-           String AnoString = Integer.toString(i);
-            SelecaoAno.addItem(AnoString);
+    private void pegardatas(){
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 7);
+        c.set(Calendar.MINUTE, 0);
+        Date horacon = c.getTime();
+        c.set(Calendar.HOUR_OF_DAY, 17);
+        c.set(Calendar.MINUTE, 30);
+        Date horacon1 = c.getTime();
+        listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), horacon, horacon1);
+        for(Consulta con : listacon){
+            nomes.add(con);
         }
-        
-        SelecaoAno.setSelectedItem(AnoFixo);
-        
-        
-        
-        if (MesFixo ==1){
-            SelecaoMes.setSelectedIndex(0);
-        }else if (MesFixo == 2){
-            SelecaoMes.setSelectedIndex(1);
-        }else if (MesFixo == 3){
-            SelecaoMes.setSelectedIndex(2);
-        }else if (MesFixo == 4){
-            SelecaoMes.setSelectedIndex(3);
-        }else if (MesFixo == 5){
-            SelecaoMes.setSelectedIndex(4);
-        }else if (MesFixo == 6){
-            SelecaoMes.setSelectedIndex(5);
-        }else if (MesFixo == 7){
-            SelecaoMes.setSelectedIndex(6);
-        }else if (MesFixo == 8){
-            SelecaoMes.setSelectedIndex(7);
-        }
-        else if (MesFixo == 9){
-            SelecaoMes.setSelectedIndex(8);
-        }else if (MesFixo == 10){
-            SelecaoMes.setSelectedIndex(9);
-        }else if (MesFixo == 11){
-            SelecaoMes.setSelectedIndex(10);
-        }else if (MesFixo == 12){
-            SelecaoMes.setSelectedIndex(11);
-        }
-        }
-    public void Calendario (){
-        t1.setText("");
-        t2.setText("");
-        t3.setText("");
-        t4.setText("");
-        t5.setText("");
-        t6.setText("");
-        t7.setText("");
-        t8.setText("");
-        t9.setText("");
-        t10.setText("");
-        t11.setText("");
-        t12.setText("");
-        t13.setText("");
-        t14.setText("");
-        t15.setText("");
-        t16.setText("");
-        t17.setText("");
-        t18.setText("");
-        t19.setText("");
-        t20.setText("");
-        t21.setText("");
-        t22.setText("");
-        t23.setText("");
-        t24.setText("");
-        t25.setText("");
-        t26.setText("");
-        t27.setText("");
-        t28.setText("");
-        t29.setText("");
-        t30.setText("");
-        t31.setText("");
-        t32.setText("");
-        t33.setText("");
-        t34.setText("");
-        t35.setText("");
-        t36.setText("");
-        t37.setText("");
-        t38.setText("");
-        t39.setText("");
-        t40.setText("");
-        t41.setText("");
-        t42.setText("");
-        
-        
-        DiaAltera = DiaFixo;
-        MesAltera = SelecaoMes.getSelectedIndex();
-        AnoAltera = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
-        
-        int TotalDiasMes = 0;
-        
-        if(MesAltera == 0){
-            TotalDiasMes = 31;
-        }else if (MesAltera == 1){
-            int resultado = (AnoAltera % 4);
-            if (resultado == 0){
-                TotalDiasMes = 29;
-            }else{
-                TotalDiasMes = 28;
-            }  
-    }
-        else if (MesAltera == 2){
-            TotalDiasMes = 31;
-        }
-        else if (MesAltera == 3){
-            TotalDiasMes = 30;
-        }
-        else if (MesAltera == 4){
-            TotalDiasMes = 31;
-        }
-        else if (MesAltera == 5){
-            TotalDiasMes = 30;
-        }
-        else if (MesAltera == 6){
-            TotalDiasMes = 31;
-        }
-        else if (MesAltera == 7){
-            TotalDiasMes = 31;
-        }
-        else if (MesAltera == 8){
-            TotalDiasMes = 30;
-        }
-        else if (MesAltera == 9){
-            TotalDiasMes = 31;
-        }
-        else if (MesAltera == 10){
-            TotalDiasMes = 30;
-        }
-        else if (MesAltera == 11){
-            TotalDiasMes = 31;
-        }
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(AnoAltera, MesAltera, 1);
-        int SetaDia = 0;
-        
-        int Semana = calendar.get(Calendar.DAY_OF_WEEK);
-        if(Semana == Calendar.SUNDAY){
-            SetaDia = 1;
-            System.out.println("Dom");
-        } else if (Semana == Calendar.MONDAY){
-            SetaDia = 2;
-            System.out.println("Seg");
-        } else if (Semana == Calendar.TUESDAY){
-            SetaDia = 3;
-            System.out.println("Ter");
-        } else if (Semana == Calendar.WEDNESDAY){
-            SetaDia = 4;
-            System.out.println("Qua");
-        } else if (Semana == Calendar.THURSDAY){
-            SetaDia = 5;
-            System.out.println("Qui");
-        } else if (Semana == Calendar.FRIDAY){
-            SetaDia = 6;
-            System.out.println("Sex");
-        } else if (Semana == Calendar.SATURDAY){
-            SetaDia = 7;
-            System.out.println("Sáb");
-        }
-        
-            for (int i = 1; i <= TotalDiasMes; i++){
-                switch (SetaDia){
-                    case 1:
-                        t1.setText("" + i);
-                        break;
-                    case 2:
-                        t2.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t2.setForeground(Color.red);
-                        }else{
-                            t2.setForeground(Color.black);
-                           
-                        }
-                        break;
-                    case 3:
-                        t3.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t3.setForeground(Color.red);
-                        }else{
-                            t3.setForeground(Color.black);
-                        }
-                        break;
-                    case 4:
-                        t4.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t4.setForeground(Color.red);
-                        }else{
-                            t4.setForeground(Color.black);
-                        }
-                        break;
-                    case 5:
-                        t5.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t5.setForeground(Color.red);
-                        }else{
-                            t5.setForeground(Color.black);
-                        }
-                        break;
-                    case 6:
-                        t6.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t6.setForeground(Color.red);
-                        }else{
-                            t6.setForeground(Color.black);
-                        }
-                        break;
-                    case 7:
-                        t7.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t7.setForeground(Color.red);
-                        }else{
-                            t7.setForeground(Color.black);
-                        }
-                        break;
-                    case 8:
-                        t8.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t8.setForeground(Color.red);
-                        }else{
-                            t8.setForeground(Color.black);
-                        }
-                        break;
-                    case 9:
-                        t9.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t9.setForeground(Color.red);
-                        }else{
-                            t9.setForeground(Color.black);
-                        }
-                        break;
-                    case 10:
-                        t10.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t10.setForeground(Color.red);
-                        }else{
-                            t10.setForeground(Color.black);
-                        }
-                        break;
-                    case 11:
-                        t11.setText("" + i);
-                         if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t11.setForeground(Color.red);
-                        }else{
-                            t11.setForeground(Color.black);
-                        }
-                        break;   
-                    case 12:
-                        t12.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t12.setForeground(Color.red);
-                        }else{
-                            t12.setForeground(Color.black);
-                        }
-                        break;
-                    case 13:
-                        t13.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t13.setForeground(Color.red);
-                        }else{
-                            t13.setForeground(Color.black);
-                        }
-                        break; 
-                    case 14:
-                        t14.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t14.setForeground(Color.red);
-                        }else{
-                            t14.setForeground(Color.black);
-                        }
-                        break;
-                    case 15:
-                        t15.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t15.setForeground(Color.red);
-                        }else{
-                            t15.setForeground(Color.black);
-                        }
-                        break;
-                    case 16:
-                        t16.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t16.setForeground(Color.red);
-                        }else{
-                            t16.setForeground(Color.black);
-                        }
-                        break;    
-                    case 17:
-                        t17.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t17.setForeground(Color.red);
-                        }else{
-                            t17.setForeground(Color.black);
-                        }
-                        break;
-                    case 18:
-                        t18.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t18.setForeground(Color.red);
-                        }else{
-                            t18.setForeground(Color.black);
-                        }
-                    case 19:
-                        t19.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t19.setForeground(Color.red);
-                        }else{
-                            t19.setForeground(Color.black);
-                        }
-                        break;
-                    case 20:
-                        t20.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t20.setForeground(Color.red);
-                        }else{
-                            t20.setForeground(Color.black);
-                        }
-                        break;
-                    case 21:
-                        t21.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t21.setForeground(Color.red);
-                        }else{
-                            t21.setForeground(Color.black);
-                        }
-                        break;
-                    case 22:
-                        t22.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t22.setForeground(Color.red);
-                        }else{
-                            t22.setForeground(Color.black);
-                        }
-                        break;
-                    case 23:
-                        t23.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t23.setForeground(Color.red);
-                        }else{
-                            t23.setForeground(Color.black);
-                        }
-                        break;   
-                    case 24:
-                        t24.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t24.setForeground(Color.red);
-                        }else{
-                            t24.setForeground(Color.black);
-                        }
-                        break; 
-                    case 25:
-                        t25.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t25.setForeground(Color.red);
-                        }else{
-                            t25.setForeground(Color.black);
-                        }
-                        break; 
-                    case 26:
-                        t26.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t26.setForeground(Color.red);
-                        }else{
-                            t26.setForeground(Color.black);
-                        }
-                        break;  
-                    case 27:
-                        t27.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t27.setForeground(Color.red);
-                        }else{
-                            t27.setForeground(Color.black);
-                        }
-                        break; 
-                    case 28:
-                        t28.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t28.setForeground(Color.red);
-                        }else{
-                            t28.setForeground(Color.black);
-                        }
-                        break;    
-                    case 29:
-                        t29.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t29.setForeground(Color.red);
-                        }else{
-                            t29.setForeground(Color.black);
-                        }
-                        break; 
-                    case 30:
-                        t30.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t30.setForeground(Color.red);
-                        }else{
-                            t30.setForeground(Color.black);
-                        }
-                        break;
-                    case 31:
-                        t31.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t31.setForeground(Color.red);
-                        }else{
-                            t31.setForeground(Color.black);
-                        }
-                        break;
-                    case 32:
-                        t32.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t32.setForeground(Color.red);
-                        }else{
-                            t32.setForeground(Color.black);
-                        }
-                        break;  
-                    case 33:
-                        t33.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t33.setForeground(Color.red);
-                        }else{
-                            t33.setForeground(Color.black);
-                        }
-                        break;  
-                    case 34:
-                        t34.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t34.setForeground(Color.red);
-                        }else{
-                            t34.setForeground(Color.black);
-                        }
-                        break;
-                    case 35:
-                        t35.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t35.setForeground(Color.red);
-                        }else{
-                            t35.setForeground(Color.black);
-                        }
-                        break;
-                    case 36:
-                        t36.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t36.setForeground(Color.red);
-                        }else{
-                            t36.setForeground(Color.black);
-                        }
-                        break;
-                    case 37:
-                        t37.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t37.setForeground(Color.red);
-                        }else{
-                            t37.setForeground(Color.black);
-                        }
-                        break;
-                    case 38:
-                        t38.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t38.setForeground(Color.red);
-                        }else{
-                            t38.setForeground(Color.black);
-                        }
-                        break;
-                    case 39:
-                        t39.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t39.setForeground(Color.red);
-                        }else{
-                            t39.setForeground(Color.black);
-                        }
-                        break;
-                    case 40:
-                        t40.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t40.setForeground(Color.red);
-                        }else{
-                            t40.setForeground(Color.black);
-                        }
-                        break;
-                    case 41:
-                        t41.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t41.setForeground(Color.red);
-                        }else{
-                            t41.setForeground(Color.black);
-                        }
-                        break; 
-                    case 42:
-                        t42.setText("" + i);
-                        if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera == AnoFixo){
-                            t42.setForeground(Color.red);
-                        }else{
-                            t42.setForeground(Color.black);
-                        }
-                        break;     
-                }
-                SetaDia ++;
-            }
-            if(!"".equals(t1.getText())){
-                t1.setOpaque(true);
-            }else{
-                t1.setOpaque(false);
-            }
-            if(!"".equals(t2.getText())){
-                t2.setOpaque(true);
-            }else{
-                t2.setOpaque(false);
-            }
-            if(!"".equals(t3.getText())){
-                t3.setOpaque(true);
-            }else{
-                t3.setOpaque(false);
-            }if(!"".equals(t4.getText())){
-                t4.setOpaque(true);
-            }else{
-                t4.setOpaque(false);
-            }if(!"".equals(t5.getText())){
-                t5.setOpaque(true);
-            }else{
-                t5.setOpaque(false);
-            }if(!"".equals(t6.getText())){
-                t6.setOpaque(true);
-            }else{
-                t6.setOpaque(false);
-            }if(!"".equals(t7.getText())){
-                t7.setOpaque(true);
-            }else{
-                t7.setOpaque(false);
-                
-            }if(!"".equals(t8.getText())){
-                t8.setOpaque(true);
-            }else{
-                t8.setOpaque(false);
-                
-            }if(!"".equals(t9.getText())){
-                t9.setOpaque(true);
-            }else{
-                t9.setOpaque(false);
-                
-            }if(!"".equals(t10.getText())){
-                t10.setOpaque(true);
-            }else{
-                t10.setOpaque(false);
-                
-            }if(!"".equals(t11.getText())){
-                t11.setOpaque(true);
-            }else{
-                t11.setOpaque(false);
-                
-            }if(!"".equals(t12.getText())){
-                t12.setOpaque(true);
-            }else{
-                t12.setOpaque(false);
-                
-            }if(!"".equals(t13.getText())){
-                t13.setOpaque(true);
-            }else{
-                t13.setOpaque(false);
-                
-            }if(!"".equals(t14.getText())){
-                t14.setOpaque(true);
-            }else{
-                t14.setOpaque(false);
-                
-            }if(!"".equals(t15.getText())){
-                t15.setOpaque(true);
-            }else{
-                t15.setOpaque(false);
-                
-            }if(!"".equals(t16.getText())){
-                t16.setOpaque(true);
-            }else{
-                t16.setOpaque(false);
-                
-            }if(!"".equals(t17.getText())){
-                t17.setOpaque(true);
-            }else{
-                t17.setOpaque(false);
-                
-            }if(!"".equals(t18.getText())){
-                t18.setOpaque(true);
-            }else{
-                t18.setOpaque(false);
-                
-            }if(!"".equals(t19.getText())){
-                t19.setOpaque(true);
-            }else{
-                t19.setOpaque(false);
-                
-            }if(!"".equals(t20.getText())){
-                t20.setOpaque(true);
-            }else{
-                t20.setOpaque(false);
-                
-            }if(!"".equals(t21.getText())){
-                t21.setOpaque(true);
-            }else{
-                t21.setOpaque(false);
-                
-            }if(!"".equals(t22.getText())){
-                t22.setOpaque(true);
-            }else{
-                t22.setOpaque(false);
-                
-            }if(!"".equals(t23.getText())){
-                t23.setOpaque(true);
-            }else{
-                t23.setOpaque(false);
-                
-            }if(!"".equals(t24.getText())){
-                t24.setOpaque(true);
-            }else{
-                t24.setOpaque(false);
-                
-            }if(!"".equals(t25.getText())){
-                t25.setOpaque(true);
-            }else{
-                t25.setOpaque(false);
-                
-            }if(!"".equals(t26.getText())){
-                t26.setOpaque(true);
-            }else{
-                t26.setOpaque(false);
-                
-            }if(!"".equals(t27.getText())){
-                t27.setOpaque(true);
-            }else{
-                t27.setOpaque(false);
-                
-            }if(!"".equals(t28.getText())){
-                t28.setOpaque(true);
-            }else{
-                t28.setOpaque(false);
-                
-            }if(!"".equals(t29.getText())){
-                t29.setOpaque(true);
-            }else{
-                t29.setOpaque(false);    
-            }if(!"".equals(t30.getText())){
-                t30.setOpaque(true);
-            }else{
-                t30.setOpaque(false);
-            }
-            if(!"".equals(t31.getText())){
-                t31.setOpaque(true);
-            }else{
-                t31.setOpaque(false);
-            }
-            if(!"".equals(t33.getText())){
-                t33.setOpaque(true);
-            }else{
-                t33.setOpaque(false);
-            }
-            if(!"".equals(t32.getText())){
-                t32.setOpaque(true);
-            }else{
-                t32.setOpaque(false);
-            }
-            if(!"".equals(t34.getText())){
-                t34.setOpaque(true);
-            }else{
-                t34.setOpaque(false);
-            }
-            if(!"".equals(t35.getText())){
-                t35.setOpaque(true);
-            }else{
-                t35.setOpaque(false);
-            }
-            if(!"".equals(t36.getText())){
-                t36.setOpaque(true);
-            }else{
-                t36.setOpaque(false);
-            }if(!"".equals(t37.getText())){
-                t37.setOpaque(true);
-            }else{
-                t37.setOpaque(false);
-            }if(!"".equals(t38.getText())){
-                t38.setOpaque(true);
-            }else{
-                t38.setOpaque(false);
-            }if(!"".equals(t39.getText())){
-                t39.setOpaque(true);
-            }else{
-                t39.setOpaque(false);
-            }if(!"".equals(t40.getText())){
-                t40.setOpaque(true);
-            }else{
-                t40.setOpaque(false);
-            }if(!"".equals(t41.getText())){
-                t41.setOpaque(true);
-            }else{
-                t41.setOpaque(false);
-            }if(!"".equals(t42.getText())){
-                t42.setOpaque(true);
-            }else{
-                t42.setOpaque(false);
-            }
-            
-           VerificaSemana();
-           
+        System.out.println(nomes);
+        //inserirdatas();
+        //if(listacon.get(0) == null){
+         //   nome7.setText(consulta.getNome());
+       // }
     }
     
-    public void VerificaSemana(){
-     try{  
-         if(MesAltera != MesFixo -1 & diaCliq != 0){
-             DiaAltera = 1;
-         }
-         if(AnoAltera != AnoFixo & diaCliq != 0){
-             DiaAltera = 1;
-         }
-         diaCliq = 1;
-         
-         if(DiaAltera == DiaFixo & MesAltera + 1 == MesFixo & AnoAltera == AnoFixo){
-             DiaPag1.setForeground(Color.red);
-             DiaPag2.setForeground(Color.RED);
-         }else{
-             DiaPag1.setForeground(Color.black);
-             DiaPag2.setForeground(Color.black);
-         }
-         
-        MesAltera = SelecaoMes.getSelectedIndex();
-        AnoAltera = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
-        Calendar calendarN = Calendar.getInstance();
-        calendarN.set(AnoAltera, MesAltera, DiaAltera);
-        
-        MesPag1.setText(SelecaoMes.getSelectedItem().toString());
-        MesPag2.setText(SelecaoMes.getSelectedItem().toString());
-        
-        DiaPag1.setText("" + DiaAltera);
-        DiaPag2.setText("" + DiaAltera);
-        
-        int semanaN = calendarN.get(Calendar.DAY_OF_WEEK);
-        if(semanaN == Calendar.SUNDAY){
-            SemDiaPag1.setText("Domingo");
-            SemDiaPag2.setText("Domingo");
-            }else if(semanaN == Calendar.MONDAY){
-            SemDiaPag1.setText("Segunda");
-            SemDiaPag2.setText("Segunda"); 
-            
-            }else if(semanaN == Calendar.TUESDAY){
-            SemDiaPag1.setText("Terça");
-            SemDiaPag2.setText("Terça");
-            }else if(semanaN == Calendar.WEDNESDAY){
-            SemDiaPag1.setText("Quarta");
-            SemDiaPag2.setText("Quarta");
-            }else if(semanaN == Calendar.THURSDAY){
-            SemDiaPag1.setText("Quinta");
-            SemDiaPag2.setText("Quinta");
-            }else if(semanaN == Calendar.FRIDAY){
-            SemDiaPag1.setText("Sexta");
-            SemDiaPag2.setText("Sexta");
-            }   else if(semanaN == Calendar.SATURDAY){
-            SemDiaPag1.setText("Sábado");
-            SemDiaPag2.setText("Sábado");
-            }            
-    }       catch (Exception e){
-            System.out.println(e);
-    }        
-} 
-    public void calendario_evt(){
-        t1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t1.getText())){
-                    t1.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t1.getText())){
-                    DiaPag1.setText(t1.getText());
-                    DiaPag2.setText(t1.getText());
-                    
-                    DiaAltera = Integer.parseInt(t1.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t2.getText())){
-                    t2.setBorder(javax.swing.BorderFactory.createEtchedBorder(1));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t2.getText())){
-                    DiaPag1.setText(t2.getText());
-                    DiaPag2.setText(t2.getText());
-                    
-                    DiaAltera = Integer.parseInt(t2.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t3.getText())){
-                    t3.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t3.getText())){
-                    DiaPag1.setText(t3.getText());
-                    DiaPag2.setText(t3.getText());
-                    
-                    DiaAltera = Integer.parseInt(t3.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t4.getText())){
-                    t4.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-               if(!"".equals(t4.getText())){
-                    DiaPag1.setText(t4.getText());
-                    DiaPag2.setText(t4.getText());
-                    
-                    DiaAltera = Integer.parseInt(t4.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                } 
-            }
-});
-        t5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t5.getText())){
-                    t5.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t5.getText())){
-                    DiaPag1.setText(t5.getText());
-                    DiaPag2.setText(t5.getText());
-                    
-                    DiaAltera = Integer.parseInt(t5.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t6.getText())){
-                    t6.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t6.getText())){
-                    DiaPag1.setText(t6.getText());
-                    DiaPag2.setText(t6.getText());
-                    
-                    DiaAltera = Integer.parseInt(t6.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t7.getText())){
-                    t7.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t7.getText())){
-                    DiaPag1.setText(t7.getText());
-                    DiaPag2.setText(t7.getText());
-                    
-                    DiaAltera = Integer.parseInt(t7.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t8.getText())){
-                    t8.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t8.getText())){
-                    DiaPag1.setText(t8.getText());
-                    DiaPag2.setText(t8.getText());
-                    
-                    DiaAltera = Integer.parseInt(t8.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t9.getText())){
-                    t9.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t9.getText())){
-                    DiaPag1.setText(t9.getText());
-                    DiaPag2.setText(t9.getText());
-                    
-                    DiaAltera = Integer.parseInt(t9.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t10.getText())){
-                    t10.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t10.getText())){
-                    DiaPag1.setText(t10.getText());
-                    DiaPag2.setText(t10.getText());
-                    
-                    DiaAltera = Integer.parseInt(t10.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t11.getText())){
-                    t11.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t11.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t11.getText())){
-                    DiaPag1.setText(t11.getText());
-                    DiaPag2.setText(t11.getText());
-                    
-                    DiaAltera = Integer.parseInt(t11.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t12.getText())){
-                    t12.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t12.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t12.getText())){
-                    DiaPag1.setText(t12.getText());
-                    DiaPag2.setText(t12.getText());
-                    
-                    DiaAltera = Integer.parseInt(t12.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t13.getText())){
-                    t13.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t13.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-               if(!"".equals(t13.getText())){
-                    DiaPag1.setText(t13.getText());
-                    DiaPag2.setText(t13.getText());
-                    
-                    DiaAltera = Integer.parseInt(t13.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                } 
-            }
-});
-        t14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t14.getText())){
-                    t14.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t14.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t14.getText())){
-                    DiaPag1.setText(t14.getText());
-                    DiaPag2.setText(t14.getText());
-                    
-                    DiaAltera = Integer.parseInt(t14.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t15.getText())){
-                    t15.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t15.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t15.getText())){
-                    DiaPag1.setText(t15.getText());
-                    DiaPag2.setText(t15.getText());
-                    
-                    DiaAltera = Integer.parseInt(t15.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t16.getText())){
-                    t16.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t16.getText())){
-                    DiaPag1.setText(t16.getText());
-                    DiaPag2.setText(t16.getText());
-                    
-                    DiaAltera = Integer.parseInt(t16.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t17.getText())){
-                    t17.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t17.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t17.getText())){
-                    DiaPag1.setText(t17.getText());
-                    DiaPag2.setText(t17.getText());
-                    
-                    DiaAltera = Integer.parseInt(t17.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t18.getText())){
-                    t18.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t18.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t18.getText())){
-                    DiaPag1.setText(t18.getText());
-                    DiaPag2.setText(t18.getText());
-                    
-                    DiaAltera = Integer.parseInt(t18.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t19.getText())){
-                    t19.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t19.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t19.getText())){
-                    DiaPag1.setText(t19.getText());
-                    DiaPag2.setText(t19.getText());
-                    
-                    DiaAltera = Integer.parseInt(t19.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t20.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t20.getText())){
-                    t20.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t20.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t20.getText())){
-                    DiaPag1.setText(t20.getText());
-                    DiaPag2.setText(t20.getText());
-                    
-                    DiaAltera = Integer.parseInt(t20.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t21.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t21.getText())){
-                    t21.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t21.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t21.getText())){
-                    DiaPag1.setText(t21.getText());
-                    DiaPag2.setText(t21.getText());
-                    
-                    DiaAltera = Integer.parseInt(t21.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t22.getText())){
-                    t22.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t22.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t22.getText())){
-                    DiaPag1.setText(t22.getText());
-                    DiaPag2.setText(t22.getText());
-                    
-                    DiaAltera = Integer.parseInt(t22.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t23.getText())){
-                    t23.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t23.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t23.getText())){
-                    DiaPag1.setText(t23.getText());
-                    DiaPag2.setText(t23.getText());
-                    
-                    DiaAltera = Integer.parseInt(t23.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t24.getText())){
-                    t24.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t24.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t24.getText())){
-                    DiaPag1.setText(t24.getText());
-                    DiaPag2.setText(t24.getText());
-                    
-                    DiaAltera = Integer.parseInt(t24.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t25.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t25.getText())){
-                    t25.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t25.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t25.getText())){
-                    DiaPag1.setText(t25.getText());
-                    DiaPag2.setText(t25.getText());
-                    
-                    DiaAltera = Integer.parseInt(t25.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t26.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t26.getText())){
-                    t26.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t26.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t26.getText())){
-                    DiaPag1.setText(t26.getText());
-                    DiaPag2.setText(t26.getText());
-                    
-                    DiaAltera = Integer.parseInt(t26.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t27.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t27.getText())){
-                    t27.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t27.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t27.getText())){
-                    DiaPag1.setText(t27.getText());
-                    DiaPag2.setText(t27.getText());
-                    
-                    DiaAltera = Integer.parseInt(t27.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t28.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t28.getText())){
-                    t28.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t28.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t28.getText())){
-                    DiaPag1.setText(t28.getText());
-                    DiaPag2.setText(t28.getText());
-                    
-                    DiaAltera = Integer.parseInt(t28.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t29.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t29.getText())){
-                    t29.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t29.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t29.getText())){
-                    DiaPag1.setText(t29.getText());
-                    DiaPag2.setText(t29.getText());
-                    
-                    DiaAltera = Integer.parseInt(t29.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t30.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t30.getText())){
-                    t30.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t30.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t30.getText())){
-                    DiaPag1.setText(t30.getText());
-                    DiaPag2.setText(t30.getText());
-                    
-                    DiaAltera = Integer.parseInt(t30.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t31.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t31.getText())){
-                    t31.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t31.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t31.getText())){
-                    DiaPag1.setText(t31.getText());
-                    DiaPag2.setText(t31.getText());
-                    
-                    DiaAltera = Integer.parseInt(t31.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t32.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t32.getText())){
-                    t32.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t32.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t32.getText())){
-                    DiaPag1.setText(t32.getText());
-                    DiaPag2.setText(t32.getText());
-                    
-                    DiaAltera = Integer.parseInt(t32.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t33.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t33.getText())){
-                    t33.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t33.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t33.getText())){
-                    DiaPag1.setText(t33.getText());
-                    DiaPag2.setText(t33.getText());
-                    
-                    DiaAltera = Integer.parseInt(t33.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t34.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t34.getText())){
-                    t34.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t34.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t34.getText())){
-                    DiaPag1.setText(t34.getText());
-                    DiaPag2.setText(t34.getText());
-                    
-                    DiaAltera = Integer.parseInt(t34.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t35.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t35.getText())){
-                    t35.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t35.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t35.getText())){
-                    DiaPag1.setText(t35.getText());
-                    DiaPag2.setText(t35.getText());
-                    
-                    DiaAltera = Integer.parseInt(t35.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t36.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t36.getText())){
-                    t36.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t36.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t36.getText())){
-                    DiaPag1.setText(t36.getText());
-                    DiaPag2.setText(t36.getText());
-                    
-                    DiaAltera = Integer.parseInt(t36.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t37.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t37.getText())){
-                    t37.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t37.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t37.getText())){
-                    DiaPag1.setText(t37.getText());
-                    DiaPag2.setText(t37.getText());
-                    
-                    DiaAltera = Integer.parseInt(t37.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t38.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t38.getText())){
-                    t38.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t38.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t38.getText())){
-                    DiaPag1.setText(t38.getText());
-                    DiaPag2.setText(t38.getText());
-                    
-                    DiaAltera = Integer.parseInt(t38.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t39.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t39.getText())){
-                    t39.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t39.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t39.getText())){
-                    DiaPag1.setText(t39.getText());
-                    DiaPag2.setText(t39.getText());
-                    
-                    DiaAltera = Integer.parseInt(t39.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t40.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t40.getText())){
-                    t40.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t40.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t40.getText())){
-                    DiaPag1.setText(t40.getText());
-                    DiaPag2.setText(t40.getText());
-                    
-                    DiaAltera = Integer.parseInt(t40.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t41.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t41.getText())){
-                    t41.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t41.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t41.getText())){
-                    DiaPag1.setText(t41.getText());
-                    DiaPag2.setText(t41.getText());
-                    
-                    DiaAltera = Integer.parseInt(t41.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        t42.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt){
-                if(! "".equals(t42.getText())){
-                    t42.setBorder(javax.swing.BorderFactory.createLineBorder(Color.gray));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                t42.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt){
-                if(!"".equals(t42.getText())){
-                    DiaPag1.setText(t42.getText());
-                    DiaPag2.setText(t42.getText());
-                    
-                    DiaAltera = Integer.parseInt(t42.getText());
-                    diaCliq = 0;
-                    VerificaSemana();
-                }
-            }
-});
-        
+    private void inserirdatas(){
+        //nome7.setText();
+       
+    }
+    
+    protected Date getdata(){
+     Date data = jCalendar1.getDate();
+      return data;
     }
     
     
@@ -3102,7 +1262,7 @@ public class Agenda extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -3154,8 +1314,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel L98;
     private javax.swing.JLabel MesPag1;
     private javax.swing.JLabel MesPag2;
-    private javax.swing.JComboBox<String> SelecaoAno;
-    private javax.swing.JComboBox<String> SelecaoMes;
     private javax.swing.JLabel SemDiaPag1;
     private javax.swing.JLabel SemDiaPag2;
     private javax.swing.JLabel T10;
@@ -3181,27 +1339,23 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel T9;
     private javax.swing.JLabel T930;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel45;
@@ -3209,8 +1363,7 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -3233,7 +1386,7 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel l10;
     private javax.swing.JLabel l123;
     private javax.swing.JTextField medico10;
@@ -3280,47 +1433,5 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JTextField nome83;
     private javax.swing.JTextField nome9;
     private javax.swing.JTextField nome93;
-    private javax.swing.JLabel t1;
-    private javax.swing.JLabel t10;
-    private javax.swing.JLabel t11;
-    private javax.swing.JLabel t12;
-    private javax.swing.JLabel t13;
-    private javax.swing.JLabel t14;
-    private javax.swing.JLabel t15;
-    private javax.swing.JLabel t16;
-    private javax.swing.JLabel t17;
-    private javax.swing.JLabel t18;
-    private javax.swing.JLabel t19;
-    private javax.swing.JLabel t2;
-    private javax.swing.JLabel t20;
-    private javax.swing.JLabel t21;
-    private javax.swing.JLabel t22;
-    private javax.swing.JLabel t23;
-    private javax.swing.JLabel t24;
-    private javax.swing.JLabel t25;
-    private javax.swing.JLabel t26;
-    private javax.swing.JLabel t27;
-    private javax.swing.JLabel t28;
-    private javax.swing.JLabel t29;
-    private javax.swing.JLabel t3;
-    private javax.swing.JLabel t30;
-    private javax.swing.JLabel t31;
-    private javax.swing.JLabel t32;
-    private javax.swing.JLabel t33;
-    private javax.swing.JLabel t34;
-    private javax.swing.JLabel t35;
-    private javax.swing.JLabel t36;
-    private javax.swing.JLabel t37;
-    private javax.swing.JLabel t38;
-    private javax.swing.JLabel t39;
-    private javax.swing.JLabel t4;
-    private javax.swing.JLabel t40;
-    private javax.swing.JLabel t41;
-    private javax.swing.JLabel t42;
-    private javax.swing.JLabel t5;
-    private javax.swing.JLabel t6;
-    private javax.swing.JLabel t7;
-    private javax.swing.JLabel t8;
-    private javax.swing.JLabel t9;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -20,6 +22,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,6 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Consulta.findByHora", query = "SELECT c FROM Consulta c WHERE c.hora = :hora")
     , @NamedQuery(name = "Consulta.findByNome", query = "SELECT c FROM Consulta c WHERE c.nome = :nome")})
 public class Consulta implements Serializable {
+
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,7 +73,9 @@ public class Consulta implements Serializable {
     }
 
     public void setIdconsulta(Integer idconsulta) {
+        Integer oldIdconsulta = this.idconsulta;
         this.idconsulta = idconsulta;
+        changeSupport.firePropertyChange("idconsulta", oldIdconsulta, idconsulta);
     }
 
     public Date getDatasconsulta() {
@@ -75,7 +83,9 @@ public class Consulta implements Serializable {
     }
 
     public void setDatasconsulta(Date datasconsulta) {
+        Date oldDatasconsulta = this.datasconsulta;
         this.datasconsulta = datasconsulta;
+        changeSupport.firePropertyChange("datasconsulta", oldDatasconsulta, datasconsulta);
     }
 
     public Date getHora() {
@@ -83,7 +93,9 @@ public class Consulta implements Serializable {
     }
 
     public void setHora(Date hora) {
+        Date oldHora = this.hora;
         this.hora = hora;
+        changeSupport.firePropertyChange("hora", oldHora, hora);
     }
 
     public String getNome() {
@@ -91,7 +103,9 @@ public class Consulta implements Serializable {
     }
 
     public void setNome(String nome) {
+        String oldNome = this.nome;
         this.nome = nome;
+        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     public Medicos getMedicosIdmedicos() {
@@ -99,7 +113,9 @@ public class Consulta implements Serializable {
     }
 
     public void setMedicosIdmedicos(Medicos medicosIdmedicos) {
+        Medicos oldMedicosIdmedicos = this.medicosIdmedicos;
         this.medicosIdmedicos = medicosIdmedicos;
+        changeSupport.firePropertyChange("medicosIdmedicos", oldMedicosIdmedicos, medicosIdmedicos);
     }
 
     @Override
@@ -124,7 +140,15 @@ public class Consulta implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Consulta[ idconsulta=" + idconsulta + " ]";
+        return nome;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
