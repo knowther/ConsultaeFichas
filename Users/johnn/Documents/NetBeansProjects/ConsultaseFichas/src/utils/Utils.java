@@ -6,11 +6,13 @@
 package utils;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import static org.joda.time.format.ISODateTimeFormat.date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +27,22 @@ public class Utils {
     public static String convertData(Date date){
         return new SimpleDateFormat("dd/MM/yyyy").format(date);
     }
-    
+    public static String convertHora(Date date){
+        return new SimpleDateFormat("HH:mm:ss").format(date);
+    }
+     public static Date parseDate(String data)  {
+         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+     
+         sdf.setLenient(false);
+         
+         Date datacon = null;
+        try {
+            datacon = sdf.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return datacon ;
+    }
     
    public static int calculaIdade(java.util.Date dataNasc){
 

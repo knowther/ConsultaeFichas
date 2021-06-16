@@ -36,8 +36,8 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
     public TelaMovimentacaoCadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        movimentacaoconsultorio = new Movimentacaoconsultorio();
-        movimentacaodraedna = new Movimentacaodraedna();
+        //movimentacaoconsultorio = new Movimentacaoconsultorio();
+        //movimentacaodraedna = new Movimentacaodraedna();
 
         //atualizaCombo();
     }

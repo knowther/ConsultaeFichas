@@ -5,22 +5,14 @@
  */
 package view;
 
-import com.toedter.calendar.JCalendar;
 import dao.ConsultaDao;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import model.Consulta;
 
 /**
@@ -28,10 +20,9 @@ import model.Consulta;
  * @author johnn
  */
 public class Agenda extends javax.swing.JFrame {
+
     private Consulta consulta;
     private List<Consulta> listacon = new ArrayList<>();
-    private Consulta con;
-    private ArrayList nomes = new ArrayList<>();
 
     /**
      * Creates new form Agenda
@@ -43,7 +34,7 @@ public class Agenda extends javax.swing.JFrame {
         jCalendar1.getDayChooser().setBackground(Color.yellow);
         //listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), )
         //nome7.setText();
-        
+
         //pegardatas();
     }
 
@@ -56,7 +47,6 @@ public class Agenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         DiaPag1 = new javax.swing.JLabel();
         SemDiaPag1 = new javax.swing.JLabel();
         MesPag1 = new javax.swing.JLabel();
@@ -139,7 +129,7 @@ public class Agenda extends javax.swing.JFrame {
         jSeparator12 = new javax.swing.JSeparator();
         jSeparator13 = new javax.swing.JSeparator();
         T13 = new javax.swing.JLabel();
-        nome130 = new javax.swing.JTextField();
+        medico13 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         nome13 = new javax.swing.JTextField();
         L13 = new javax.swing.JLabel();
@@ -204,20 +194,8 @@ public class Agenda extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
-        jButton1.setInheritsPopupMenu(true);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(1330, 10, 30, 32);
 
         DiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 48)); // NOI18N
         DiaPag1.setForeground(new java.awt.Color(0, 0, 0));
@@ -326,9 +304,9 @@ public class Agenda extends javax.swing.JFrame {
         nome73.setEditable(false);
         nome73.setBorder(null);
         nome73.setOpaque(false);
-        nome73.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome73ActionPerformed(evt);
+        nome73.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome73MouseClicked(evt);
             }
         });
         getContentPane().add(nome73);
@@ -355,9 +333,9 @@ public class Agenda extends javax.swing.JFrame {
         nome8.setEditable(false);
         nome8.setBorder(null);
         nome8.setOpaque(false);
-        nome8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome8ActionPerformed(evt);
+        nome8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome8MouseClicked(evt);
             }
         });
         getContentPane().add(nome8);
@@ -391,9 +369,9 @@ public class Agenda extends javax.swing.JFrame {
         nome83.setEditable(false);
         nome83.setBorder(null);
         nome83.setOpaque(false);
-        nome83.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome83ActionPerformed(evt);
+        nome83.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome83MouseClicked(evt);
             }
         });
         getContentPane().add(nome83);
@@ -431,9 +409,9 @@ public class Agenda extends javax.swing.JFrame {
         nome9.setEditable(false);
         nome9.setBorder(null);
         nome9.setOpaque(false);
-        nome9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome9ActionPerformed(evt);
+        nome9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome9MouseClicked(evt);
             }
         });
         getContentPane().add(nome9);
@@ -480,9 +458,9 @@ public class Agenda extends javax.swing.JFrame {
         nome93.setEditable(false);
         nome93.setBorder(null);
         nome93.setOpaque(false);
-        nome93.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome93ActionPerformed(evt);
+        nome93.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome93MouseClicked(evt);
             }
         });
         getContentPane().add(nome93);
@@ -496,9 +474,9 @@ public class Agenda extends javax.swing.JFrame {
         nome10.setEditable(false);
         nome10.setBorder(null);
         nome10.setOpaque(false);
-        nome10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome10ActionPerformed(evt);
+        nome10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome10MouseClicked(evt);
             }
         });
         getContentPane().add(nome10);
@@ -555,9 +533,9 @@ public class Agenda extends javax.swing.JFrame {
         nome103.setEditable(false);
         nome103.setBorder(null);
         nome103.setOpaque(false);
-        nome103.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome103ActionPerformed(evt);
+        nome103.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome103MouseClicked(evt);
             }
         });
         getContentPane().add(nome103);
@@ -579,9 +557,9 @@ public class Agenda extends javax.swing.JFrame {
         nome11.setEditable(false);
         nome11.setBorder(null);
         nome11.setOpaque(false);
-        nome11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome11ActionPerformed(evt);
+        nome11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome11MouseClicked(evt);
             }
         });
         getContentPane().add(nome11);
@@ -603,9 +581,9 @@ public class Agenda extends javax.swing.JFrame {
         nome113.setEditable(false);
         nome113.setBorder(null);
         nome113.setOpaque(false);
-        nome113.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome113ActionPerformed(evt);
+        nome113.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome113MouseClicked(evt);
             }
         });
         getContentPane().add(nome113);
@@ -649,9 +627,9 @@ public class Agenda extends javax.swing.JFrame {
         nome12.setEditable(false);
         nome12.setBorder(null);
         nome12.setOpaque(false);
-        nome12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome12ActionPerformed(evt);
+        nome12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome12MouseClicked(evt);
             }
         });
         getContentPane().add(nome12);
@@ -676,9 +654,9 @@ public class Agenda extends javax.swing.JFrame {
         nome123.setEditable(false);
         nome123.setBorder(null);
         nome123.setOpaque(false);
-        nome123.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome123ActionPerformed(evt);
+        nome123.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome123MouseClicked(evt);
             }
         });
         getContentPane().add(nome123);
@@ -710,11 +688,11 @@ public class Agenda extends javax.swing.JFrame {
         getContentPane().add(T13);
         T13.setBounds(1260, 300, 7, 16);
 
-        nome130.setEditable(false);
-        nome130.setBorder(null);
-        nome130.setOpaque(false);
-        getContentPane().add(nome130);
-        nome130.setBounds(1020, 290, 240, 30);
+        medico13.setEditable(false);
+        medico13.setBorder(null);
+        medico13.setOpaque(false);
+        getContentPane().add(medico13);
+        medico13.setBounds(1020, 290, 240, 30);
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
@@ -725,9 +703,9 @@ public class Agenda extends javax.swing.JFrame {
         nome13.setEditable(false);
         nome13.setBorder(null);
         nome13.setOpaque(false);
-        nome13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome13ActionPerformed(evt);
+        nome13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome13MouseClicked(evt);
             }
         });
         getContentPane().add(nome13);
@@ -754,9 +732,9 @@ public class Agenda extends javax.swing.JFrame {
         nome133.setEditable(false);
         nome133.setBorder(null);
         nome133.setOpaque(false);
-        nome133.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome133ActionPerformed(evt);
+        nome133.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome133MouseClicked(evt);
             }
         });
         getContentPane().add(nome133);
@@ -787,9 +765,9 @@ public class Agenda extends javax.swing.JFrame {
         nome14.setEditable(false);
         nome14.setBorder(null);
         nome14.setOpaque(false);
-        nome14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome14ActionPerformed(evt);
+        nome14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome14MouseClicked(evt);
             }
         });
         getContentPane().add(nome14);
@@ -824,9 +802,9 @@ public class Agenda extends javax.swing.JFrame {
         nome143.setEditable(false);
         nome143.setBorder(null);
         nome143.setOpaque(false);
-        nome143.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome143ActionPerformed(evt);
+        nome143.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome143MouseClicked(evt);
             }
         });
         getContentPane().add(nome143);
@@ -864,9 +842,9 @@ public class Agenda extends javax.swing.JFrame {
         nome15.setEditable(false);
         nome15.setBorder(null);
         nome15.setOpaque(false);
-        nome15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome15ActionPerformed(evt);
+        nome15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome15MouseClicked(evt);
             }
         });
         getContentPane().add(nome15);
@@ -905,9 +883,9 @@ public class Agenda extends javax.swing.JFrame {
         nome153.setEditable(false);
         nome153.setBorder(null);
         nome153.setOpaque(false);
-        nome153.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome153ActionPerformed(evt);
+        nome153.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome153MouseClicked(evt);
             }
         });
         getContentPane().add(nome153);
@@ -916,9 +894,9 @@ public class Agenda extends javax.swing.JFrame {
         nome16.setEditable(false);
         nome16.setBorder(null);
         nome16.setOpaque(false);
-        nome16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome16ActionPerformed(evt);
+        nome16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome16MouseClicked(evt);
             }
         });
         getContentPane().add(nome16);
@@ -975,9 +953,9 @@ public class Agenda extends javax.swing.JFrame {
         nome163.setEditable(false);
         nome163.setBorder(null);
         nome163.setOpaque(false);
-        nome163.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome163ActionPerformed(evt);
+        nome163.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome163MouseClicked(evt);
             }
         });
         getContentPane().add(nome163);
@@ -1002,9 +980,9 @@ public class Agenda extends javax.swing.JFrame {
         nome17.setEditable(false);
         nome17.setBorder(null);
         nome17.setOpaque(false);
-        nome17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome17ActionPerformed(evt);
+        nome17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome17MouseClicked(evt);
             }
         });
         getContentPane().add(nome17);
@@ -1029,9 +1007,9 @@ public class Agenda extends javax.swing.JFrame {
         nome173.setEditable(false);
         nome173.setBorder(null);
         nome173.setOpaque(false);
-        nome173.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome173ActionPerformed(evt);
+        nome173.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nome173MouseClicked(evt);
             }
         });
         getContentPane().add(nome173);
@@ -1064,7 +1042,7 @@ public class Agenda extends javax.swing.JFrame {
 
         Agenda.setForeground(new java.awt.Color(255, 0, 51));
         Agenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Agenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FundoAgenda.jpg"))); // NOI18N
+        Agenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/agendasul.jpg"))); // NOI18N
         getContentPane().add(Agenda);
         Agenda.setBounds(-10, 0, 1390, 730);
 
@@ -1086,171 +1064,463 @@ public class Agenda extends javax.swing.JFrame {
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(800, 100, 33, 26);
 
-        setSize(new java.awt.Dimension(1366, 719));
+        setSize(new java.awt.Dimension(1382, 758));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void nome7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome7ActionPerformed
-              // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_nome7ActionPerformed
 
-    private void nome73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome73ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome73ActionPerformed
-
-    private void nome8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome8ActionPerformed
-
-    private void nome83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome83ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome83ActionPerformed
-
-    private void nome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome9ActionPerformed
-
-    private void nome93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome93ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome93ActionPerformed
-
-    private void nome10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome10ActionPerformed
-
-    private void nome103ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome103ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome103ActionPerformed
-
-    private void nome11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome11ActionPerformed
-
-    private void nome113ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome113ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome113ActionPerformed
-
-    private void nome12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome12ActionPerformed
-
-    private void nome123ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome123ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome123ActionPerformed
-
-    private void nome13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome13ActionPerformed
-
-    private void nome133ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome133ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome133ActionPerformed
-
-    private void nome14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome14ActionPerformed
-
-    private void nome143ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome143ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome143ActionPerformed
-
-    private void nome15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome15ActionPerformed
-
-    private void nome153ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome153ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome153ActionPerformed
-
-    private void nome16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome16ActionPerformed
-
-    private void nome163ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome163ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome163ActionPerformed
-
-    private void nome17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome17ActionPerformed
-
-    private void nome173ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome173ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome173ActionPerformed
-
     private void medico7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medico7MouseEntered
-    medico7.setToolTipText(medico7.getText());        
+
     }//GEN-LAST:event_medico7MouseEntered
 
     private void jCalendar1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendar1PropertyChange
-            Date data;
-            data = jCalendar1.getDate();
-          DateFormat dateFormatmes  = new SimpleDateFormat("MMMM");
-          DateFormat dateFormatdia  = new SimpleDateFormat("dd");
-          DateFormat dateFormatweekday  = new SimpleDateFormat("EEEE");
-          DateFormat dateFormatano  = new SimpleDateFormat("yyyy");
-          DiaPag1.setText(dateFormatdia.format(data));
-          DiaPag2.setText(dateFormatdia.format(data));
-          MesPag1.setText(dateFormatmes.format(data));
-          MesPag2.setText(dateFormatmes.format(data));
-          SemDiaPag1.setText(dateFormatweekday.format(data));
-          SemDiaPag2.setText(dateFormatweekday.format(data));
-          AnoPag1.setText(dateFormatano.format(data));
-          AnoPag2.setText(dateFormatano.format(data));
-          System.out.println(jCalendar1.getDate());
-          //inserirdatas();
-          pegardatas();
+        Date data;
+        data = jCalendar1.getDate();
+        DateFormat dateFormatmes = new SimpleDateFormat("MMMM");
+        DateFormat dateFormatdia = new SimpleDateFormat("dd");
+        DateFormat dateFormatweekday = new SimpleDateFormat("EEEE");
+        DateFormat dateFormatano = new SimpleDateFormat("yyyy");
+        DiaPag1.setText(dateFormatdia.format(data));
+        DiaPag2.setText(dateFormatdia.format(data));
+        MesPag1.setText(dateFormatmes.format(data));
+        MesPag2.setText(dateFormatmes.format(data));
+        SemDiaPag1.setText(dateFormatweekday.format(data));
+        SemDiaPag2.setText(dateFormatweekday.format(data));
+        AnoPag1.setText(dateFormatano.format(data));
+        AnoPag2.setText(dateFormatano.format(data));
+            pegardatas();
+            
+       
+        
     }//GEN-LAST:event_jCalendar1PropertyChange
 
     private void nome7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome7MouseClicked
-     TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
-     Calendar c = Calendar.getInstance();
-     c.setTime(jCalendar1.getDate());
-     c.set(Calendar.HOUR_OF_DAY, 7);
-     c.set(Calendar.MINUTE, 0);
-     t.setHora(c.getTime());
-     
-     t.setDataselecionada(jCalendar1.getDate());
-     inserirdatas();
-     t.setVisible(true);
-     //inserirdatas();
-    }//GEN-LAST:event_nome7MouseClicked
-    
-    private void pegardatas(){
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 7);
         c.set(Calendar.MINUTE, 0);
-        Date horacon = c.getTime();
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        
+        t.setVisible(true);
+       
+    }//GEN-LAST:event_nome7MouseClicked
+
+    private void nome73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome73MouseClicked
+    TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 7);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+      
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome73MouseClicked
+
+    private void nome8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome8MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 8);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome8MouseClicked
+
+    private void nome83MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome83MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 8);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome83MouseClicked
+
+    private void nome9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome9MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 9);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome9MouseClicked
+
+    private void nome93MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome93MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 9);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome93MouseClicked
+
+    private void nome10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome10MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 10);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome10MouseClicked
+
+    private void nome103MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome103MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 10);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome103MouseClicked
+
+    private void nome11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome11MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 11);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome11MouseClicked
+
+    private void nome113MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome113MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 11);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome113MouseClicked
+
+    private void nome12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome12MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 12);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome12MouseClicked
+
+    private void nome123MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome123MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 7);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_nome123MouseClicked
+
+    private void nome13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome13MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 13);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome13MouseClicked
+
+    private void nome133MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome133MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 13);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome133MouseClicked
+
+    private void nome14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome14MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 14);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+       
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome14MouseClicked
+
+    private void nome143MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome143MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 14);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+       
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome143MouseClicked
+
+    private void nome15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome15MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 15);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+     
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome15MouseClicked
+
+    private void nome153MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome153MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 15);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+     
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome153MouseClicked
+
+    private void nome16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome16MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 16);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+     
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome16MouseClicked
+
+    private void nome163MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome163MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 16);
+        c.set(Calendar.MINUTE, 30);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome163MouseClicked
+
+    private void nome17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome17MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
+        c.set(Calendar.HOUR_OF_DAY, 17);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+        
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome17MouseClicked
+
+    private void nome173MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome173MouseClicked
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        Calendar c = Calendar.getInstance();
+        c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 17);
         c.set(Calendar.MINUTE, 30);
-        Date horacon1 = c.getTime();
+        c.set(Calendar.SECOND, 0);
+        t.setHora(c.getTime());
+
+        t.setDataselecionada(jCalendar1.getDate());
+      
+        t.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_nome173MouseClicked
+
+    public void pegardatas() {
+
+        Date horacon = utils.Utils.parseDate("7:00");
+        Date horacon1 = utils.Utils.parseDate("17:30");
+       // System.out.println(horacon);
+        //System.out.println(horacon1);
+        listacon.clear();
+        
+        limparcampos();
+        
+
         listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), horacon, horacon1);
-        for(Consulta con : listacon){
-            nomes.add(con);
+        System.out.println(listacon);
+      
+            inserirdatas();
+           
+    }
+
+    public void inserirdatas() {
+        
+        for (Consulta con : listacon) {
+            //System.out.println(con.getHora().toString());
+            if (con.getHora().toString().equals("07:00:00")) {
+                nome7.setText(con.getNome());
+                medico7.setText(con.getMedicosIdmedicos().getNome());
+                
+            }
+            else if (con.getHora().toString().equals("07:30:00")) {
+                nome73.setText(con.getNome()); medico73.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("08:00:00")) {
+                nome8.setText(con.getNome()); medico8.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("08:30:00")) {
+                nome83.setText(con.getNome()); medico83.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("09:00:00")) {
+                nome9.setText(con.getNome()); medico9.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("09:30:00")) {
+                nome93.setText(con.getNome()); medico93.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else  if (con.getHora().toString().equals("10:00:00")) {
+                nome10.setText(con.getNome()); medico10.setText(con.getMedicosIdmedicos().getNome());
+            }
+                else if (con.getHora().toString().equals("10:30:00")) {
+                nome103.setText(con.getNome()); medico103.setText(con.getMedicosIdmedicos().getNome());
+            }
+               else if (con.getHora().toString().equals("11:00:00")) {
+                nome11.setText(con.getNome()); medico11.setText(con.getMedicosIdmedicos().getNome());
+            }
+               else if (con.getHora().toString().equals("11:30:00")) {
+                nome113.setText(con.getNome()); medico113.setText(con.getMedicosIdmedicos().getNome());
+            }
+               else if (con.getHora().toString().equals("12:00:00")) {
+                nome12.setText(con.getNome()); medico12.setText(con.getMedicosIdmedicos().getNome());
+            }
+               else if (con.getHora().toString().equals("12:30:00")) {
+                nome123.setText(con.getNome()); medico123.setText(con.getMedicosIdmedicos().getNome());
+            }
+               else if (con.getHora().toString().equals("13:00:00")) {
+                nome13.setText(con.getNome()); medico13.setText(con.getMedicosIdmedicos().getNome());
+            }
+               else if (con.getHora().toString().equals("13:00:00")) {
+                nome13.setText(con.getNome()); medico13.setText(con.getMedicosIdmedicos().getNome());
+               }
+               else if (con.getHora().toString().equals("13:30:00")) {
+                nome133.setText(con.getNome()); medico133.setText(con.getMedicosIdmedicos().getNome());
+               }
+                else if (con.getHora().toString().equals("14:00:00")) {
+                nome14.setText(con.getNome()); medico14.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("14:30:00")) {
+                nome143.setText(con.getNome()); medico143.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("15:00:00")) {
+                nome15.setText(con.getNome()); medico15.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("15:30:00")) {
+                nome153.setText(con.getNome()); medico153.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("16:00:00")) {
+                nome16.setText(con.getNome()); medico16.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("16:30:00")) {
+                nome163.setText(con.getNome()); medico163.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("17:00:00")) {
+                nome17.setText(con.getNome()); medico17.setText(con.getMedicosIdmedicos().getNome());
+            }
+            else if (con.getHora().toString().equals("17:30:00")) {
+                nome173.setText(con.getNome()); medico173.setText(con.getMedicosIdmedicos().getNome());
+                System.out.println("passo ultimo array");
+            }
         }
-        System.out.println(nomes);
-        //inserirdatas();
-        //if(listacon.get(0) == null){
-         //   nome7.setText(consulta.getNome());
-       // }
     }
-    
-    private void inserirdatas(){
-        //nome7.setText();
+    public void limparcampos(){
+        nome7.setText(""); medico7.setText("");
+        nome73.setText(""); medico73.setText("");
+        nome8.setText(""); medico8.setText("");
+        nome83.setText(""); medico83.setText("");
+        nome9.setText(""); medico9.setText("");
        
+        nome93.setText(""); medico93.setText("");
+        nome10.setText(""); medico10.setText("");
+        nome103.setText(""); medico103.setText("");
+        nome11.setText(""); medico11.setText("");
+        nome113.setText(""); medico113.setText("");
+        nome12.setText(""); medico12.setText("");
+        nome123.setText(""); medico123.setText("");
+        nome13.setText(""); medico13.setText("");
+        nome133.setText(""); medico133.setText("");
+        nome14.setText(""); medico14.setText("");
+        nome143.setText(""); medico143.setText("");
+        nome15.setText(""); medico15.setText("");
+        nome153.setText(""); medico153.setText("");
+        nome16.setText(""); medico16.setText("");
+        nome163.setText(""); medico163.setText("");
+        nome17.setText(""); medico17.setText("");
+        nome173.setText(""); medico173.setText("");
+        
     }
-    
-    protected Date getdata(){
-     Date data = jCalendar1.getDate();
-      return data;
+    protected Date getdata() {
+        Date data = jCalendar1.getDate();
+        return data;
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1281,7 +1551,11 @@ public class Agenda extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agenda().setVisible(true);
+               
+                    new Agenda().setVisible(true);
+                
+                    
+                
             }
         });
     }
@@ -1338,8 +1612,7 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel T830;
     private javax.swing.JLabel T9;
     private javax.swing.JLabel T930;
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JCalendar jCalendar1;
+    protected com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -1395,6 +1668,7 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JTextField medico113;
     private javax.swing.JTextField medico12;
     private javax.swing.JTextField medico123;
+    private javax.swing.JTextField medico13;
     private javax.swing.JTextField medico133;
     private javax.swing.JTextField medico14;
     private javax.swing.JTextField medico143;
@@ -1417,7 +1691,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JTextField nome12;
     private javax.swing.JTextField nome123;
     private javax.swing.JTextField nome13;
-    private javax.swing.JTextField nome130;
     private javax.swing.JTextField nome133;
     private javax.swing.JTextField nome14;
     private javax.swing.JTextField nome143;

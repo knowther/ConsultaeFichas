@@ -21,6 +21,7 @@ import utils.Msg;
  */
 public class TelaAgendarConsulta extends javax.swing.JDialog {
     private Consulta consulta;
+    private ConsultaDao consultadao;
     private Agenda pai;
     public Date dataselecionada;
     public Date hora;
@@ -29,9 +30,10 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
      * Creates new form TelaAgendarConsulta
      */
     public TelaAgendarConsulta(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        consulta = new Consulta();
+        //super(parent, modal);
+        //initComponents();
+        //consulta = new Consulta();
+        
         
 //        pai = new TelainfoPerm(parent, true);
 
@@ -41,6 +43,7 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         consulta = new Consulta();
+        //consultadao = new ConsultaDao();
         pai = parent;
         
     }
@@ -153,6 +156,9 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
         try{
             new ConsultaDao().inserir(getConsulta());
             Msg.informacao(pai, "Dados salvos.");
+            this.pai.pegardatas();
+            this.pai.limparcampos();
+            this.pai.inserirdatas();
            this.dispose();
           
         }catch(Exception e){
