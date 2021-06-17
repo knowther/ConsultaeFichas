@@ -66,7 +66,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         AutoCompleteDecorator.decorate(jComboBoxTipoficha);
         AutoCompleteDecorator.decorate(jComboBoxEstado);
         AutoCompleteDecorator.decorate(jComboBoxCidade);
-         System.out.println(jComboBoxTipoficha.getSelectedIndex());
+        jComboBoxCidade.setEnabled(false);
      }
 
     /**
@@ -113,19 +113,20 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sistema Recepção");
 
         jDateChooserDataNasc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -380,6 +381,18 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
         jLabel20.setText("Médico Responsável:");
 
+        try {
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -391,23 +404,23 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addGap(53, 53, 53)
                                         .addComponent(jLabel17))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel20))
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel18))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18))))))
+                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -420,10 +433,10 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addComponent(jLabel20)
                 .addGap(3, 3, 3)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,7 +494,10 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
     private void jComboBoxEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxEstadoItemStateChanged
         if(jComboBoxEstado.getSelectedIndex() > 0){
+        jComboBoxCidade.setEnabled(false);
         atualizacomboCidade();
+        }else{
+            jComboBoxCidade.setEnabled(false);
         }
     }//GEN-LAST:event_jComboBoxEstadoItemStateChanged
 
@@ -492,7 +508,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         verificaCampos();
-        //System.out.println(camposemp);
+        System.out.println(camposemp);
         if(camposemp == false){
             if(isInserir()){
              pacienteDao.inserir(getPaciente()); 
@@ -536,21 +552,20 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     public void verificaCampos(){
         if(jTextFieldNome.getText().equals("")){
             camposfaltando.add("Nome");
+            camposemp = true;
         }
-        else if(jComboBoxEstado.getSelectedIndex() < 0){
+        if(jComboBoxEstado.getSelectedIndex() <= 0){
             camposfaltando.add("Estado");
            
             camposemp = true;
         }
-        else if(jComboBoxCidade.getSelectedIndex() < 0){
+        if(jComboBoxCidade.getSelectedIndex() <= 0){
             camposfaltando.add("Cidade");
             camposemp = true;
         }
-        else if(jComboBoxTipoficha.getSelectedIndex() == -1){
+        if(jComboBoxTipoficha.getSelectedIndex() == -1){
             camposfaltando.add("Tipo de ficha");
             camposemp = true;
-        }else{
-            camposemp = false;
         }
         
         if(camposemp == true){
@@ -683,6 +698,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser jDateChooserDataExp;
     private com.toedter.calendar.JDateChooser jDateChooserDataNasc;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldTel;
     private javax.swing.JFormattedTextField jFormattedTextFieldTel2;
@@ -713,9 +731,6 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldEndere;
     private javax.swing.JTextField jTextFieldNome;

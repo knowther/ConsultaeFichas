@@ -5,6 +5,12 @@
  */
 package view;
 import dao.ControleFuncionario;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import model.User;
 import utils.Msg;
 /**
@@ -18,6 +24,12 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+     public final Image getIconImage(){
+      Image ICONE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagens/prancheta.png"));
+      return ICONE;
     }
 
     /**
@@ -37,6 +49,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Logar Funcionário");
 
         jLabel1.setFont(new java.awt.Font("Ink Free", 1, 18)); // NOI18N
         jLabel1.setText("Sistema da Recepção ");
@@ -107,6 +120,7 @@ public class TelaLogin extends javax.swing.JFrame {
            User a = dao.ControleFuncionario.getFuncionarioLogado();
            telaPacienteConsulta telaC = new telaPacienteConsulta();
            telaC.setVisible(true);
+           this.dispose();
        }else{
             Msg.ERRO(this, "Senha ou usuário errados.");
         }
@@ -122,20 +136,15 @@ public class TelaLogin extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatIntelliJLaf");
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(telaPacienteConsulta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(telaPacienteConsulta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(telaPacienteConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(telaPacienteConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

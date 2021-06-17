@@ -259,15 +259,17 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
                     Msg.informacao(this, "Registro Alterado com Sucesso!");
                     this.dispose();
                     this.pai.atualizaTable();
+                    this.pai.atualizaValores();
                 } else {
                     new MovimentacaoDraednaDao().alterar(getMovimentacaoedna());
                     Msg.informacao(this, "Registro Alterado com Sucesso!");
                     this.dispose();
                     this.pai.atualizaTable();
+                    this.pai.atualizaValores();
                 }
 
             }
-
+            
         }else{
             Msg.ERRO(pai, "Está faltando campos.");
         }

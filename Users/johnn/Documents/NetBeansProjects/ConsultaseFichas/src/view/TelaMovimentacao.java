@@ -32,6 +32,8 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     private Movimentacaoconsultorio categoria;
     private Movimentacaodraedna categoriaed;
     private List<Movimentacaoconsultorio> lista = new ArrayList<>();
+    private List<Movimentacaoconsultorio> listavalores = new ArrayList<>();
+    
     private List<Movimentacaodraedna> listaed = new ArrayList<>();
 
     /**
@@ -40,18 +42,19 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     public TelaMovimentacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-//        atualizaTable();
-//        pegardatar();
-//        mudarCorLinha();
-//        atualizaValores();
-//        tabela.setShowGrid(true);
-//        tabela.setAutoCreateRowSorter(true);
-//        tabela.setGridColor(Color.lightGray);
-//        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
-//        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
-//        //categoria = new Movimentacaoconsultorio();
-//        categoria = new Movimentacaoconsultorio();
-//        categoriaed = new Movimentacaodraedna();
+           
+        pegardatar();
+        mudarCorLinha();
+        atualizaValores();
+        atualizaTable();
+        tabela.setShowGrid(true);
+        tabela.setAutoCreateRowSorter(true);
+        tabela.setGridColor(Color.lightGray);
+        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
+        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
+        categoria = new Movimentacaoconsultorio();
+        //categoria = new Movimentacaoconsultorio();
+        categoriaed = new Movimentacaodraedna();
 
     }
 
@@ -108,6 +111,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         jTextFieldDespesa.setText(Utils.convertDouble(despesa));
         jTextFieldRenda.setText(Utils.convertDouble(renda));
         jTextFieldSaldo.setText(Utils.convertDouble(renda - despesa));
+        lista.clear();
     }
 
     protected void atualizaTable() {
@@ -491,19 +495,26 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (tabela.getSelectedRow() > -1) {
-            if (Msg.confirmacao(this, "Deseja Realmente Excluir Este Registro?")) {
+           //. if (Msg.confirmacao(this, "Deseja Realmente Excluir Este Registro?")) {
                 if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
+                    System.out.println(lista);
+                    System.out.println(tabela.getSelectedRow());
                     new MovimentacaoConsultorioDao().excluir(lista.get(tabela.getSelectedRow()));
-
+                    
                     Msg.informacao(this, "Registro Excluído com Sucesso");
                     atualizaTable();
-                } else {
-                    new MovimentacaoDraednaDao().excluir(listaed.get(tabela.getSelectedRow()));
-
-                    Msg.informacao(this, "Registro Excluído Dra edna com Sucesso");
-                    atualizaTable();
-                }
-            }
+                    atualizaValores();
+                    System.out.println("foi no normal");
+                } 
+//                else {
+//                    new MovimentacaoDraednaDao().excluir(listaed.get(tabela.getSelectedRow()));
+//
+//                    Msg.informacao(this, "Registro Excluído Dra edna com Sucesso");
+//                    atualizaTable();
+//                    atualizaValores();
+//                    System.out.println("foi no edna");
+//                }
+//          //  }
         } else {
             Msg.alert(this, "Selecione um Registo.");
         }

@@ -7,6 +7,8 @@ package view;
 
 import dao.ConsultaDao;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +34,12 @@ public class Agenda extends javax.swing.JFrame {
         consulta = new Consulta();
         jCalendar1.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
         jCalendar1.getDayChooser().setBackground(Color.yellow);
+        jCalendar1.setWeekOfYearVisible(false);
+        //this.setAlwaysOnTop(true);
+        
+        //this.setAlwaysOnTop(false);
+        
+         
         //listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), )
         //nome7.setText();
 
@@ -189,74 +197,67 @@ public class Agenda extends javax.swing.JFrame {
         L173 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         Agenda = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Agendamento");
         setResizable(false);
-        getContentPane().setLayout(null);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 48)); // NOI18N
         DiaPag1.setForeground(new java.awt.Color(0, 0, 0));
         DiaPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DiaPag1.setText("7");
-        getContentPane().add(DiaPag1);
-        DiaPag1.setBounds(320, 110, 220, 50);
+        getContentPane().add(DiaPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 220, 50));
 
         SemDiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         SemDiaPag1.setForeground(new java.awt.Color(0, 0, 0));
         SemDiaPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SemDiaPag1.setText("Quinta");
-        getContentPane().add(SemDiaPag1);
-        SemDiaPag1.setBounds(310, 170, 220, 33);
+        getContentPane().add(SemDiaPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 220, -1));
 
         MesPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         MesPag1.setForeground(new java.awt.Color(0, 0, 0));
         MesPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MesPag1.setText("Janeiro");
-        getContentPane().add(MesPag1);
-        MesPag1.setBounds(320, 80, 220, 30);
+        getContentPane().add(MesPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 220, 30));
 
         MesPag2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         MesPag2.setForeground(new java.awt.Color(0, 0, 0));
         MesPag2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MesPag2.setText("Janeiro");
-        getContentPane().add(MesPag2);
-        MesPag2.setBounds(730, 70, 580, 50);
+        getContentPane().add(MesPag2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, 580, 50));
 
         DiaPag2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 48)); // NOI18N
         DiaPag2.setForeground(new java.awt.Color(0, 0, 0));
         DiaPag2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DiaPag2.setText("7");
-        getContentPane().add(DiaPag2);
-        DiaPag2.setBounds(730, 110, 580, 60);
+        getContentPane().add(DiaPag2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, 580, 60));
 
         SemDiaPag2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         SemDiaPag2.setForeground(new java.awt.Color(0, 0, 0));
         SemDiaPag2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SemDiaPag2.setText("Quinta");
-        getContentPane().add(SemDiaPag2);
-        SemDiaPag2.setBounds(720, 170, 590, 40);
+        getContentPane().add(SemDiaPag2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 590, 40));
 
-        AnoPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 14)); // NOI18N
+        AnoPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         AnoPag1.setForeground(new java.awt.Color(0, 0, 0));
         AnoPag1.setText("2021");
-        getContentPane().add(AnoPag1);
-        AnoPag1.setBounds(1260, 100, 35, 20);
+        getContentPane().add(AnoPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1225, 100, 70, 30));
 
         AnoPag2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         AnoPag2.setForeground(new java.awt.Color(0, 0, 0));
         AnoPag2.setText("2021");
-        getContentPane().add(AnoPag2);
-        AnoPag2.setBounds(560, 80, 70, 80);
-        getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(70, 280, 560, 2);
+        getContentPane().add(AnoPag2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 70, 80));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 560, -1));
 
         L7.setForeground(new java.awt.Color(0, 0, 0));
         L7.setText("07:00");
-        getContentPane().add(L7);
-        L7.setBounds(70, 260, 31, 16);
+        getContentPane().add(L7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         nome7.setEditable(false);
         nome7.setBorder(null);
@@ -271,14 +272,12 @@ public class Agenda extends javax.swing.JFrame {
                 nome7ActionPerformed(evt);
             }
         });
-        getContentPane().add(nome7);
-        nome7.setBounds(120, 250, 220, 30);
+        getContentPane().add(nome7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 220, 30));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText(";");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(350, 256, 40, 20);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 256, 40, 20));
 
         medico7.setEditable(false);
         medico7.setBorder(null);
@@ -288,18 +287,15 @@ public class Agenda extends javax.swing.JFrame {
                 medico7MouseEntered(evt);
             }
         });
-        getContentPane().add(medico7);
-        medico7.setBounds(360, 250, 240, 30);
+        getContentPane().add(medico7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 240, 30));
 
         T7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T7.setText("0");
-        getContentPane().add(T7);
-        T7.setBounds(600, 260, 7, 16);
+        getContentPane().add(T7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, -1, -1));
 
         L73.setForeground(new java.awt.Color(0, 0, 0));
         L73.setText("07:30");
-        getContentPane().add(L73);
-        L73.setBounds(70, 300, 31, 16);
+        getContentPane().add(L73, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
         nome73.setEditable(false);
         nome73.setBorder(null);
@@ -309,26 +305,21 @@ public class Agenda extends javax.swing.JFrame {
                 nome73MouseClicked(evt);
             }
         });
-        getContentPane().add(nome73);
-        nome73.setBounds(120, 290, 220, 30);
+        getContentPane().add(nome73, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 220, 30));
 
         medico73.setEditable(false);
         medico73.setBorder(null);
         medico73.setOpaque(false);
-        getContentPane().add(medico73);
-        medico73.setBounds(360, 290, 240, 30);
+        getContentPane().add(medico73, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 240, 30));
 
         T730.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T730.setText("0");
-        getContentPane().add(T730);
-        T730.setBounds(600, 300, 7, 16);
-        getContentPane().add(jSeparator2);
-        jSeparator2.setBounds(70, 320, 560, 2);
+        getContentPane().add(T730, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, -1, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 560, -1));
 
         L8.setForeground(new java.awt.Color(0, 0, 0));
         L8.setText("08:00");
-        getContentPane().add(L8);
-        L8.setBounds(70, 340, 31, 16);
+        getContentPane().add(L8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
 
         nome8.setEditable(false);
         nome8.setBorder(null);
@@ -338,33 +329,27 @@ public class Agenda extends javax.swing.JFrame {
                 nome8MouseClicked(evt);
             }
         });
-        getContentPane().add(nome8);
-        nome8.setBounds(120, 330, 220, 30);
+        getContentPane().add(nome8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 220, 30));
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText(";");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(350, 290, 40, 30);
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 40, 30));
 
         medico8.setEditable(false);
         medico8.setBorder(null);
         medico8.setOpaque(false);
-        getContentPane().add(medico8);
-        medico8.setBounds(360, 330, 240, 30);
+        getContentPane().add(medico8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 240, 30));
 
         T8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T8.setText("0");
-        getContentPane().add(T8);
-        T8.setBounds(600, 340, 7, 16);
-        getContentPane().add(jSeparator3);
-        jSeparator3.setBounds(70, 360, 560, 2);
+        getContentPane().add(T8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, -1, -1));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 560, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText(";");
-        getContentPane().add(jLabel16);
-        jLabel16.setBounds(350, 330, 40, 30);
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 40, 30));
 
         nome83.setEditable(false);
         nome83.setBorder(null);
@@ -374,37 +359,30 @@ public class Agenda extends javax.swing.JFrame {
                 nome83MouseClicked(evt);
             }
         });
-        getContentPane().add(nome83);
-        nome83.setBounds(120, 370, 220, 30);
+        getContentPane().add(nome83, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 220, 30));
 
         L83.setForeground(new java.awt.Color(0, 0, 0));
         L83.setText("08:30");
-        getContentPane().add(L83);
-        L83.setBounds(70, 380, 31, 16);
+        getContentPane().add(L83, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
 
         medico83.setEditable(false);
         medico83.setBorder(null);
         medico83.setOpaque(false);
-        getContentPane().add(medico83);
-        medico83.setBounds(360, 370, 240, 30);
+        getContentPane().add(medico83, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 240, 30));
 
         T830.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T830.setText("0");
-        getContentPane().add(T830);
-        T830.setBounds(600, 380, 7, 16);
-        getContentPane().add(jSeparator4);
-        jSeparator4.setBounds(70, 400, 560, 2);
+        getContentPane().add(T830, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, -1, -1));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 560, -1));
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText(";");
-        getContentPane().add(jLabel19);
-        jLabel19.setBounds(350, 370, 40, 30);
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 40, 30));
 
         L9.setForeground(new java.awt.Color(0, 0, 0));
         L9.setText("09:00");
-        getContentPane().add(L9);
-        L9.setBounds(70, 420, 31, 16);
+        getContentPane().add(L9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
 
         nome9.setEditable(false);
         nome9.setBorder(null);
@@ -414,46 +392,37 @@ public class Agenda extends javax.swing.JFrame {
                 nome9MouseClicked(evt);
             }
         });
-        getContentPane().add(nome9);
-        nome9.setBounds(120, 410, 220, 30);
+        getContentPane().add(nome9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 220, 30));
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText(";");
-        getContentPane().add(jLabel21);
-        jLabel21.setBounds(350, 410, 40, 30);
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 40, 30));
 
         medico9.setEditable(false);
         medico9.setBorder(null);
         medico9.setOpaque(false);
-        getContentPane().add(medico9);
-        medico9.setBounds(360, 410, 240, 30);
+        getContentPane().add(medico9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 240, 30));
 
         T9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T9.setText("0");
-        getContentPane().add(T9);
-        T9.setBounds(600, 420, 7, 16);
-        getContentPane().add(jSeparator5);
-        jSeparator5.setBounds(70, 440, 560, 2);
-        getContentPane().add(jSeparator6);
-        jSeparator6.setBounds(70, 480, 560, 2);
+        getContentPane().add(T9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, -1, -1));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 560, -1));
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 560, -1));
 
         T930.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T930.setText("0");
-        getContentPane().add(T930);
-        T930.setBounds(600, 460, 7, 16);
+        getContentPane().add(T930, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, -1, -1));
 
         medico93.setEditable(false);
         medico93.setBorder(null);
         medico93.setOpaque(false);
-        getContentPane().add(medico93);
-        medico93.setBounds(360, 450, 240, 30);
+        getContentPane().add(medico93, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 240, 30));
 
         jLabel24.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText(";");
-        getContentPane().add(jLabel24);
-        jLabel24.setBounds(350, 450, 40, 30);
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, 40, 30));
 
         nome93.setEditable(false);
         nome93.setBorder(null);
@@ -463,13 +432,11 @@ public class Agenda extends javax.swing.JFrame {
                 nome93MouseClicked(evt);
             }
         });
-        getContentPane().add(nome93);
-        nome93.setBounds(120, 450, 220, 30);
+        getContentPane().add(nome93, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 220, 30));
 
         L93.setForeground(new java.awt.Color(0, 0, 0));
         L93.setText("09:30");
-        getContentPane().add(L93);
-        L93.setBounds(70, 460, 31, 16);
+        getContentPane().add(L93, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, -1, -1));
 
         nome10.setEditable(false);
         nome10.setBorder(null);
@@ -479,56 +446,45 @@ public class Agenda extends javax.swing.JFrame {
                 nome10MouseClicked(evt);
             }
         });
-        getContentPane().add(nome10);
-        nome10.setBounds(120, 490, 220, 30);
-        getContentPane().add(jSeparator7);
-        jSeparator7.setBounds(70, 520, 560, 2);
+        getContentPane().add(nome10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 220, 30));
+        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 560, -1));
 
         T10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T10.setText("0");
-        getContentPane().add(T10);
-        T10.setBounds(600, 500, 7, 16);
+        getContentPane().add(T10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, -1, -1));
 
         l10.setForeground(new java.awt.Color(0, 0, 0));
         l10.setText("10:00");
-        getContentPane().add(l10);
-        l10.setBounds(70, 500, 31, 16);
+        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText(";");
-        getContentPane().add(jLabel26);
-        jLabel26.setBounds(350, 490, 40, 30);
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 490, 40, 30));
 
         medico10.setEditable(false);
         medico10.setBorder(null);
         medico10.setOpaque(false);
-        getContentPane().add(medico10);
-        medico10.setBounds(360, 490, 240, 30);
+        getContentPane().add(medico10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, 240, 30));
 
         medico103.setEditable(false);
         medico103.setBorder(null);
         medico103.setOpaque(false);
-        getContentPane().add(medico103);
-        medico103.setBounds(360, 530, 240, 30);
+        getContentPane().add(medico103, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 240, 30));
 
         jLabel27.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText(";");
-        getContentPane().add(jLabel27);
-        jLabel27.setBounds(350, 530, 40, 30);
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 40, 30));
 
         L103.setForeground(new java.awt.Color(0, 0, 0));
         L103.setText("10:30");
-        getContentPane().add(L103);
-        L103.setBounds(70, 540, 31, 16);
+        getContentPane().add(L103, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
 
         T103.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T103.setText("0");
-        getContentPane().add(T103);
-        T103.setBounds(600, 540, 7, 16);
-        getContentPane().add(jSeparator8);
-        jSeparator8.setBounds(70, 560, 560, 2);
+        getContentPane().add(T103, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, -1, -1));
+        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 560, -1));
 
         nome103.setEditable(false);
         nome103.setBorder(null);
@@ -538,21 +494,17 @@ public class Agenda extends javax.swing.JFrame {
                 nome103MouseClicked(evt);
             }
         });
-        getContentPane().add(nome103);
-        nome103.setBounds(120, 530, 220, 30);
-        getContentPane().add(jSeparator9);
-        jSeparator9.setBounds(70, 600, 560, 2);
+        getContentPane().add(nome103, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, 220, 30));
+        getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, 560, -1));
 
         T11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T11.setText("0");
-        getContentPane().add(T11);
-        T11.setBounds(600, 580, 7, 16);
+        getContentPane().add(T11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 580, -1, -1));
 
         medico11.setEditable(false);
         medico11.setBorder(null);
         medico11.setOpaque(false);
-        getContentPane().add(medico11);
-        medico11.setBounds(360, 570, 240, 30);
+        getContentPane().add(medico11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 240, 30));
 
         nome11.setEditable(false);
         nome11.setBorder(null);
@@ -562,21 +514,17 @@ public class Agenda extends javax.swing.JFrame {
                 nome11MouseClicked(evt);
             }
         });
-        getContentPane().add(nome11);
-        nome11.setBounds(120, 570, 220, 30);
+        getContentPane().add(nome11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, 220, 30));
 
         L96.setForeground(new java.awt.Color(0, 0, 0));
         L96.setText("11:00");
-        getContentPane().add(L96);
-        L96.setBounds(70, 580, 31, 16);
+        getContentPane().add(L96, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText(";");
-        getContentPane().add(jLabel30);
-        jLabel30.setBounds(350, 570, 40, 30);
-        getContentPane().add(jSeparator10);
-        jSeparator10.setBounds(70, 640, 560, 2);
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 570, 40, 30));
+        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, 560, -1));
 
         nome113.setEditable(false);
         nome113.setBorder(null);
@@ -586,43 +534,35 @@ public class Agenda extends javax.swing.JFrame {
                 nome113MouseClicked(evt);
             }
         });
-        getContentPane().add(nome113);
-        nome113.setBounds(120, 610, 220, 30);
+        getContentPane().add(nome113, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, 220, 30));
 
         L97.setForeground(new java.awt.Color(0, 0, 0));
         L97.setText("11:30");
-        getContentPane().add(L97);
-        L97.setBounds(70, 620, 31, 16);
+        getContentPane().add(L97, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 620, -1, -1));
 
         jLabel31.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText(";");
-        getContentPane().add(jLabel31);
-        jLabel31.setBounds(350, 610, 40, 30);
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, 40, 30));
 
         medico113.setEditable(false);
         medico113.setBorder(null);
         medico113.setOpaque(false);
-        getContentPane().add(medico113);
-        medico113.setBounds(360, 610, 240, 30);
+        getContentPane().add(medico113, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, 240, 30));
 
         T113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T113.setText("0");
-        getContentPane().add(T113);
-        T113.setBounds(600, 620, 7, 16);
+        getContentPane().add(T113, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 620, -1, -1));
 
         jLabel33.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText(";");
-        getContentPane().add(jLabel33);
-        jLabel33.setBounds(350, 650, 40, 30);
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, 40, 30));
 
         T12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T12.setText("0");
-        getContentPane().add(T12);
-        T12.setBounds(600, 660, 7, 16);
-        getContentPane().add(jSeparator11);
-        jSeparator11.setBounds(70, 680, 560, 2);
+        getContentPane().add(T12, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 660, -1, -1));
+        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 680, 560, -1));
 
         nome12.setEditable(false);
         nome12.setBorder(null);
@@ -632,24 +572,20 @@ public class Agenda extends javax.swing.JFrame {
                 nome12MouseClicked(evt);
             }
         });
-        getContentPane().add(nome12);
-        nome12.setBounds(120, 650, 220, 30);
+        getContentPane().add(nome12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, 220, 30));
 
         L98.setForeground(new java.awt.Color(0, 0, 0));
         L98.setText("12:00");
-        getContentPane().add(L98);
-        L98.setBounds(70, 660, 31, 16);
+        getContentPane().add(L98, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 660, -1, -1));
 
         medico12.setEditable(false);
         medico12.setBorder(null);
         medico12.setOpaque(false);
-        getContentPane().add(medico12);
-        medico12.setBounds(360, 650, 240, 30);
+        getContentPane().add(medico12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 650, 240, 30));
 
         l123.setForeground(new java.awt.Color(0, 0, 0));
         l123.setText("12:30");
-        getContentPane().add(l123);
-        l123.setBounds(730, 260, 31, 16);
+        getContentPane().add(l123, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, -1, -1));
 
         nome123.setEditable(false);
         nome123.setBorder(null);
@@ -659,46 +595,37 @@ public class Agenda extends javax.swing.JFrame {
                 nome123MouseClicked(evt);
             }
         });
-        getContentPane().add(nome123);
-        nome123.setBounds(780, 250, 220, 30);
+        getContentPane().add(nome123, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 220, 30));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText(";");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(1010, 260, 40, 20);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 260, 40, 20));
 
         medico123.setEditable(false);
         medico123.setBorder(null);
         medico123.setOpaque(false);
-        getContentPane().add(medico123);
-        medico123.setBounds(1020, 250, 240, 30);
+        getContentPane().add(medico123, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 250, 240, 30));
 
         T123.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T123.setText("0");
-        getContentPane().add(T123);
-        T123.setBounds(1260, 260, 7, 16);
-        getContentPane().add(jSeparator12);
-        jSeparator12.setBounds(730, 280, 560, 2);
-        getContentPane().add(jSeparator13);
-        jSeparator13.setBounds(730, 320, 560, 2);
+        getContentPane().add(T123, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 260, -1, -1));
+        getContentPane().add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 560, -1));
+        getContentPane().add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 560, -1));
 
         T13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T13.setText("0");
-        getContentPane().add(T13);
-        T13.setBounds(1260, 300, 7, 16);
+        getContentPane().add(T13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 300, -1, -1));
 
         medico13.setEditable(false);
         medico13.setBorder(null);
         medico13.setOpaque(false);
-        getContentPane().add(medico13);
-        medico13.setBounds(1020, 290, 240, 30);
+        getContentPane().add(medico13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 290, 240, 30));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText(";");
-        getContentPane().add(jLabel17);
-        jLabel17.setBounds(1010, 300, 40, 20);
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 300, 40, 20));
 
         nome13.setEditable(false);
         nome13.setBorder(null);
@@ -708,26 +635,21 @@ public class Agenda extends javax.swing.JFrame {
                 nome13MouseClicked(evt);
             }
         });
-        getContentPane().add(nome13);
-        nome13.setBounds(780, 290, 220, 30);
+        getContentPane().add(nome13, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, 220, 30));
 
         L13.setForeground(new java.awt.Color(0, 0, 0));
         L13.setText("13:00");
-        getContentPane().add(L13);
-        L13.setBounds(730, 300, 31, 16);
-        getContentPane().add(jSeparator14);
-        jSeparator14.setBounds(730, 360, 560, 2);
+        getContentPane().add(L13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, -1, -1));
+        getContentPane().add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 560, -1));
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText(";");
-        getContentPane().add(jLabel20);
-        jLabel20.setBounds(1010, 340, 40, 20);
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 340, 40, 20));
 
         L133.setForeground(new java.awt.Color(0, 0, 0));
         L133.setText("13:30");
-        getContentPane().add(L133);
-        L133.setBounds(730, 340, 31, 16);
+        getContentPane().add(L133, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, -1, -1));
 
         nome133.setEditable(false);
         nome133.setBorder(null);
@@ -737,30 +659,25 @@ public class Agenda extends javax.swing.JFrame {
                 nome133MouseClicked(evt);
             }
         });
-        getContentPane().add(nome133);
-        nome133.setBounds(780, 330, 220, 30);
+        getContentPane().add(nome133, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, 220, 30));
 
         T133.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T133.setText("0");
-        getContentPane().add(T133);
-        T133.setBounds(1260, 340, 7, 16);
+        getContentPane().add(T133, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 340, -1, -1));
 
         medico133.setEditable(false);
         medico133.setBorder(null);
         medico133.setOpaque(false);
-        getContentPane().add(medico133);
-        medico133.setBounds(1020, 330, 240, 30);
+        getContentPane().add(medico133, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 330, 240, 30));
 
         medico14.setEditable(false);
         medico14.setBorder(null);
         medico14.setOpaque(false);
-        getContentPane().add(medico14);
-        medico14.setBounds(1020, 370, 240, 30);
+        getContentPane().add(medico14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 370, 240, 30));
 
         T14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T14.setText("0");
-        getContentPane().add(T14);
-        T14.setBounds(1260, 380, 7, 16);
+        getContentPane().add(T14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 380, -1, -1));
 
         nome14.setEditable(false);
         nome14.setBorder(null);
@@ -770,34 +687,27 @@ public class Agenda extends javax.swing.JFrame {
                 nome14MouseClicked(evt);
             }
         });
-        getContentPane().add(nome14);
-        nome14.setBounds(780, 370, 220, 30);
+        getContentPane().add(nome14, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 370, 220, 30));
 
         L14.setForeground(new java.awt.Color(0, 0, 0));
         L14.setText("14:00");
-        getContentPane().add(L14);
-        L14.setBounds(730, 380, 31, 16);
+        getContentPane().add(L14, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, -1, -1));
 
         jLabel37.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText(";");
-        getContentPane().add(jLabel37);
-        jLabel37.setBounds(1010, 380, 40, 20);
-        getContentPane().add(jSeparator15);
-        jSeparator15.setBounds(730, 400, 560, 2);
-        getContentPane().add(jSeparator16);
-        jSeparator16.setBounds(730, 440, 560, 2);
+        getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 380, 40, 20));
+        getContentPane().add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 560, -1));
+        getContentPane().add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 560, -1));
 
         jLabel38.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText(";");
-        getContentPane().add(jLabel38);
-        jLabel38.setBounds(1010, 420, 40, 20);
+        getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 420, 40, 20));
 
         L143.setForeground(new java.awt.Color(0, 0, 0));
         L143.setText("14:30");
-        getContentPane().add(L143);
-        L143.setBounds(730, 420, 31, 16);
+        getContentPane().add(L143, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, -1, -1));
 
         nome143.setEditable(false);
         nome143.setBorder(null);
@@ -807,37 +717,30 @@ public class Agenda extends javax.swing.JFrame {
                 nome143MouseClicked(evt);
             }
         });
-        getContentPane().add(nome143);
-        nome143.setBounds(780, 410, 220, 30);
+        getContentPane().add(nome143, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, 220, 30));
 
         T143.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T143.setText("0");
-        getContentPane().add(T143);
-        T143.setBounds(1260, 420, 7, 16);
+        getContentPane().add(T143, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 420, -1, -1));
 
         medico143.setEditable(false);
         medico143.setBorder(null);
         medico143.setOpaque(false);
-        getContentPane().add(medico143);
-        medico143.setBounds(1020, 410, 240, 30);
+        getContentPane().add(medico143, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 410, 240, 30));
 
         T15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T15.setText("0");
-        getContentPane().add(T15);
-        T15.setBounds(1260, 460, 7, 16);
+        getContentPane().add(T15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 460, -1, -1));
 
         medico15.setEditable(false);
         medico15.setBorder(null);
         medico15.setOpaque(false);
-        getContentPane().add(medico15);
-        medico15.setBounds(1020, 450, 240, 30);
+        getContentPane().add(medico15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 450, 240, 30));
 
         L15.setForeground(new java.awt.Color(0, 0, 0));
         L15.setText("15:00");
-        getContentPane().add(L15);
-        L15.setBounds(730, 460, 31, 16);
-        getContentPane().add(jSeparator17);
-        jSeparator17.setBounds(730, 480, 560, 2);
+        getContentPane().add(L15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 460, -1, -1));
+        getContentPane().add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 560, -1));
 
         nome15.setEditable(false);
         nome15.setBorder(null);
@@ -847,38 +750,31 @@ public class Agenda extends javax.swing.JFrame {
                 nome15MouseClicked(evt);
             }
         });
-        getContentPane().add(nome15);
-        nome15.setBounds(780, 450, 220, 30);
+        getContentPane().add(nome15, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 450, 220, 30));
 
         jLabel41.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(0, 0, 0));
         jLabel41.setText(";");
-        getContentPane().add(jLabel41);
-        jLabel41.setBounds(1010, 460, 40, 20);
-        getContentPane().add(jSeparator18);
-        jSeparator18.setBounds(730, 520, 560, 2);
+        getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 460, 40, 20));
+        getContentPane().add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 520, 560, -1));
 
         L153.setForeground(new java.awt.Color(0, 0, 0));
         L153.setText("15:30");
-        getContentPane().add(L153);
-        L153.setBounds(730, 500, 31, 16);
+        getContentPane().add(L153, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 500, -1, -1));
 
         medico153.setEditable(false);
         medico153.setBorder(null);
         medico153.setOpaque(false);
-        getContentPane().add(medico153);
-        medico153.setBounds(1020, 490, 240, 30);
+        getContentPane().add(medico153, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 490, 240, 30));
 
         jLabel42.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(0, 0, 0));
         jLabel42.setText(";");
-        getContentPane().add(jLabel42);
-        jLabel42.setBounds(1010, 500, 40, 20);
+        getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 500, 40, 20));
 
         T153.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T153.setText("0");
-        getContentPane().add(T153);
-        T153.setBounds(1260, 500, 7, 16);
+        getContentPane().add(T153, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 500, -1, -1));
 
         nome153.setEditable(false);
         nome153.setBorder(null);
@@ -888,8 +784,7 @@ public class Agenda extends javax.swing.JFrame {
                 nome153MouseClicked(evt);
             }
         });
-        getContentPane().add(nome153);
-        nome153.setBounds(780, 490, 220, 30);
+        getContentPane().add(nome153, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 490, 220, 30));
 
         nome16.setEditable(false);
         nome16.setBorder(null);
@@ -899,56 +794,45 @@ public class Agenda extends javax.swing.JFrame {
                 nome16MouseClicked(evt);
             }
         });
-        getContentPane().add(nome16);
-        nome16.setBounds(780, 530, 220, 30);
+        getContentPane().add(nome16, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 530, 220, 30));
 
         T16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T16.setText("0");
-        getContentPane().add(T16);
-        T16.setBounds(1260, 540, 7, 16);
+        getContentPane().add(T16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(0, 0, 0));
         jLabel45.setText(";");
-        getContentPane().add(jLabel45);
-        jLabel45.setBounds(1010, 540, 40, 20);
+        getContentPane().add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 540, 40, 20));
 
         medico16.setEditable(false);
         medico16.setBorder(null);
         medico16.setOpaque(false);
-        getContentPane().add(medico16);
-        medico16.setBounds(1020, 530, 240, 30);
+        getContentPane().add(medico16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 530, 240, 30));
 
         L16.setForeground(new java.awt.Color(0, 0, 0));
         L16.setText("16:00");
-        getContentPane().add(L16);
-        L16.setBounds(730, 540, 31, 16);
-        getContentPane().add(jSeparator19);
-        jSeparator19.setBounds(730, 560, 560, 2);
+        getContentPane().add(L16, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 540, -1, -1));
+        getContentPane().add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 560, 560, -1));
 
         jLabel46.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setText(";");
-        getContentPane().add(jLabel46);
-        jLabel46.setBounds(1010, 580, 40, 20);
-        getContentPane().add(jSeparator20);
-        jSeparator20.setBounds(730, 600, 560, 2);
+        getContentPane().add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 580, 40, 20));
+        getContentPane().add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 600, 560, -1));
 
         medico163.setEditable(false);
         medico163.setBorder(null);
         medico163.setOpaque(false);
-        getContentPane().add(medico163);
-        medico163.setBounds(1020, 570, 240, 30);
+        getContentPane().add(medico163, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 570, 240, 30));
 
         L163.setForeground(new java.awt.Color(0, 0, 0));
         L163.setText("16:30");
-        getContentPane().add(L163);
-        L163.setBounds(730, 580, 31, 16);
+        getContentPane().add(L163, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 580, -1, -1));
 
         T163.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T163.setText("0");
-        getContentPane().add(T163);
-        T163.setBounds(1260, 580, 7, 16);
+        getContentPane().add(T163, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 580, -1, -1));
 
         nome163.setEditable(false);
         nome163.setBorder(null);
@@ -958,24 +842,20 @@ public class Agenda extends javax.swing.JFrame {
                 nome163MouseClicked(evt);
             }
         });
-        getContentPane().add(nome163);
-        nome163.setBounds(780, 570, 220, 30);
+        getContentPane().add(nome163, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, 220, 30));
 
         L17.setForeground(new java.awt.Color(0, 0, 0));
         L17.setText("17:00");
-        getContentPane().add(L17);
-        L17.setBounds(730, 620, 31, 16);
+        getContentPane().add(L17, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 620, -1, -1));
 
         T17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T17.setText("0");
-        getContentPane().add(T17);
-        T17.setBounds(1260, 620, 7, 16);
+        getContentPane().add(T17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 620, -1, -1));
 
         medico17.setEditable(false);
         medico17.setBorder(null);
         medico17.setOpaque(false);
-        getContentPane().add(medico17);
-        medico17.setBounds(1020, 610, 240, 30);
+        getContentPane().add(medico17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 610, 240, 30));
 
         nome17.setEditable(false);
         nome17.setBorder(null);
@@ -985,24 +865,19 @@ public class Agenda extends javax.swing.JFrame {
                 nome17MouseClicked(evt);
             }
         });
-        getContentPane().add(nome17);
-        nome17.setBounds(780, 610, 220, 30);
-        getContentPane().add(jSeparator21);
-        jSeparator21.setBounds(730, 640, 560, 2);
+        getContentPane().add(nome17, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 610, 220, 30));
+        getContentPane().add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 640, 560, -1));
 
         jLabel49.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setText(";");
-        getContentPane().add(jLabel49);
-        jLabel49.setBounds(1010, 620, 40, 20);
+        getContentPane().add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 620, 40, 20));
 
         jLabel50.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setText(";");
-        getContentPane().add(jLabel50);
-        jLabel50.setBounds(1010, 660, 40, 20);
-        getContentPane().add(jSeparator22);
-        jSeparator22.setBounds(730, 680, 560, 2);
+        getContentPane().add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 660, 40, 20));
+        getContentPane().add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 680, 560, -1));
 
         nome173.setEditable(false);
         nome173.setBorder(null);
@@ -1012,24 +887,20 @@ public class Agenda extends javax.swing.JFrame {
                 nome173MouseClicked(evt);
             }
         });
-        getContentPane().add(nome173);
-        nome173.setBounds(780, 650, 220, 30);
+        getContentPane().add(nome173, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 650, 220, 30));
 
         medico173.setEditable(false);
         medico173.setBorder(null);
         medico173.setOpaque(false);
-        getContentPane().add(medico173);
-        medico173.setBounds(1020, 650, 240, 30);
+        getContentPane().add(medico173, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 650, 240, 30));
 
         T173.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         T173.setText("0");
-        getContentPane().add(T173);
-        T173.setBounds(1260, 660, 7, 16);
+        getContentPane().add(T173, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, -1, -1));
 
         L173.setForeground(new java.awt.Color(0, 0, 0));
         L173.setText("17:30");
-        getContentPane().add(L173);
-        L173.setBounds(730, 660, 31, 16);
+        getContentPane().add(L173, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 660, -1, -1));
 
         jCalendar1.setOpaque(false);
         jCalendar1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -1037,32 +908,12 @@ public class Agenda extends javax.swing.JFrame {
                 jCalendar1PropertyChange(evt);
             }
         });
-        getContentPane().add(jCalendar1);
-        jCalendar1.setBounds(60, 40, 230, 200);
+        getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 200, 170));
 
         Agenda.setForeground(new java.awt.Color(255, 0, 51));
         Agenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Agenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/agendasul.jpg"))); // NOI18N
-        getContentPane().add(Agenda);
-        Agenda.setBounds(-10, 0, 1390, 730);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(580, -100, 453, 403);
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(800, 100, 33, 26);
+        getContentPane().add(Agenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1390, 730));
 
         setSize(new java.awt.Dimension(1382, 758));
         setLocationRelativeTo(null);
@@ -1394,19 +1245,18 @@ public class Agenda extends javax.swing.JFrame {
         t.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_nome173MouseClicked
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    this.setAlwaysOnTop(false); 
+        System.out.println("eae");// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
+
     public void pegardatas() {
 
         Date horacon = utils.Utils.parseDate("7:00");
         Date horacon1 = utils.Utils.parseDate("17:30");
-       // System.out.println(horacon);
-        //System.out.println(horacon1);
         listacon.clear();
-        
         limparcampos();
-        
-
         listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), horacon, horacon1);
-        System.out.println(listacon);
       
             inserirdatas();
            
@@ -1415,76 +1265,76 @@ public class Agenda extends javax.swing.JFrame {
     public void inserirdatas() {
         
         for (Consulta con : listacon) {
-            //System.out.println(con.getHora().toString());
-            if (con.getHora().toString().equals("07:00:00")) {
+            String hora = utils.Utils.convertHora(con.getHora());
+            if (hora.equals("07:00:00")) {
                 nome7.setText(con.getNome());
                 medico7.setText(con.getMedicosIdmedicos().getNome());
                 
             }
-            else if (con.getHora().toString().equals("07:30:00")) {
+            else if (hora.equals("07:30:00")) {
                 nome73.setText(con.getNome()); medico73.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("08:00:00")) {
+            else if (hora.equals("08:00:00")) {
                 nome8.setText(con.getNome()); medico8.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("08:30:00")) {
+            else if (hora.equals("08:30:00")) {
                 nome83.setText(con.getNome()); medico83.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("09:00:00")) {
+            else if (hora.equals("09:00:00")) {
                 nome9.setText(con.getNome()); medico9.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("09:30:00")) {
+            else if (hora.equals("09:30:00")) {
                 nome93.setText(con.getNome()); medico93.setText(con.getMedicosIdmedicos().getNome());
             }
-            else  if (con.getHora().toString().equals("10:00:00")) {
+            else  if (hora.equals("10:00:00")) {
                 nome10.setText(con.getNome()); medico10.setText(con.getMedicosIdmedicos().getNome());
             }
-                else if (con.getHora().toString().equals("10:30:00")) {
+                else if (hora.equals("10:30:00")) {
                 nome103.setText(con.getNome()); medico103.setText(con.getMedicosIdmedicos().getNome());
             }
-               else if (con.getHora().toString().equals("11:00:00")) {
+               else if (hora.equals("11:00:00")) {
                 nome11.setText(con.getNome()); medico11.setText(con.getMedicosIdmedicos().getNome());
             }
-               else if (con.getHora().toString().equals("11:30:00")) {
+               else if (hora.equals("11:30:00")) {
                 nome113.setText(con.getNome()); medico113.setText(con.getMedicosIdmedicos().getNome());
             }
-               else if (con.getHora().toString().equals("12:00:00")) {
+               else if (hora.equals("12:00:00")) {
                 nome12.setText(con.getNome()); medico12.setText(con.getMedicosIdmedicos().getNome());
             }
-               else if (con.getHora().toString().equals("12:30:00")) {
+               else if (hora.equals("12:30:00")) {
                 nome123.setText(con.getNome()); medico123.setText(con.getMedicosIdmedicos().getNome());
             }
-               else if (con.getHora().toString().equals("13:00:00")) {
+               else if (hora.equals("13:00:00")) {
                 nome13.setText(con.getNome()); medico13.setText(con.getMedicosIdmedicos().getNome());
             }
-               else if (con.getHora().toString().equals("13:00:00")) {
+               else if (hora.equals("13:00:00")) {
                 nome13.setText(con.getNome()); medico13.setText(con.getMedicosIdmedicos().getNome());
                }
-               else if (con.getHora().toString().equals("13:30:00")) {
+               else if (hora.equals("13:30:00")) {
                 nome133.setText(con.getNome()); medico133.setText(con.getMedicosIdmedicos().getNome());
                }
-                else if (con.getHora().toString().equals("14:00:00")) {
+                else if (hora.equals("14:00:00")) {
                 nome14.setText(con.getNome()); medico14.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("14:30:00")) {
+            else if (hora.equals("14:30:00")) {
                 nome143.setText(con.getNome()); medico143.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("15:00:00")) {
+            else if (hora.equals("15:00:00")) {
                 nome15.setText(con.getNome()); medico15.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("15:30:00")) {
+            else if (hora.equals("15:30:00")) {
                 nome153.setText(con.getNome()); medico153.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("16:00:00")) {
+            else if (hora.equals("16:00:00")) {
                 nome16.setText(con.getNome()); medico16.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("16:30:00")) {
+            else if (hora.equals("16:30:00")) {
                 nome163.setText(con.getNome()); medico163.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("17:00:00")) {
+            else if (hora.equals("17:00:00")) {
                 nome17.setText(con.getNome()); medico17.setText(con.getMedicosIdmedicos().getNome());
             }
-            else if (con.getHora().toString().equals("17:30:00")) {
+            else if (hora.equals("17:30:00")) {
                 nome173.setText(con.getNome()); medico173.setText(con.getMedicosIdmedicos().getNome());
                 System.out.println("passo ultimo array");
             }
@@ -1553,6 +1403,7 @@ public class Agenda extends javax.swing.JFrame {
             public void run() {
                
                     new Agenda().setVisible(true);
+                    
                 
                     
                 
@@ -1613,7 +1464,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel T9;
     private javax.swing.JLabel T930;
     protected com.toedter.calendar.JCalendar jCalendar1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
@@ -1636,7 +1486,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -1659,7 +1508,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel l10;
     private javax.swing.JLabel l123;
     private javax.swing.JTextField medico10;

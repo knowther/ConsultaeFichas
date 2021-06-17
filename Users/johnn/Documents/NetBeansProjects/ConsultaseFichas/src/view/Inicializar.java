@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
@@ -18,6 +20,8 @@ import utils.Singleton;
 public class Inicializar {
     
     private static Progress p;
+    
+   
     
     public static void main(String[] args) {
         

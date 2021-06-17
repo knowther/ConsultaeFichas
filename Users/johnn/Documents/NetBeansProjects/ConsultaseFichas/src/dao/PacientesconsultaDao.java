@@ -46,4 +46,15 @@ public class PacientesconsultaDao {
        return lista;
      
     }
+    
+    public List getListficha(int tipoficha){
+       em.getTransaction().begin();
+       Query query = em.createQuery("SELECT p from Pacientesconsulta p where p.tipodefichaIdtipodeficha.idtipodeficha =:tipoficha");
+       query.setParameter("tipoficha", tipoficha);
+       List<Pacientesconsulta> lista = query.getResultList();
+       em.getTransaction().commit();
+       return lista;
+     
+    }
+    
 }

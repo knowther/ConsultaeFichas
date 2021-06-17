@@ -137,7 +137,7 @@ public class Movimentacaoconsultorio implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Movimentacaoconsultorio[ idmovimentacao=" + idmovimentacao + " ]";
+        return String.valueOf(idmovimentacao);
     }
     
 }

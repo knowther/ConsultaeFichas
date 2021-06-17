@@ -8,12 +8,16 @@ package view;
 import dao.ControleFuncionario;
 import dao.PacientesconsultaDao;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +35,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
   //  private int parentUnicpanelvisible = 0;
     private String login;
     private String cargo;
+    private int tipoficha;
     //private PacientesconsultaDao pacienteDao;
     PosicaoFormulario form = new PosicaoFormulario();
     private List<Pacientesconsulta> pacientelista = new ArrayList<>();
@@ -39,10 +44,10 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
      * Creates new form telaPacienteConsulta
      */
     public telaPacienteConsulta() {
+        setIconImage(getIconImage());
         initComponents();
         jRadioButtonFichaRecente.setSelected(true);
         preencherTable();
-       
         masterTable.setGridColor(Color.lightGray);
         masterTable.setShowGrid(true);
         setExtendedState(MAXIMIZED_BOTH);
@@ -68,6 +73,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         parentPanel = new javax.swing.JPanel();
         jPanela = new javax.swing.JPanel();
@@ -100,6 +106,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jRadioButtonArquivoMorto = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema Recepção");
 
         parentPanel.setLayout(new java.awt.CardLayout());
 
@@ -158,7 +165,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Atualizar Tabela");
+        jButton7.setText("Agendar Consulta");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -258,6 +265,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
 
         jPanel4.add(jToolBar1);
 
+        buttonGroup1.add(jRadioButtonFichaRecente);
         jRadioButtonFichaRecente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jRadioButtonFichaRecente.setText("Fichas recentes");
         jRadioButtonFichaRecente.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +274,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButtonFichaAntiga);
         jRadioButtonFichaAntiga.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jRadioButtonFichaAntiga.setText("Fichas antigas");
         jRadioButtonFichaAntiga.addActionListener(new java.awt.event.ActionListener() {
@@ -274,6 +283,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButtonArquivoMorto);
         jRadioButtonArquivoMorto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jRadioButtonArquivoMorto.setText("Arquivo morto");
         jRadioButtonArquivoMorto.addActionListener(new java.awt.event.ActionListener() {
@@ -322,7 +332,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelaLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -330,7 +340,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton6))
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 117, Short.MAX_VALUE)))
+                        .addGap(0, 123, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelaLayout.setVerticalGroup(
@@ -363,9 +373,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,7 +419,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) masterTable.getModel();
         model.setNumRows(0);
         
-        pacientelista = new PacientesconsultaDao().getList("");
+        pacientelista = new PacientesconsultaDao().getListficha(tipoficha);
         for(Pacientesconsulta p : pacientelista){
             model.addRow(new Object[]{
                 p.getNome(), p.getIdade(), utils.Utils.convertData(p.getDataNasc()) , p.getMedicosIdmedicos().getNome()
@@ -461,24 +469,34 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButtonFichaRecenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFichaRecenteActionPerformed
-        
+        tipoficha = 1;
+        preencherTable();
+    
     }//GEN-LAST:event_jRadioButtonFichaRecenteActionPerformed
 
     private void jRadioButtonArquivoMortoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonArquivoMortoActionPerformed
-        
+        tipoficha = 3; 
+        preencherTable();
         
     }//GEN-LAST:event_jRadioButtonArquivoMortoActionPerformed
 
     private void jRadioButtonFichaAntigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFichaAntigaActionPerformed
-        
+        tipoficha = 2;
+        preencherTable();
     }//GEN-LAST:event_jRadioButtonFichaAntigaActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
       
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    
+    public final Image getIconImage(){
+      Image ICONE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagens/prancheta.png"));
+      return ICONE;
+    }
+    
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        attentity();
+                new Agenda().setVisible(true);        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButtonCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixaActionPerformed
@@ -491,11 +509,11 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_masterTableFocusGained
 
     private void jButtonCaixa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa1ActionPerformed
-        // TODO add your handling code here:
+        new TelaAgendamento(this, true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCaixa1ActionPerformed
 
     private void jButtonCaixa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa2ActionPerformed
-        // TODO add your handling code here:
+// TODO add your handling code here:
     }//GEN-LAST:event_jButtonCaixa2ActionPerformed
 
     private void jButtonCaixa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa3ActionPerformed
@@ -550,7 +568,8 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+       
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -569,6 +588,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
