@@ -6,36 +6,38 @@
 package view;
 
 import dao.AgendamentoPermcathDao;
+import dao.AgendamentoRegulacaoDao;
 import java.awt.Dimension;
 import model.Agendamentopermcath;
+import model.Regulacao;
 import utils.Msg;
 
 /**
  *
  * @author johnn
  */
-public class TelaMarcarPermcath extends javax.swing.JDialog {
-    private Agendamentopermcath agendarperm;
-    private AgendamentoPermcathDao agendarpermDao;
-    private TelainfoPerm pai;
+public class TelaMarcarRegulacao extends javax.swing.JDialog {
+    private Regulacao agendareg;
+    private AgendamentoRegulacaoDao agendarpermDao;
+    private TelainfoRegulacao pai;
     
     /**
      * Creates new form TelaMarcarPermcath
      */
-    public TelaMarcarPermcath(java.awt.Frame parent, boolean modal) {
+    public TelaMarcarRegulacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //agendarperm = new Agendamentopermcath();
-        //agendarpermDao = new AgendamentoPermcathDao();
+       
     }
     
-    public TelaMarcarPermcath(TelainfoPerm parent, boolean modal) {
+    public TelaMarcarRegulacao(TelainfoRegulacao parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        agendarperm = new Agendamentopermcath();
-        agendarpermDao = new AgendamentoPermcathDao();
+        agendareg = new Regulacao();
+        agendarpermDao = new AgendamentoRegulacaoDao();
         pai = parent;
         jDateChooser1.getJCalendar().setPreferredSize(new Dimension(300, 200));
+        
     }
 
     /**
@@ -57,8 +59,6 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jTextFieldHospita = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextFieldpermnun = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
@@ -80,61 +80,54 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
 
         jLabel3.setText("Hospital:");
 
-        jLabel4.setText("Nº Permcath:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldHospita, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldpermnun, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(13, 13, 13)
+                            .addComponent(jLabel1))
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldHospita, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                    .addComponent(jTextFieldNome))
+                .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(129, 129, 129))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(1, 1, 1)
-                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextFieldHospita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(3, 3, 3)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldpermnun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextFieldHospita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(17, 17, 17))
+                .addGap(23, 23, 23))
         );
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("Agendar Permcath");
+        jLabel2.setText("Acrescentar Regulação");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +149,7 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(32, 32, 32)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,7 +158,7 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             try{
-                agendarpermDao.inserir(getAgendarperm());
+                agendarpermDao.inserir(getAgendarReg());
                 Msg.informacao(this, "Dados salvos.");
                 this.dispose();
                 this.pai.atualizaTable();
@@ -177,13 +170,12 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    private Agendamentopermcath getAgendarperm(){
-        agendarperm.setNome(jTextFieldNome.getText());
-        agendarperm.setHospital(jTextFieldHospita.getText());
-        agendarperm.setDataencaminhamento(jDateChooser1.getDate());
-        agendarperm.setNumperm(jTextFieldpermnun.getText());
+    private Regulacao getAgendarReg(){
+        agendareg.setNome(jTextFieldNome.getText());
+        agendareg.setHospital(jTextFieldHospita.getText());
+        agendareg.setDataencaminhamento(jDateChooser1.getDate());
         
-        return agendarperm;
+        return agendareg;
     }
     
     /**
@@ -203,20 +195,21 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaMarcarPermcath.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMarcarRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaMarcarPermcath.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMarcarRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaMarcarPermcath.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMarcarRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaMarcarPermcath.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMarcarRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaMarcarPermcath dialog = new TelaMarcarPermcath(new javax.swing.JFrame(), true);
+                TelaMarcarRegulacao dialog = new TelaMarcarRegulacao(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -234,13 +227,11 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldHospita;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldpermnun;
     // End of variables declaration//GEN-END:variables
 }

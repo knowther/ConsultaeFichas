@@ -59,4 +59,13 @@ public class ConsultaDao {
        return lista;
      
     }
+     public List getListaDay(Date datacon){
+       em.getTransaction().begin();
+       Query query = em.createQuery("SELECT c from Consulta c where c.datasconsulta = :datacon");
+       query.setParameter("datacon", datacon);
+       List<Consulta> lista = query.getResultList();
+       em.getTransaction().commit();
+       return lista;
+     
+    }
 }

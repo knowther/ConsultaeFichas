@@ -55,6 +55,7 @@ public class TelaFichaAmb extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Imprimir Ficha");
 
         jLabel1.setText("Paciente:");
 
@@ -67,6 +68,7 @@ public class TelaFichaAmb extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/printer.png"))); // NOI18N
         jButton1.setText("Imprimir Ficha");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +98,7 @@ public class TelaFichaAmb extends javax.swing.JInternalFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jButton1)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();

@@ -6,8 +6,8 @@
 package view;
 
 import dao.AgendamentoPermcathDao;
-import dao.CategoriaDao;
-import dao.ConsultaDao;
+import dao.AgendamentoRegulacaoDao;
+import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,9 +15,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Agendamentopermcath;
-import model.Categoria;
-import model.Consulta;
-import model.Movimentacaoconsultorio;
+import model.Regulacao;
 import utils.Msg;
 import utils.Utils;
 
@@ -25,17 +23,19 @@ import utils.Utils;
  *
  * @author johnn
  */
-public class TelainfoConsulta extends javax.swing.JDialog {
-     private List<Consulta> lista = new ArrayList<>();
-     private Consulta consulta;
+public class TelainfoRegulacao extends javax.swing.JDialog {
+     private List<Regulacao> lista = new ArrayList<>();
+     private Regulacao regulacao;
     /**
      * Creates new form TelainfoPerm
      */
-    public TelainfoConsulta(java.awt.Frame parent, boolean modal) {
+    public TelainfoRegulacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        atualizaTable();
         pegardatar();
+        atualizaTable();
+        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
+        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
         
     }
 
@@ -71,7 +71,7 @@ public class TelainfoConsulta extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nome", "Médico Agendado", "Data de Agendamento", "Horário"
+                "Nome", "Data de Agendamento", "Hospital"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -100,7 +100,7 @@ public class TelainfoConsulta extends javax.swing.JDialog {
 
         jLabel3.setText("Pesquisar:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/magnifier_1.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/magnifier.png"))); // NOI18N
 
         jLabel1.setText("Data inicial:");
 
@@ -127,7 +127,7 @@ public class TelainfoConsulta extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
+                        .addGap(294, 294, 294)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -190,7 +190,7 @@ public class TelainfoConsulta extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        if(jTable1.getSelectedRow() > -1){
            if(Msg.confirmacao(this, "Deseja realmente excluir esse registro?")){
-             new ConsultaDao().excluir(lista.get(jTable1.getSelectedRow()));
+             new AgendamentoRegulacaoDao().excluir(lista.get(jTable1.getSelectedRow()));
              Msg.informacao(this, "Registro excluído com sucesso.");
              atualizaTable();
            }
@@ -200,14 +200,13 @@ public class TelainfoConsulta extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//    TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
-//      t.setVisible(true);         
+       TelaMarcarRegulacao t = new TelaMarcarRegulacao(this, true);
+      t.setVisible(true);  
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//      TelaMarcarPermcath t = new TelaMarcarPermcath(this, true);
-//      t.setVisible(true);
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     
@@ -221,16 +220,16 @@ public class TelainfoConsulta extends javax.swing.JDialog {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
             
-            lista = new ConsultaDao().getList(txtPesquisa.getText());
-            for(Consulta c : lista){
+            lista = new AgendamentoRegulacaoDao().getListdata(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+            for(Regulacao r : lista){
                 model.addRow(new Object[] {
-                    c.getNome(), c.getMedicosIdmedicos().getNome(), Utils.convertData(c.getDatasconsulta()), c.getHora(), c.getMedicosIdmedicos().getNome()
+                    r.getNome(), Utils.convertData(r.getDataencaminhamento()), r.getHospital()
                 }
                         );
                 
             }
         }catch (Exception e){
-            Msg.ERRO(this, "Erro ao atualizar tabela.\n Erro: " + e);
+            Msg.ERRO(this, "Erro ao atualizar tabela.\n" + e);
         }
     }
     public void pegardatar(){
@@ -264,13 +263,13 @@ public class TelainfoConsulta extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelainfoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelainfoRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelainfoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelainfoRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelainfoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelainfoRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelainfoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelainfoRegulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -278,7 +277,7 @@ public class TelainfoConsulta extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelainfoConsulta dialog = new TelainfoConsulta(new javax.swing.JFrame(), true);
+                TelainfoRegulacao dialog = new TelainfoRegulacao(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

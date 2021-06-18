@@ -46,9 +46,9 @@ public class Categoria implements Serializable {
     private String descricao;
     @Column(name = "tipo")
     private String tipo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaIdcategoria", fetch = FetchType.EAGER)
+    @OneToMany(orphanRemoval = true, mappedBy = "categoriaIdcategoria", fetch = FetchType.EAGER)
     private List<Movimentacaodraedna> movimentacaodraednaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaIdcategoria", fetch = FetchType.EAGER)
+    @OneToMany(orphanRemoval = true, mappedBy = "categoriaIdcategoria", fetch = FetchType.EAGER)
     private List<Movimentacaoconsultorio> movimentacaoconsultorioList;
 
     public Categoria() {

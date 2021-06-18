@@ -116,7 +116,7 @@ public class TelaFicha extends javax.swing.JDialog {
                  JasperPrint print = JasperFillManager.fillReport(relatorio, parametros, dados);
                  JasperViewer view = new JasperViewer(print, false);
                  
-                 new ReportViewer(this, print).setVisible(true);
+                // new ReportViewer(this, print).setVisible(true);
                  
              } catch (JRException ex) {
                  Logger.getLogger(JFrmcadpac.class.getName()).log(Level.SEVERE, null, ex);

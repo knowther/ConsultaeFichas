@@ -8,6 +8,7 @@ import dao.EstadoDao;
 import dao.MedicosDao;
 import dao.PacientesconsultaDao;
 import dao.TipodefichaDao;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import model.Estado;
@@ -63,6 +64,8 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
        atualizaCombo();
        atualizaComboficha();
        atualizacomboMedico();
+       jDateChooserDataExp.getJCalendar().setPreferredSize(new Dimension(300, 200));
+       jDateChooserDataNasc.getJCalendar().setPreferredSize(new Dimension(300, 200));
         AutoCompleteDecorator.decorate(jComboBoxTipoficha);
         AutoCompleteDecorator.decorate(jComboBoxEstado);
         AutoCompleteDecorator.decorate(jComboBoxCidade);
@@ -80,8 +83,8 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jDateChooserDataExp = new com.toedter.calendar.JDateChooser();
-        jDateChooserDataNasc = new com.toedter.calendar.JDateChooser();
+        jDateChooserDataExp = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/##" , ' ' );
+        jDateChooserDataNasc = new com.toedter.calendar.JDateChooser("dd/MM/yy" , "##/##/##" , ' ' );
         jLabelIdade = new javax.swing.JLabel();
         jTextFieldNum = new javax.swing.JTextField();
         jTextFieldOrgexp = new javax.swing.JTextField();
@@ -120,9 +123,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldAltura = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldTemp = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldPeso = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -156,7 +159,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
             }
         });
 
-        jLabel9.setText("Estado:");
+        jLabel9.setText("Estado: *");
 
         jLabel15.setText("Telefone 2:");
 
@@ -164,7 +167,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
         jLabel8.setText("Data Exp.:");
 
-        jLabel10.setText("Cidade:");
+        jLabel10.setText("Cidade: *");
 
         jComboBoxEstado.setToolTipText("");
         jComboBoxEstado.addItemListener(new java.awt.event.ItemListener() {
@@ -189,11 +192,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Nome: *");
 
         jLabel3.setText("Idade:");
 
-        jLabel5.setText("Data Nasc:");
+        jLabel5.setText("Data Nasc: *");
 
         try {
             jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -201,7 +204,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        jLabel19.setText("Tipo de ficha:");
+        jLabel19.setText("Tipo de ficha: *");
 
         try {
             jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.###.###")));
@@ -350,9 +353,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Dados Cadastrais", jPanel1);
 
-        jLabel16.setText("Altura:");
+        jLabel16.setText("Altura: *");
 
-        jLabel17.setText("Temperatura:");
+        jLabel17.setText("Temperatura: *");
 
         jLabel18.setText("Peso:");
 
@@ -379,16 +382,16 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jLabel20.setText("Médico Responsável:");
+        jLabel20.setText("Médico Responsável: *");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.##")));
+            jFormattedTextFieldAltura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
+            jFormattedTextFieldTemp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.#")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -408,19 +411,19 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel16)
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jLabel17))
-                                    .addComponent(jLabel20))
-                                .addGap(19, 19, 19)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jLabel17)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel18))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextFieldTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
-                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jFormattedTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -433,9 +436,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(jLabel20)
                 .addGap(3, 3, 3)
@@ -482,19 +485,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jDateChooserDataNascPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserDataNascPropertyChange
-            if(jDateChooserDataNasc.getDate() != null){
-            
-             int dataNasc = Utils.calculaIdade(jDateChooserDataNasc.getDate());
-             if(dataNasc > -1){
-       jLabelIdade.setText(String.valueOf(dataNasc) + " Anos");
-        }
-        }
-    }//GEN-LAST:event_jDateChooserDataNascPropertyChange
-
     private void jComboBoxEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxEstadoItemStateChanged
         if(jComboBoxEstado.getSelectedIndex() > 0){
-        jComboBoxCidade.setEnabled(false);
+        jComboBoxCidade.setEnabled(true);
         atualizacomboCidade();
         }else{
             jComboBoxCidade.setEnabled(false);
@@ -540,6 +533,16 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
+
+    private void jDateChooserDataNascPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserDataNascPropertyChange
+        if(jDateChooserDataNasc.getDate() != null){
+
+            int dataNasc = Utils.calculaIdade(jDateChooserDataNasc.getDate());
+            if(dataNasc > -1){
+                jLabelIdade.setText(String.valueOf(dataNasc) + " Anos");
+            }
+        }
+    }//GEN-LAST:event_jDateChooserDataNascPropertyChange
     
     public void atualizaComboficha(){
         listaficha = new TipodefichaDao().getList("");
@@ -550,27 +553,31 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         
     }
     public void verificaCampos(){
-        if(jTextFieldNome.getText().equals("")){
-            camposfaltando.add("Nome");
+//        if(jTextFieldNome.getText().equals("")){
+//            camposfaltando.add("Nome");
+//            camposemp = true;
+//        }
+//        if(jComboBoxEstado.getSelectedIndex() <= 0){
+//            camposfaltando.add("Estado");
+//           
+//            camposemp = true;
+//        }
+//        if(jComboBoxCidade.getSelectedIndex() <= 0){
+//            camposfaltando.add("Cidade");
+//            camposemp = true;
+//        }
+//        if(jComboBoxTipoficha.getSelectedIndex() == -1){
+//            camposfaltando.add("Tipo de ficha");
+//            camposemp = true;
+//        }
+        if(jTextFieldNome.getText().equals("") | jComboBoxEstado.getSelectedIndex() <= 0 | jComboBoxCidade.getSelectedIndex() < 0 | jDateChooserDataNasc.getDate() == null | jComboBoxTipoficha.getSelectedIndex() > -1 | jComboBox1.getSelectedIndex() > -1 | jFormattedTextFieldAltura.getText().equals("") | jFormattedTextFieldTemp.getText().equals("")){
             camposemp = true;
+        }else{
+            camposemp = false;
         }
-        if(jComboBoxEstado.getSelectedIndex() <= 0){
-            camposfaltando.add("Estado");
-           
-            camposemp = true;
-        }
-        if(jComboBoxCidade.getSelectedIndex() <= 0){
-            camposfaltando.add("Cidade");
-            camposemp = true;
-        }
-        if(jComboBoxTipoficha.getSelectedIndex() == -1){
-            camposfaltando.add("Tipo de ficha");
-            camposemp = true;
-        }
-        
         if(camposemp == true){
-            Msg.alert(this, "Estão faltado campos obrigatórios:\n " + camposfaltando);
-            camposfaltando.clear();
+            Msg.alert(this, "Estão faltado campos obrigatórios:\n " + "Dica: Campos obrigatórios estão marcados com " + "*");
+            //camposfaltando.clear();
         }
     }
     
@@ -612,6 +619,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jFormattedTextFieldTel.setText(paciente.getTel());
         jFormattedTextFieldTel2.setText(paciente.getTel2());
         jComboBoxTipoficha.setSelectedItem(paciente.getTipodefichaIdtipodeficha());
+        jFormattedTextFieldAltura.setText(String.valueOf(paciente.getAltura()));
+        jFormattedTextFieldTemp.setText(String.valueOf(paciente.getTemperatura()));
+        jFormattedTextFieldPeso.setText(String.valueOf(paciente.getPeso()));
         jTextArea1.setText(paciente.getHistorico());
         
     }
@@ -641,6 +651,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         paciente.setTel(jFormattedTextFieldTel.getText());
         paciente.setTel2(jFormattedTextFieldTel2.getText());
         paciente.setHistorico(jTextArea1.getText());
+        paciente.setAltura(Float.parseFloat(jFormattedTextFieldAltura.getText()));
+        paciente.setTemperatura(Float.parseFloat(jFormattedTextFieldTemp.getText()));
+        paciente.setPeso(Float.parseFloat(jFormattedTextFieldPeso.getText()));
         paciente.setTipodefichaIdtipodeficha(listaficha.get(jComboBoxTipoficha.getSelectedIndex()));
         
         return paciente;
@@ -698,12 +711,12 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser jDateChooserDataExp;
     private com.toedter.calendar.JDateChooser jDateChooserDataNasc;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JFormattedTextField jFormattedTextFieldAltura;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPeso;
     private javax.swing.JFormattedTextField jFormattedTextFieldTel;
     private javax.swing.JFormattedTextField jFormattedTextFieldTel2;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTemp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

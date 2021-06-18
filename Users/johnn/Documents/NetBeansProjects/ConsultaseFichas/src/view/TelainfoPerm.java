@@ -7,6 +7,7 @@ package view;
 
 import dao.AgendamentoPermcathDao;
 import dao.CategoriaDao;
+import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +35,8 @@ public class TelainfoPerm extends javax.swing.JDialog {
         initComponents();
         atualizaTable();
         pegardatar();
+        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
+        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
         
     }
 
@@ -69,7 +72,7 @@ public class TelainfoPerm extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nome", "Data de Agendamento", "Hospital"
+                "Nome", "Data de Agendamento", "Hospital", "Nº do Perm"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

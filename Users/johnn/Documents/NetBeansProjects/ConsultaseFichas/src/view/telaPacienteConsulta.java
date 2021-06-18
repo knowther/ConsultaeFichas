@@ -51,6 +51,8 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         masterTable.setGridColor(Color.lightGray);
         masterTable.setShowGrid(true);
         setExtendedState(MAXIMIZED_BOTH);
+        tipoficha = 1;
+        preencherTable();
           User a = ControleFuncionario.getFuncionarioLogado();
 
         if (dao.ControleFuncionario.isFuncionarioLogado()) {
@@ -86,6 +88,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         jButtonCaixa = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
@@ -139,6 +142,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(masterTable);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/user_add.png"))); // NOI18N
         jButton1.setText("Adicionar Paciente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +150,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/printer.png"))); // NOI18N
         jButton2.setText("Imprimir Ficha");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +170,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/clock_add.png"))); // NOI18N
         jButton7.setText("Agendar Consulta");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +179,10 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         });
 
         jPanel4.setBackground(new java.awt.Color(60, 63, 64));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pranchetafinal.png"))); // NOI18N
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 5, -1, -1));
 
         jToolBar1.setBackground(new java.awt.Color(60, 63, 64));
         jToolBar1.setFloatable(false);
@@ -263,7 +273,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCaixa2);
 
-        jPanel4.add(jToolBar1);
+        jPanel4.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 79, -1, -1));
 
         buttonGroup1.add(jRadioButtonFichaRecente);
         jRadioButtonFichaRecente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -328,40 +338,39 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelaLayout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
                             .addGroup(jPanelaLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton6))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 123, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelaLayout.setVerticalGroup(
             jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelaLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addGap(2, 2, 2)
                 .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(jLabel14))
+                    .addComponent(jButton6))
                 .addGap(21, 21, 21)
                 .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton7))
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addGap(68, 68, 68))
         );
 
@@ -513,11 +522,11 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCaixa1ActionPerformed
 
     private void jButtonCaixa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa2ActionPerformed
-// TODO add your handling code here:
+        Msg.informacao(this, "Este menu está em construção");// TODO add your handling code here:
     }//GEN-LAST:event_jButtonCaixa2ActionPerformed
 
     private void jButtonCaixa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa3ActionPerformed
-        // TODO add your handling code here:
+        Msg.informacao(this, "Este menu está em construção");   // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCaixa3ActionPerformed
 
     /**
@@ -598,6 +607,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCaixa2;
     private javax.swing.JButton jButtonCaixa3;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;

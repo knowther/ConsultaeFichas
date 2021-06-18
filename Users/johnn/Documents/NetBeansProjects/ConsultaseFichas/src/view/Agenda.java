@@ -7,6 +7,8 @@ package view;
 
 import dao.ConsultaDao;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DateFormat;
@@ -15,7 +17,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
 import model.Consulta;
+import utils.Msg;
 
 /**
  *
@@ -35,15 +40,7 @@ public class Agenda extends javax.swing.JFrame {
         jCalendar1.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
         jCalendar1.getDayChooser().setBackground(Color.yellow);
         jCalendar1.setWeekOfYearVisible(false);
-        //this.setAlwaysOnTop(true);
-        
-        //this.setAlwaysOnTop(false);
-        
-         
-        //listacon = new ConsultaDao().getListaCon(jCalendar1.getDate(), )
-        //nome7.setText();
-
-        //pegardatas();
+        setIconImage(getIconImage());
     }
 
     /**
@@ -196,6 +193,7 @@ public class Agenda extends javax.swing.JFrame {
         T173 = new javax.swing.JLabel();
         L173 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
+        jButton1 = new javax.swing.JButton();
         Agenda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -212,19 +210,19 @@ public class Agenda extends javax.swing.JFrame {
         DiaPag1.setForeground(new java.awt.Color(0, 0, 0));
         DiaPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DiaPag1.setText("7");
-        getContentPane().add(DiaPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 220, 50));
+        getContentPane().add(DiaPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 220, 50));
 
         SemDiaPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
         SemDiaPag1.setForeground(new java.awt.Color(0, 0, 0));
         SemDiaPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SemDiaPag1.setText("Quinta");
-        getContentPane().add(SemDiaPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 220, -1));
+        getContentPane().add(SemDiaPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 220, -1));
 
         MesPag1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         MesPag1.setForeground(new java.awt.Color(0, 0, 0));
         MesPag1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MesPag1.setText("Janeiro");
-        getContentPane().add(MesPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 220, 30));
+        getContentPane().add(MesPag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 220, 30));
 
         MesPag2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         MesPag2.setForeground(new java.awt.Color(0, 0, 0));
@@ -910,6 +908,15 @@ public class Agenda extends javax.swing.JFrame {
         });
         getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 200, 170));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/calendar_delete.png"))); // NOI18N
+        jButton1.setText("Desmarcar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+
         Agenda.setForeground(new java.awt.Color(255, 0, 51));
         Agenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Agenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/agendasul.jpg"))); // NOI18N
@@ -919,6 +926,11 @@ public class Agenda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public final Image getIconImage(){
+      Image ICONE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagens/prancheta.png"));
+      return ICONE;
+    }
+    
     private void nome7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nome7ActionPerformed
@@ -949,6 +961,8 @@ public class Agenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jCalendar1PropertyChange
 
     private void nome7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome7MouseClicked
+        
+        if("".equals(nome7.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -956,41 +970,62 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         
+              
+                                       
         t.setVisible(true);
-       
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome7MouseClicked
 
     private void nome73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome73MouseClicked
-    TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        if("".equals(nome73.getText())){
+        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 7);
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+         t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
       
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true); 
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+    
+// TODO add your handling code here:
     }//GEN-LAST:event_nome73MouseClicked
 
     private void nome8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome8MouseClicked
-        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+       if("".equals(nome8.getText())){
+         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 8);
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+         t.colocarinfo(c.getTime(),jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setDataselecionada(jCalendar1.getDate());
+         t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
+//        
+        t.setVisible(true); 
+       }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+       }
+// TODO add your handling code here:
     }//GEN-LAST:event_nome8MouseClicked
 
     private void nome83MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome83MouseClicked
+        if("".equals(nome83.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -998,12 +1033,18 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+         t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+       }
+        
     }//GEN-LAST:event_nome83MouseClicked
 
     private void nome9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome9MouseClicked
+        if("".equals(nome9.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1011,25 +1052,37 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+         t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome9MouseClicked
 
     private void nome93MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome93MouseClicked
-        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+       if("".equals(nome93.getText())){ 
+    TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 9);
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);   
+       }else{
+             Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+       }
+
+// TODO add your handling code here:
     }//GEN-LAST:event_nome93MouseClicked
 
     private void nome10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome10MouseClicked
+        if("".equals(nome10.getText())){ 
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1037,12 +1090,19 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);   
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+
+// TODO add your handling code here:
     }//GEN-LAST:event_nome10MouseClicked
 
     private void nome103MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome103MouseClicked
+        if("".equals(nome103.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1050,25 +1110,38 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+
+        }
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_nome103MouseClicked
 
     private void nome11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome11MouseClicked
-        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+      if("".equals(nome11.getText())){  
+      TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 11);
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setDataselecionada(jCalendar1.getDate());
+        t.setVisible(true);     
+      }else{
+           Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+      }
     }//GEN-LAST:event_nome11MouseClicked
 
     private void nome113MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome113MouseClicked
+        if("".equals(nome113.getText())){ 
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1076,12 +1149,17 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome113MouseClicked
 
     private void nome12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome12MouseClicked
+        if("".equals(nome12.getText())){ 
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1089,12 +1167,17 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+             Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome12MouseClicked
 
     private void nome123MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome123MouseClicked
+        if("".equals(nome123.getText())){ 
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1102,12 +1185,17 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);   // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome123MouseClicked
 
     private void nome13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome13MouseClicked
+        if("".equals(nome13.getText())){ 
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1115,12 +1203,17 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome13MouseClicked
 
     private void nome133MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome133MouseClicked
+        if("".equals(nome133.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1128,12 +1221,17 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome133MouseClicked
 
     private void nome14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome14MouseClicked
+        if("".equals(nome14.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1141,13 +1239,20 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
        
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true); 
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+
+// TODO add your handling code here:
     }//GEN-LAST:event_nome14MouseClicked
 
     private void nome143MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome143MouseClicked
+        if("".equals(nome143.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1155,13 +1260,19 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
        
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+        
     }//GEN-LAST:event_nome143MouseClicked
 
     private void nome15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome15MouseClicked
+        if("".equals(nome15.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1169,13 +1280,18 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
      
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true);  
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome15MouseClicked
 
     private void nome153MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome153MouseClicked
+        if("".equals(nome153.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1183,13 +1299,21 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
      
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true); 
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+// TODO add your handling code here:
+        
     }//GEN-LAST:event_nome153MouseClicked
 
     private void nome16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome16MouseClicked
+        
+        if("".equals(nome16.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1197,13 +1321,18 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
      
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true);
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome16MouseClicked
 
     private void nome163MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome163MouseClicked
+        if("".equals(nome163.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1211,27 +1340,39 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true); 
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+// TODO add your handling code here:
+        
     }//GEN-LAST:event_nome163MouseClicked
 
     private void nome17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome17MouseClicked
-        TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
+        if("".equals(nome17.getText())){
+         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
         c.set(Calendar.HOUR_OF_DAY, 17);
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
         
         t.setVisible(true);        // TODO add your handling code here:
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
     }//GEN-LAST:event_nome17MouseClicked
 
     private void nome173MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nome173MouseClicked
+        if("".equals(nome173.getText())){
         TelaAgendarConsulta t = new TelaAgendarConsulta(this, true);
         Calendar c = Calendar.getInstance();
         c.setTime(jCalendar1.getDate());
@@ -1239,16 +1380,33 @@ public class Agenda extends javax.swing.JFrame {
         c.set(Calendar.MINUTE, 30);
         c.set(Calendar.SECOND, 0);
         t.setHora(c.getTime());
-
+        t.colocarinfo(c.getTime(),jCalendar1.getDate());
+        t.setDataselecionada(jCalendar1.getDate());
         t.setDataselecionada(jCalendar1.getDate());
       
-        t.setVisible(true);        // TODO add your handling code here:
+        t.setVisible(true); 
+        }else{
+            Msg.informacao(this, "Já existe uma consulta agendada para essa data e horário\n Desmarque-o(a) antes de inserir outro.");
+        }
+
+        
     }//GEN-LAST:event_nome173MouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-    this.setAlwaysOnTop(false); 
-        System.out.println("eae");// TODO add your handling code here:
+    
     }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(listacon.isEmpty()){
+            Msg.alert(this, "Não há consultas marcadas.");
+        }else{
+            TelaAlterarConsulta t = new TelaAlterarConsulta(this, true);
+        t.setDatacatch(jCalendar1.getDate());
+        t.setVisible(true);// TODO add your handling code here:
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void pegardatas() {
 
@@ -1463,6 +1621,7 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel T830;
     private javax.swing.JLabel T9;
     private javax.swing.JLabel T930;
+    private javax.swing.JButton jButton1;
     protected com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;

@@ -49,6 +49,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         atualizaTable();
         tabela.setShowGrid(true);
         tabela.setAutoCreateRowSorter(true);
+        
         tabela.setGridColor(Color.lightGray);
         jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
         jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
@@ -155,13 +156,15 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                     );
 
                 }
-
+                
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             Msg.ERRO(this, "Erro ao Atualizar a Tabela\nErro: " + e.getMessage());
         }
+        System.out.println(lista);
+                System.out.println(listaed);
     }
 
     /**
@@ -221,6 +224,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tabela.getTableHeader().setReorderingAllowed(false);
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaMouseClicked(evt);
@@ -277,6 +281,11 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/door_in.png"))); // NOI18N
         jButton4.setText("Sair");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
 
         jLabel1.setText("Pesquisar:");
@@ -494,31 +503,32 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (tabela.getSelectedRow() > -1) {
-           //. if (Msg.confirmacao(this, "Deseja Realmente Excluir Este Registro?")) {
-                if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
+            if (tabela.getSelectedRow() > -1) {
+            if (Msg.confirmacao(this, "Deseja Realmente Excluir Este Registro?")) {
+               if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
                     System.out.println(lista);
                     System.out.println(tabela.getSelectedRow());
                     new MovimentacaoConsultorioDao().excluir(lista.get(tabela.getSelectedRow()));
                     
                     Msg.informacao(this, "Registro Excluído com Sucesso");
+                    
+                    atualizaValores();
+                    atualizaTable();
+                    
+                } 
+                else {
+                    new MovimentacaoDraednaDao().excluir(listaed.get(tabela.getSelectedRow()));
+
+                    Msg.informacao(this, "Registro Excluído Dra edna com Sucesso");
                     atualizaTable();
                     atualizaValores();
-                    System.out.println("foi no normal");
-                } 
-//                else {
-//                    new MovimentacaoDraednaDao().excluir(listaed.get(tabela.getSelectedRow()));
-//
-//                    Msg.informacao(this, "Registro Excluído Dra edna com Sucesso");
-//                    atualizaTable();
-//                    atualizaValores();
-//                    System.out.println("foi no edna");
-//                }
-//          //  }
+                
+                }
+          //  }
         } else {
             Msg.alert(this, "Selecione um Registo.");
         }
-
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
@@ -557,6 +567,10 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         atualizaValores();   
         atualizaTable();// TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void pegardatar() {
         Date date = new Date();

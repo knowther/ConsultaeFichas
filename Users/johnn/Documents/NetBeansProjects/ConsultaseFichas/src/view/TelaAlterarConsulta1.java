@@ -7,16 +7,19 @@ package view;
 
 import dao.ConsultaDao;
 import java.util.Date;
+import model.Categoria;
 import model.Consulta;
 import model.Medicos;
+import model.Pacientesconsulta;
+import model.Tipodeficha;
+import org.joda.time.DateTime;
 import utils.Msg;
-import utils.Utils;
 
 /**
  *
  * @author johnn
  */
-public class TelaAgendarConsulta extends javax.swing.JDialog {
+public class TelaAlterarConsulta1 extends javax.swing.JDialog {
     private Consulta consulta;
     private ConsultaDao consultadao;
     private Agenda pai;
@@ -26,7 +29,7 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
     /**
      * Creates new form TelaAgendarConsulta
      */
-    public TelaAgendarConsulta(java.awt.Frame parent, boolean modal) {
+    public TelaAlterarConsulta1(java.awt.Frame parent, boolean modal) {
         //super(parent, modal);
         //initComponents();
         //consulta = new Consulta();
@@ -36,13 +39,12 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
 
     }
     
-    public TelaAgendarConsulta(Agenda parent, boolean modal) {
+    public TelaAlterarConsulta1(Agenda parent, boolean modal) {
         super(parent, modal);
         initComponents();
         consulta = new Consulta();
         //consultadao = new ConsultaDao();
         pai = parent;
-       
         
     }
 
@@ -63,33 +65,24 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
         medicosList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : medicosQuery.getResultList();
         tipodefichaQuery = java.beans.Beans.isDesignTime() ? null : ConsultaseFichasPUEntityManager.createQuery("SELECT t FROM Tipodeficha t");
         tipodefichaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : tipodefichaQuery.getResultList();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/clock.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Agendar Consulta");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/calendar.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
+        jLabel1.setText("Nome do Paciente:");
 
         jLabel2.setText("Médico da Consulta:");
 
-        jLabel1.setText("Nome do Paciente:");
-
         org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, medicosList, jComboBox1);
         bindingGroup.addBinding(jComboBoxBinding);
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Agendar Consulta");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disk.png"))); // NOI18N
         jButton1.setText("Salvar");
@@ -99,69 +92,46 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 116, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(113, 113, 113))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(4, 4, 4)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jButton1)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addComponent(jButton1)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -173,11 +143,8 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         try{
-            new ConsultaDao().inserir(getConsulta());
+            new ConsultaDao().alterar(getConsulta());
             Msg.informacao(pai, "Dados salvos.");
-            this.pai.pegardatas();
-            this.pai.limparcampos();
-            this.pai.inserirdatas();
            this.dispose();
           
         }catch(Exception e){
@@ -192,20 +159,15 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
         consulta.setMedicosIdmedicos((Medicos) jComboBox1.getSelectedItem());
         consulta.setDatasconsulta(dataselecionada);
         consulta.setHora(hora);
-        
+      
         return consulta;
     }
     
-    protected void colocarinfo(Date hora, Date dia){
-        jLabel4.setText(Utils.convertHora(hora));
-        jLabel5.setText(Utils.convertData(dia));
+    protected void preenchercampos(Consulta con){
+        consulta = con;
+        jTextField1.setText(con.getNome());
+        jComboBox1.setSelectedItem(con.getMedicosIdmedicos().getNome());
     }
-    
-//    protected void preenchercampos(Consulta con){
-//        consulta = con;
-//        jTextField1.setText(con.getNome());
-//        jComboBox1.setSelectedItem(con.getMedicosIdmedicos().getNome());
-//    }
 
     public Date getDataselecionada() {
         return dataselecionada;
@@ -213,7 +175,7 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
 
     public void setDataselecionada(Date dataselecionada) {
         this.dataselecionada = dataselecionada;
-//        preenchercampos(consulta);
+        preenchercampos(consulta);
     }
 
     public Date getHora() {
@@ -244,20 +206,21 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAgendarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarConsulta1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAgendarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarConsulta1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAgendarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarConsulta1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAgendarConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarConsulta1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaAgendarConsulta dialog = new TelaAgendarConsulta(new javax.swing.JFrame(), true);
+                TelaAlterarConsulta1 dialog = new TelaAlterarConsulta1(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -278,9 +241,6 @@ public class TelaAgendarConsulta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private java.util.List<model.Medicos> medicosList;
     private javax.persistence.Query medicosQuery;

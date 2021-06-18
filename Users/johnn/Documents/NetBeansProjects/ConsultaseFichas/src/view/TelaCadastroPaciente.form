@@ -248,11 +248,17 @@
           </Layout>
           <SubComponents>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserDataExp">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.toedter.calendar.JDateChooser(&quot;dd/MM/yyyy&quot; , &quot;##/##/##&quot; , &apos; &apos; )"/>
+              </AuxValues>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserDataNasc">
               <Events>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDateChooserDataNascPropertyChange"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.toedter.calendar.JDateChooser(&quot;dd/MM/yy&quot; , &quot;##/##/##&quot; , &apos; &apos; )"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelIdade">
               <Properties>
@@ -305,7 +311,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estado:"/>
+                <Property name="text" type="java.lang.String" value="Estado: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
@@ -325,7 +331,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cidade:"/>
+                <Property name="text" type="java.lang.String" value="Cidade: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxEstado">
@@ -370,7 +376,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nome:"/>
+                <Property name="text" type="java.lang.String" value="Nome: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -380,7 +386,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Data Nasc:"/>
+                <Property name="text" type="java.lang.String" value="Data Nasc: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -404,7 +410,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tipo de ficha:"/>
+                <Property name="text" type="java.lang.String" value="Tipo de ficha: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
@@ -440,22 +446,22 @@
                                   <Component id="jComboBox1" min="-2" pref="306" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
+                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jFormattedTextField2" min="-2" pref="72" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextFieldAltura" min="-2" pref="72" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField3" min="-2" pref="69" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextFieldTemp" min="-2" pref="69" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField4" min="-2" pref="70" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextFieldPeso" min="-2" pref="70" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -475,9 +481,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jFormattedTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldAltura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldTemp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldPeso" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
@@ -493,12 +499,12 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Altura:"/>
+                <Property name="text" type="java.lang.String" value="Altura: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Temperatura:"/>
+                <Property name="text" type="java.lang.String" value="Temperatura: *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
@@ -569,24 +575,24 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel20">
               <Properties>
-                <Property name="text" type="java.lang.String" value="M&#xe9;dico Respons&#xe1;vel:"/>
+                <Property name="text" type="java.lang.String" value="M&#xe9;dico Respons&#xe1;vel: *"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldAltura">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="#.##" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField3">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldTemp">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##.#" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPeso">
             </Component>
           </SubComponents>
         </Container>
