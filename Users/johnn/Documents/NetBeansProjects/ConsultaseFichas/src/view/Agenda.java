@@ -41,6 +41,8 @@ public class Agenda extends javax.swing.JFrame {
         jCalendar1.getDayChooser().setBackground(Color.yellow);
         jCalendar1.setWeekOfYearVisible(false);
         setIconImage(getIconImage());
+         this.setType(java.awt.Window.Type.UTILITY);
+         
     }
 
     /**

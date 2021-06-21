@@ -54,6 +54,13 @@ import javax.xml.bind.annotation.XmlTransient;
 //    , @NamedQuery(name = "Pacientesconsulta.findByRg", query = "SELECT p FROM Pacientesconsulta p WHERE p.rg = :rg")})
 public class Pacientesconsulta implements Serializable {
 
+    @Column(name = "temperatura")
+    private String temperatura;
+    @Column(name = "peso")
+    private String peso;
+    @Column(name = "altura")
+    private String altura;
+
     @Column(name = "pacientesConsultacol")
     private String pacientesConsultacol;
     @Column(name = "cidade")
@@ -84,12 +91,6 @@ public class Pacientesconsulta implements Serializable {
     private String idade;
     @Column(name = "endereco")
     private String endereco;
-    @Column(name = "peso")
-    private Float peso;
-    @Column(name = "temperatura")
-    private Float temperatura;
-    @Column(name = "altura")
-    private Float altura;
     @Column(name = "pa")
     private String pa;
     @Column(name = "bairro")
@@ -203,35 +204,6 @@ public class Pacientesconsulta implements Serializable {
         changeSupport.firePropertyChange("numero", oldNumero, numero);
     }
     
-    public Float getTemperatura() {
-        return temperatura;
-    }
-
-    public void setTemperatura(Float temperatura) {
-        Float oldTemperatura = this.temperatura;
-        this.temperatura = temperatura;
-        changeSupport.firePropertyChange("temperatura", oldTemperatura, temperatura);
-    }
-    
-    public Float getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Float peso) {
-        Float oldPeso = this.peso;
-        this.peso = peso;
-        changeSupport.firePropertyChange("peso", oldPeso, peso);
-    }
-    
-    public Float getAltura() {
-        return altura;
-    }
-
-    public void setAltura(Float altura) {
-        Float oldAltura = this.altura;
-        this.altura = altura;
-        changeSupport.firePropertyChange("altura", oldAltura, altura);
-    }
     
     public String getPa() {
         return pa;
@@ -417,6 +389,30 @@ public class Pacientesconsulta implements Serializable {
 
     public void setDataexp(Date dataexp) {
         this.dataexp = dataexp;
+    }
+
+    public String getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(String temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
     }
     
 }

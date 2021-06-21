@@ -16,6 +16,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
@@ -39,6 +40,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     //private PacientesconsultaDao pacienteDao;
     PosicaoFormulario form = new PosicaoFormulario();
     private List<Pacientesconsulta> pacientelista = new ArrayList<>();
+    private Agenda agenda;
 
     /**
      * Creates new form telaPacienteConsulta
@@ -88,7 +90,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         jButtonCaixa = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
@@ -103,6 +104,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jButtonCaixa2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jRadioButtonFichaRecente = new javax.swing.JRadioButton();
         jRadioButtonFichaAntiga = new javax.swing.JRadioButton();
@@ -110,8 +112,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Recepção");
-
-        parentPanel.setLayout(new java.awt.CardLayout());
 
         masterTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         masterTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -180,9 +180,6 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(60, 63, 64));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pranchetafinal.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 5, -1, -1));
 
         jToolBar1.setBackground(new java.awt.Color(60, 63, 64));
         jToolBar1.setFloatable(false);
@@ -273,7 +270,10 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCaixa2);
 
-        jPanel4.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 79, -1, -1));
+        jPanel4.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pranchetafinal.png"))); // NOI18N
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, -22, -1, 200));
 
         buttonGroup1.add(jRadioButtonFichaRecente);
         jRadioButtonFichaRecente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -349,13 +349,14 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                                 .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton6)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 177, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelaLayout.setVerticalGroup(
             jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelaLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -370,11 +371,26 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton7))
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addGap(68, 68, 68))
         );
 
-        parentPanel.add(jPanela, "card2");
+        javax.swing.GroupLayout parentPanelLayout = new javax.swing.GroupLayout(parentPanel);
+        parentPanel.setLayout(parentPanelLayout);
+        parentPanelLayout.setHorizontalGroup(
+            parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parentPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        parentPanelLayout.setVerticalGroup(
+            parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parentPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         jDesktopPane1.setLayer(parentPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -505,7 +521,14 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     }
     
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-                new Agenda().setVisible(true);        
+               // new Agenda().setVisible(true);  
+              // ModalJframe.showModalJFrame(new Agenda(),this);
+              agenda = new Agenda();
+              final JDialog frame = new JDialog(this, "Agenda", true);
+                frame.getContentPane().add(agenda.getComponent(0));
+                frame.pack();
+                frame.setLocationRelativeTo(this);
+                frame.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButtonCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixaActionPerformed

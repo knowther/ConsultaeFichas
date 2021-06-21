@@ -84,7 +84,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jDateChooserDataExp = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/##" , ' ' );
-        jDateChooserDataNasc = new com.toedter.calendar.JDateChooser("dd/MM/yy" , "##/##/##" , ' ' );
+        jDateChooserDataNasc = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/##" , ' ' );
         jLabelIdade = new javax.swing.JLabel();
         jTextFieldNum = new javax.swing.JTextField();
         jTextFieldOrgexp = new javax.swing.JTextField();
@@ -357,7 +357,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
         jLabel17.setText("Temperatura: *");
 
-        jLabel18.setText("Peso:");
+        jLabel18.setText("Peso:*");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Histórico"));
 
@@ -401,30 +401,29 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jLabel17)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel18))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jFormattedTextFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextFieldTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jFormattedTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                                .addComponent(jFormattedTextFieldTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel20)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel17)))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jFormattedTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(240, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,9 +442,9 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                 .addComponent(jLabel20)
                 .addGap(3, 3, 3)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18))
         );
 
         jTabbedPane1.addTab("Dados Clínicos", jPanel2);
@@ -467,7 +466,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(252, 252, 252)
+                .addGap(264, 264, 264)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -524,6 +523,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
     
     private void atualizacomboMedico(){
+            jComboBox1.addItem("<Selecione>");
         listamedicos = new MedicosDao().getList("");
         for(Medicos m : listamedicos){
             jComboBox1.addItem(m.getNome());
@@ -545,6 +545,8 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     }//GEN-LAST:event_jDateChooserDataNascPropertyChange
     
     public void atualizaComboficha(){
+        
+        jComboBoxTipoficha.addItem("<Selecione>");
         listaficha = new TipodefichaDao().getList("");
         for(Tipodeficha t : listaficha){
             jComboBoxTipoficha.addItem(t.getTipodaficha());
@@ -570,13 +572,15 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 //            camposfaltando.add("Tipo de ficha");
 //            camposemp = true;
 //        }
-        if(jTextFieldNome.getText().equals("") | jComboBoxEstado.getSelectedIndex() <= 0 | jComboBoxCidade.getSelectedIndex() < 0 | jDateChooserDataNasc.getDate() == null | jComboBoxTipoficha.getSelectedIndex() > -1 | jComboBox1.getSelectedIndex() > -1 | jFormattedTextFieldAltura.getText().equals("") | jFormattedTextFieldTemp.getText().equals("")){
+        if(jTextFieldNome.getText().equals("") | jComboBoxEstado.getSelectedIndex() <= 0 | jComboBoxCidade.getSelectedIndex() < 0 | jDateChooserDataNasc.getDate() == null | jComboBoxTipoficha.getSelectedIndex() <= 0 | jComboBox1.getSelectedIndex() <= 0 | jFormattedTextFieldPeso.equals("")| jFormattedTextFieldAltura.getText().equals("") | jFormattedTextFieldTemp.getText().equals("")){
             camposemp = true;
+            System.out.println(jComboBoxEstado.getSelectedIndex());
+            System.out.println(jComboBoxCidade.getSelectedIndex());
         }else{
             camposemp = false;
         }
         if(camposemp == true){
-            Msg.alert(this, "Estão faltado campos obrigatórios:\n " + "Dica: Campos obrigatórios estão marcados com " + "*");
+            Msg.alert(this, "Estão faltado campos obrigatórios!\n " + "Dica: Campos obrigatórios estão marcados com " + "*");
             //camposfaltando.clear();
         }
     }
@@ -619,9 +623,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jFormattedTextFieldTel.setText(paciente.getTel());
         jFormattedTextFieldTel2.setText(paciente.getTel2());
         jComboBoxTipoficha.setSelectedItem(paciente.getTipodefichaIdtipodeficha());
-        jFormattedTextFieldAltura.setText(String.valueOf(paciente.getAltura()));
-        jFormattedTextFieldTemp.setText(String.valueOf(paciente.getTemperatura()));
-        jFormattedTextFieldPeso.setText(String.valueOf(paciente.getPeso()));
+     
+        jFormattedTextFieldAltura.setText(paciente.getAltura());
+        jFormattedTextFieldTemp.setText(paciente.getTemperatura());
+        jFormattedTextFieldPeso.setText(paciente.getPeso());
+        jComboBox1.setSelectedItem(paciente.getMedicosIdmedicos().getNome());
         jTextArea1.setText(paciente.getHistorico());
         
     }
@@ -639,22 +645,23 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     }
      
      private Pacientesconsulta getPaciente(){
-        paciente.setNome(jTextFieldNome.getText());
+        paciente.setNome(jTextFieldNome.getText().toUpperCase());
         paciente.setCpf(jFormattedTextFieldCpf.getText());
         paciente.setEstadoIdestado(listaesdado.get(jComboBoxEstado.getSelectedIndex() -1));
         paciente.setCidadeIdcidade(listacidade.get(jComboBoxCidade.getSelectedIndex()));
         paciente.setDataNasc(jDateChooserDataNasc.getDate());
         paciente.setIdade(jLabelIdade.getText());
-        paciente.setEndereco(jTextFieldEndere.getText());
-        paciente.setBairro(jTextFieldBairro.getText());
+        paciente.setEndereco(jTextFieldEndere.getText().toUpperCase());
+        paciente.setBairro(jTextFieldBairro.getText().toUpperCase());
         paciente.setNumero(jTextFieldNum.getText());
         paciente.setTel(jFormattedTextFieldTel.getText());
         paciente.setTel2(jFormattedTextFieldTel2.getText());
         paciente.setHistorico(jTextArea1.getText());
-        paciente.setAltura(Float.parseFloat(jFormattedTextFieldAltura.getText()));
-        paciente.setTemperatura(Float.parseFloat(jFormattedTextFieldTemp.getText()));
-        paciente.setPeso(Float.parseFloat(jFormattedTextFieldPeso.getText()));
-        paciente.setTipodefichaIdtipodeficha(listaficha.get(jComboBoxTipoficha.getSelectedIndex()));
+        paciente.setAltura(jFormattedTextFieldAltura.getText());
+        paciente.setTemperatura(jFormattedTextFieldTemp.getText());
+        paciente.setPeso(jFormattedTextFieldPeso.getText());
+        paciente.setTipodefichaIdtipodeficha(listaficha.get(jComboBoxTipoficha.getSelectedIndex() -1));
+        paciente.setMedicosIdmedicos(listamedicos.get(jComboBox1.getSelectedIndex() - 1));
         
         return paciente;
     }
