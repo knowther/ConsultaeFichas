@@ -7,6 +7,7 @@ package view;
 
 import dao.AgendamentoPermcathDao;
 import java.awt.Dimension;
+import java.util.Date;
 import model.Agendamentopermcath;
 import utils.Msg;
 
@@ -18,7 +19,7 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
     private Agendamentopermcath agendarperm;
     private AgendamentoPermcathDao agendarpermDao;
     private TelainfoPerm pai;
-    
+    private boolean inserir;
     /**
      * Creates new form TelaMarcarPermcath
      */
@@ -27,6 +28,8 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
         initComponents();
         //agendarperm = new Agendamentopermcath();
         //agendarpermDao = new AgendamentoPermcathDao();
+        jDateChooser1.setDate(new Date()); 
+        
     }
     
     public TelaMarcarPermcath(TelainfoPerm parent, boolean modal) {
@@ -51,7 +54,7 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/####" , ' ' );
         jLabel1 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -102,12 +105,14 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldpermnun, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldpermnun, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
                 .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(138, 138, 138))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +133,9 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldpermnun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(33, 33, 33)
                 .addComponent(jButton1)
-                .addGap(17, 17, 17))
+                .addGap(20, 20, 20))
         );
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -165,11 +170,15 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             try{
+                if(! isInserir()){
                 agendarpermDao.inserir(getAgendarperm());
+                
+                }else{
+                    agendarpermDao.alterar(getAgendarperm());
+                }
                 Msg.informacao(this, "Dados salvos.");
                 this.dispose();
                 this.pai.atualizaTable();
-                
             }catch(Exception e){
                 e.printStackTrace();
                 Msg.ERRO(this, "Não foi possível inserir dados. \n Erro: " + e);
@@ -184,6 +193,14 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
         agendarperm.setNumperm(jTextFieldpermnun.getText());
         
         return agendarperm;
+    }
+    
+    public void preencherCampos(Agendamentopermcath cath){
+        agendarperm = cath;
+        jTextFieldNome.setText(agendarperm.getNome());
+        jTextFieldHospita.setText(agendarperm.getHospital());
+        jTextFieldpermnun.setText(agendarperm.getNumperm());
+        jDateChooser1.setDate(agendarperm.getDataencaminhamento());
     }
     
     /**
@@ -243,4 +260,20 @@ public class TelaMarcarPermcath extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldpermnun;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the inserir
+     */
+    public boolean isInserir() {
+       
+        return inserir;
+    }
+
+    /**
+     * @param inserir the inserir to set
+     */
+    public void setInserir(boolean inserir) {
+         getAgendarperm();
+        this.inserir = inserir;
+    }
 }

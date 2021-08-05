@@ -119,7 +119,7 @@ public class TelaFichaAmb extends javax.swing.JInternalFrame {
         path = "C://Recepcaosys//Relatorios//reportFichatimbre.jrxml";
         String caminho = new File(path).getAbsolutePath();
         try {
-            JDialog viewer;
+            
             JasperReport relatorio = JasperCompileManager.compileReport(caminho);
             JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(pacientesconsultaList1, false);
             Map parametros = new HashMap();
@@ -132,8 +132,34 @@ public class TelaFichaAmb extends javax.swing.JInternalFrame {
             tela.setModal(true);
             tela.setVisible(true);
             
+            path = "C://Recepcaosys//Relatorios//reportfichacapa.jrxml";
+            caminho = new File(path).getAbsolutePath();
+            dados = new JRBeanCollectionDataSource(pacientesconsultaList1, false);
+            relatorio = JasperCompileManager.compileReport(caminho);
+            print = JasperFillManager.fillReport(relatorio, parametros, dados);
+            view = new JasperViewer (print, false);
+            tela = new JDialog();
+            tela.setBounds(view.getBounds());
+            tela.getContentPane().add(view.getContentPane());
+            tela.setModal(true);
+            tela.setVisible(true);
+            
+            path = "C://Recepcaosys//Relatorios//reportMEDICO.jrxml";
+            caminho = new File(path).getAbsolutePath();
+            
+            
+            relatorio = JasperCompileManager.compileReport(caminho);
+            print = JasperFillManager.fillReport(relatorio, parametros, dados);
+            view = new JasperViewer (print, false);
+            tela = new JDialog();
+            tela.setBounds(view.getBounds());
+            tela.getContentPane().add(view.getContentPane());
+            tela.setModal(true);
+            tela.setVisible(true);
            // view.setVisible(true);
-
+            
+           
+           
         } catch (JRException ex) {
             Logger.getLogger(JFrmcadpac.class.getName()).log(Level.SEVERE, null, ex);
             Msg.ERRO(this, "Erro ao gerar relatório\n Erro: " + ex);

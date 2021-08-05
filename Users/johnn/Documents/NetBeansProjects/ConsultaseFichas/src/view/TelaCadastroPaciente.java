@@ -84,7 +84,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jDateChooserDataExp = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/##" , ' ' );
-        jDateChooserDataNasc = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/##" , ' ' );
+        jDateChooserDataNasc = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/####" , ' ' );
         jLabelIdade = new javax.swing.JLabel();
         jTextFieldNum = new javax.swing.JTextField();
         jTextFieldOrgexp = new javax.swing.JTextField();
@@ -662,6 +662,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         paciente.setPeso(jFormattedTextFieldPeso.getText());
         paciente.setTipodefichaIdtipodeficha(listaficha.get(jComboBoxTipoficha.getSelectedIndex() -1));
         paciente.setMedicosIdmedicos(listamedicos.get(jComboBox1.getSelectedIndex() - 1));
+        
         
         return paciente;
     }

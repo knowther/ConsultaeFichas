@@ -5,16 +5,11 @@
  */
 package view;
 
-import dao.AgendamentoPermcathDao;
 import dao.AgendamentoRegulacaoDao;
-import java.awt.Dimension;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import model.Agendamentopermcath;
 import model.Regulacao;
 import utils.Msg;
 import utils.Utils;
@@ -25,17 +20,18 @@ import utils.Utils;
  */
 public class TelainfoRegulacao extends javax.swing.JDialog {
      private List<Regulacao> lista = new ArrayList<>();
-     private Regulacao regulacao;
+     int anoatual = Integer.parseInt(Utils.convertAno(new Date()));
+     int anomaximo = anoatual + 80;
     /**
      * Creates new form TelainfoPerm
      */
     public TelainfoRegulacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        pegardatar();
+        preencherAno();
+        jRadioButtonApelido.setSelected(true);
         atualizaTable();
-        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
+        
         
     }
 
@@ -54,15 +50,16 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jDateChooserFinal = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jDateChooserInicial = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
         jToolBar2 = new javax.swing.JToolBar();
-        jButton5 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBoxAno = new javax.swing.JComboBox();
+        jRadioButtonApelido = new javax.swing.JRadioButton();
+        jRadioButtonHosp = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,24 +98,39 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
         jLabel3.setText("Pesquisar:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/magnifier.png"))); // NOI18N
-
-        jLabel1.setText("Data inicial:");
-
-        jLabel2.setText("Data final:");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 
-        jButton5.setText("Agendar Permcath");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setText("Mês:");
+
+        jLabel8.setText("Ano:");
+
+        jComboBoxAno.setEditable(true);
+        jComboBoxAno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jComboBoxAnoActionPerformed(evt);
             }
         });
-        jToolBar2.add(jButton5);
+
+        jRadioButtonApelido.setText("Nome paciente");
+        jRadioButtonApelido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonApelidoActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonHosp.setText("Hospital");
+        jRadioButtonHosp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonHospActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,50 +145,58 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButtonApelido)
+                        .addGap(10, 10, 10)
+                        .addComponent(jRadioButtonHosp))
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(354, 354, 354)
+                        .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButtonHosp)
+                            .addComponent(jRadioButtonApelido))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
+                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jMonthChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(6, 6, 6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,16 +221,35 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        TelaMarcarRegulacao t = new TelaMarcarRegulacao(this, true);
+       
       t.setVisible(true);  
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-      
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jComboBoxAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxAnoActionPerformed
+
+    private void jRadioButtonApelidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonApelidoActionPerformed
+            txtPesquisa.setText("");            
+    }//GEN-LAST:event_jRadioButtonApelidoActionPerformed
+
+    private void jRadioButtonHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHospActionPerformed
+        txtPesquisa.setText("");
+    }//GEN-LAST:event_jRadioButtonHospActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            atualizaTable();            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    
+    protected void preencherAno(){
+        for(int i = 2000; i < anomaximo; i++){
+            jComboBoxAno.addItem(i);
+            
+        }
+        jComboBoxAno.setSelectedItem(anoatual);
+    }
     
     
     
@@ -220,7 +259,8 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
             
-            lista = new AgendamentoRegulacaoDao().getListdata(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+            if(jRadioButtonApelido.isSelected()){
+             lista = new AgendamentoRegulacaoDao().getListdata(txtPesquisa.getText(), jMonthChooser1.getMonth() +1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
             for(Regulacao r : lista){
                 model.addRow(new Object[] {
                     r.getNome(), Utils.convertData(r.getDataencaminhamento()), r.getHospital()
@@ -228,23 +268,40 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
                         );
                 
             }
+                if(lista.size() < 1){
+                     Msg.informacao(this, "A pesquisa não retornou resultados.");
+            }
+            }else if(jRadioButtonHosp.isSelected()){
+                    lista = new AgendamentoRegulacaoDao().getListHosp(txtPesquisa.getText(), jMonthChooser1.getMonth() +1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
+            for(Regulacao r : lista){
+                model.addRow(new Object[] {
+                    r.getNome(), Utils.convertData(r.getDataencaminhamento()), r.getHospital()
+                }
+                        );
+                
+            }
+                if(lista.size() < 1){
+                     Msg.informacao(this, "A pesquisa não retornou resultados.");
+            }
+                    }
+           
         }catch (Exception e){
             Msg.ERRO(this, "Erro ao atualizar tabela.\n" + e);
         }
     }
     public void pegardatar(){
-        Date date = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        date = cal.getTime();
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-        date = cal.getTime();
-       jDateChooserInicial.setDate(date);
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        date = cal.getTime();
-        jDateChooserFinal.setDate(date);
-        atualizaTable();
+//        Date date = new Date();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(date);
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        date = cal.getTime();
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+//        date = cal.getTime();
+//       jDateChooserInicial.setDate(date);
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+//        date = cal.getTime();
+//        jDateChooserFinal.setDate(date);
+//        atualizaTable();
      
         
     }
@@ -294,13 +351,14 @@ public class TelainfoRegulacao extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private com.toedter.calendar.JDateChooser jDateChooserFinal;
-    private com.toedter.calendar.JDateChooser jDateChooserInicial;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox jComboBoxAno;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButtonApelido;
+    private javax.swing.JRadioButton jRadioButtonHosp;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar2;

@@ -18,6 +18,8 @@
     <class>model.User</class>
     <class>model.Consulta</class>
     <class>model.Regulacao</class>
+    <class>model.Implantecateter</class>
+    <class>model.BlocoCirurgico</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sultest?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

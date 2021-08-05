@@ -257,7 +257,7 @@
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDateChooserDataNascPropertyChange"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.toedter.calendar.JDateChooser(&quot;dd/MM/yyyy&quot; , &quot;##/##/##&quot; , &apos; &apos; )"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.toedter.calendar.JDateChooser(&quot;dd/MM/yyyy&quot; , &quot;##/##/####&quot; , &apos; &apos; )"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelIdade">

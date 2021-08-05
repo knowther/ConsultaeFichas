@@ -95,7 +95,10 @@ public class TelaMovimentacaoCadastro extends javax.swing.JDialog {
         movimentacaoconsultorio.setDataCadastro(new Date());
         movimentacaoconsultorio.setCategoriaIdcategoria(listaCategoria.get(jComboBoxCategoria.getSelectedIndex() - 1));
         movimentacaoconsultorio.setObs(jTextFieldObs.getText());
-        movimentacaoconsultorio.setValor(Double.parseDouble(jFormattedTextFieldValor.getText().replace(",", ".")));
+        if(jComboBoxCategoria.getSelectedIndex() == 1){
+        movimentacaoconsultorio.setValor(Double.parseDouble(jFormattedTextFieldValor.getText().replace(",", ".")));}else{
+        movimentacaoconsultorio.setValor(Double.parseDouble(jFormattedTextFieldValor.getText().replace(",", "."))* -1);
+        }
 
         return movimentacaoconsultorio;
     }

@@ -49,11 +49,24 @@ public class AgendamentoRegulacaoDao {
      
     }
     
-    public List getListdata(String reg, Date data01, Date data02){
+    public List getListdata(String nome, int mes, int year){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT r from Regulacao r where r.dataencaminhamento BETWEEN :data01 and :data02");
-       query.setParameter("data01", data01);
-       query.setParameter("data02", data02);
+       Query query = em.createQuery("SELECT r from Regulacao r where month(r.dataencaminhamento) =:mes and year(r.dataencaminhamento) =:ano and r.nome LIKE :nome");
+       query.setParameter("mes", mes);
+       query.setParameter("ano", year);
+       query.setParameter("nome", "%" + nome.trim() + "%");
+       List<Regulacao> lista = query.getResultList();
+       em.getTransaction().commit();
+       return lista;
+     
+    }
+    
+    public List getListHosp(String hosp, int mes, int year){
+       em.getTransaction().begin();
+       Query query = em.createQuery("SELECT r from Regulacao r where month(r.dataencaminhamento) =:mes and year(r.dataencaminhamento) =:ano and r.hospital LIKE :hosp");
+       query.setParameter("mes", mes);
+       query.setParameter("ano", year);
+       query.setParameter("hosp", "%" + hosp.trim() + "%");
        List<Regulacao> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;

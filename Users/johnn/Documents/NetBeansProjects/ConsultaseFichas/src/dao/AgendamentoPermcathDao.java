@@ -49,11 +49,35 @@ public class AgendamentoPermcathDao {
      
     }
     
-    public List getListdata(String perm, Date data01, Date data02){
+    public List getListdata(String perm, int mes, int ano){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT a from Agendamentopermcath a where a.dataencaminhamento BEETWEN :data01 and :data02");
-       query.setParameter("data01", data01);
-       query.setParameter("data02", data02);
+       Query query = em.createQuery("SELECT a from Agendamentopermcath a where month(a.dataencaminhamento) = :mes and year(a.dataencaminhamento) = :ano and a.nome LIKE :perm");
+       query.setParameter("mes", mes);
+       query.setParameter("ano", ano);
+       query.setParameter("perm", "%" + perm.trim() + "%");
+       List<Agendamentopermcath> lista = query.getResultList();
+       em.getTransaction().commit();
+       return lista;
+     
+    }
+     public List getListdataHosp(String hosp, int mes, int ano){
+       em.getTransaction().begin();
+       Query query = em.createQuery("SELECT a from Agendamentopermcath a where month(a.dataencaminhamento) = :mes and year(a.dataencaminhamento) = :ano and a.hospital LIKE :hosp");
+       query.setParameter("mes", mes);
+       query.setParameter("ano", ano);
+       query.setParameter("hosp", "%" + hosp.trim() + "%");
+       List<Agendamentopermcath> lista = query.getResultList();
+       em.getTransaction().commit();
+       return lista;
+     
+    }
+     
+      public List getListdataNumPerm(String perm, int mes, int ano){
+       em.getTransaction().begin();
+       Query query = em.createQuery("SELECT a from Agendamentopermcath a where month(a.dataencaminhamento) = :mes and year(a.dataencaminhamento) = :ano and a.numperm LIKE :perm");
+       query.setParameter("mes", mes);
+       query.setParameter("ano", ano);
+       query.setParameter("perm", "%" + perm.trim() + "%");
        List<Agendamentopermcath> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;

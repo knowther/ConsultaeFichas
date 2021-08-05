@@ -33,7 +33,9 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     private Movimentacaodraedna categoriaed;
     private List<Movimentacaoconsultorio> lista = new ArrayList<>();
     private List<Movimentacaoconsultorio> listavalores = new ArrayList<>();
-    
+    private String anoselecionado;
+    int anoatual = Integer.parseInt(Utils.convertAno(new Date()));
+    int anomaximo = anoatual + 80;
     private List<Movimentacaodraedna> listaed = new ArrayList<>();
 
     /**
@@ -42,30 +44,37 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     public TelaMovimentacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-           
+       preencherAno();
         pegardatar();
         mudarCorLinha();
         atualizaValores();
         atualizaTable();
+        jCheckBox2.setSelected(true);
+        jCheckBox2.setEnabled(false);
         tabela.setShowGrid(true);
         tabela.setAutoCreateRowSorter(true);
         
         tabela.setGridColor(Color.lightGray);
-        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
         categoria = new Movimentacaoconsultorio();
         //categoria = new Movimentacaoconsultorio();
         categoriaed = new Movimentacaodraedna();
 
     }
-
+    
+    protected void preencherAno(){
+        for(int i = 2000; i < anomaximo; i++){
+            jComboBoxAno.addItem(i);
+            
+        }
+        jComboBoxAno.setSelectedItem(anoatual);
+    }
     protected void atualizaValores() {
         double despesa = 0;
         double renda = 0;
         try {
             if (jComboBoxControleCaixa.getSelectedIndex() == 0) {
-                if(jCheckBox2.isSelected()){
-                    lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+                
+                    lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jMonthChooser1.getMonth()+1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
                     for (Movimentacaoconsultorio c : lista) {
                     if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
                         despesa += c.getValor();
@@ -73,20 +82,11 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                         renda += c.getValor();
                     }
                 }
-                }else{
-                   lista = new MovimentacaoConsultorioDao().getList(txtPesquisa.getText());
-                for (Movimentacaoconsultorio c : lista) {
-                    if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
-                        despesa += c.getValor();
-                    } else {
-                        renda += c.getValor();
-                    }
-                } 
-                }
+                
                 
             } else {
-                if (jCheckBox2.isSelected()) {
-                    listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+                
+                    listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jMonthChooser1.getMonth() +1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
                     for (Movimentacaodraedna c : listaed) {
                         if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
                             despesa += c.getValor();
@@ -94,16 +94,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                             renda += c.getValor();
                         }
                     }
-                } else {
-                    listaed = new MovimentacaoDraednaDao().getList(txtPesquisa.getText());
-                    for (Movimentacaodraedna c : listaed) {
-                        if (c.getCategoriaIdcategoria().getTipo().equals("Pagar")) {
-                            despesa += c.getValor();
-                        } else {
-                            renda += c.getValor();
-                        }
-                    }
-                }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,7 +114,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                 DefaultTableModel model = (DefaultTableModel) tabela.getModel();
                 model.setNumRows(0);
 
-                lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+                lista = new MovimentacaoConsultorioDao().getListData(txtPesquisa.getText(), jMonthChooser1.getMonth(), Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
 
                 for (Movimentacaoconsultorio c : lista) {
 //                if(c.getCategoriaIdcategoria().getTipo().equals("Pagar")){
@@ -142,7 +133,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
                 model.setNumRows(0);
 
-                listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jDateChooserInicial.getDate(), jDateChooserFinal.getDate());
+                listaed = new MovimentacaoDraednaDao().getListData(txtPesquisa.getText(), jMonthChooser1.getMonth() +1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
 
                 for (Movimentacaodraedna d : listaed) {
 //                if(d.getCategoriaIdcategoria().getTipo().equals("Pagar")){
@@ -193,15 +184,15 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jDateChooserInicial = new com.toedter.calendar.JDateChooser();
-        jLabel6 = new javax.swing.JLabel();
-        jDateChooserFinal = new com.toedter.calendar.JDateChooser();
         jToolBar1 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jComboBoxControleCaixa = new javax.swing.JComboBox<>();
         jCheckBox2 = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBoxAno = new javax.swing.JComboBox();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Movimentação");
@@ -321,10 +312,6 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
         jLabel4.setText("Saldo:");
 
-        jLabel5.setText("Data Inicial:");
-
-        jLabel6.setText("Data Final:");
-
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
@@ -360,6 +347,17 @@ public class TelaMovimentacao extends javax.swing.JDialog {
             }
         });
 
+        jLabel7.setText("Mês:");
+
+        jComboBoxAno.setEditable(true);
+        jComboBoxAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAnoActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Ano:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -393,33 +391,35 @@ public class TelaMovimentacao extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel5)
+                        .addGap(96, 96, 96)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonPesquisar)
-                        .addContainerGap())))
+                        .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(7, 7, 7))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6))
-                    .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPesquisar))
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonPesquisar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -500,6 +500,7 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         atualizaTable();
+        atualizaValores();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -572,6 +573,10 @@ public class TelaMovimentacao extends javax.swing.JDialog {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jComboBoxAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxAnoActionPerformed
+
     public void pegardatar() {
         Date date = new Date();
 //        Calendar cal = Calendar.getInstance();
@@ -579,11 +584,8 @@ public class TelaMovimentacao extends javax.swing.JDialog {
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 //        date = cal.getTime();
 //        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-//        date = cal.getTime();
-        jDateChooserInicial.setDate(date);
-//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-//        date = cal.getTime();
-        jDateChooserFinal.setDate(date);
+////        date = cal.getTime();
+
         atualizaTable();
 //        int cal.getActualMaximum(Calendar.);
 
@@ -672,15 +674,15 @@ public class TelaMovimentacao extends javax.swing.JDialog {
     private javax.swing.JButton jButtonInserir;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox jComboBoxAno;
     private javax.swing.JComboBox<String> jComboBoxControleCaixa;
-    private com.toedter.calendar.JDateChooser jDateChooserFinal;
-    private com.toedter.calendar.JDateChooser jDateChooserInicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldDespesa;

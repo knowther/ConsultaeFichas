@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Medicos.findByCrm", query = "SELECT m FROM Medicos m WHERE m.crm = :crm")})
 public class Medicos implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicosIdmedicos", fetch = FetchType.EAGER)
+    private List<Implantecateter> implantecateterList;
+
     @OneToMany(mappedBy = "medicosIdmedicos")
     private Collection<Consulta> consultaCollection;
 
@@ -58,6 +61,7 @@ public class Medicos implements Serializable {
     private String crm;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicosIdmedicos", fetch = FetchType.EAGER)
     private List<Pacientesconsulta> pacientesconsultaList;
+    
 
     public Medicos() {
     }
@@ -104,6 +108,15 @@ public class Medicos implements Serializable {
     public void setPacientesconsultaList(List<Pacientesconsulta> pacientesconsultaList) {
         this.pacientesconsultaList = pacientesconsultaList;
     }
+    
+   
+//    public List<Implantecateter> getimplantecateterList() {
+//       return implantecateterList;
+//    }
+//
+//    public void setImplatecateterList(List<Implantecateter> implantecateterList) {
+//        this.implantecateterList = implantecateterList;
+//    }
 
     @Override
     public int hashCode() {
@@ -145,6 +158,15 @@ public class Medicos implements Serializable {
 
     public void setConsultaCollection(Collection<Consulta> consultaCollection) {
         this.consultaCollection = consultaCollection;
+    }
+
+    @XmlTransient
+    public List<Implantecateter> getImplantecateterList() {
+        return implantecateterList;
+    }
+
+    public void setImplantecateterList(List<Implantecateter> implantecateterList) {
+        this.implantecateterList = implantecateterList;
     }
     
 }

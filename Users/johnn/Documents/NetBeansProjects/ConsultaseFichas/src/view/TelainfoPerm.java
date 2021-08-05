@@ -6,17 +6,11 @@
 package view;
 
 import dao.AgendamentoPermcathDao;
-import dao.CategoriaDao;
-import java.awt.Dimension;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Agendamentopermcath;
-import model.Categoria;
-import model.Movimentacaoconsultorio;
 import utils.Msg;
 import utils.Utils;
 
@@ -27,17 +21,20 @@ import utils.Utils;
 public class TelainfoPerm extends javax.swing.JDialog {
      private List<Agendamentopermcath> lista = new ArrayList<>();
      private Agendamentopermcath agendaperm;
+     int anoatual = Integer.parseInt(Utils.convertAno(new Date()));
+     int anomaximo = anoatual + 80;
+     private String camposelecionado;
     /**
      * Creates new form TelainfoPerm
      */
     public TelainfoPerm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        atualizaTable();
         pegardatar();
-        jDateChooserInicial.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        jDateChooserFinal.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        
+        preencherAno();
+        jRadioButtonNomepac.setSelected(true);
+        atualizaTable();
+        //agendaperm = new Agendamentopermcath();
     }
 
     /**
@@ -49,21 +46,23 @@ public class TelainfoPerm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jDateChooserFinal = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jDateChooserInicial = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        jToolBar2 = new javax.swing.JToolBar();
-        jButton5 = new javax.swing.JButton();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBoxAno = new javax.swing.JComboBox();
+        jRadioButtonNomepac = new javax.swing.JRadioButton();
+        jRadioButtonHops = new javax.swing.JRadioButton();
+        jRadioButtonNumperm = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,7 +73,15 @@ public class TelainfoPerm extends javax.swing.JDialog {
             new String [] {
                 "Nome", "Data de Agendamento", "Hospital", "Nº do Perm"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setText("Incluir");
@@ -86,6 +93,11 @@ public class TelainfoPerm extends javax.swing.JDialog {
         jPanel1.add(jButton3);
 
         jButton4.setText("Alterar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
 
         jButton2.setText("Excluir");
@@ -99,29 +111,69 @@ public class TelainfoPerm extends javax.swing.JDialog {
         jLabel3.setText("Pesquisar:");
 
         jButton1.setText("Pes");
-
-        jLabel1.setText("Data inicial:");
-
-        jLabel2.setText("Data final:");
-
-        jToolBar2.setFloatable(false);
-        jToolBar2.setRollover(true);
-
-        jButton5.setText("Agendar Permcath");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jToolBar2.add(jButton5);
+
+        jLabel7.setText("Mês:");
+
+        jLabel8.setText("Ano:");
+
+        jComboBoxAno.setEditable(true);
+        jComboBoxAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAnoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonNomepac);
+        jRadioButtonNomepac.setText("Nome Paciente");
+        jRadioButtonNomepac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNomepacActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonHops);
+        jRadioButtonHops.setText("Hospital");
+        jRadioButtonHops.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonHopsActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonNumperm);
+        jRadioButtonNumperm.setText("Nº do Pem");
+        jRadioButtonNumperm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNumpermActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButtonNomepac)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButtonHops)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonNumperm)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,52 +181,35 @@ public class TelainfoPerm extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooserInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooserFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRadioButtonNumperm)
+                            .addComponent(jRadioButtonHops)
+                            .addComponent(jRadioButtonNomepac))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,6 +220,16 @@ public class TelainfoPerm extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    protected void preencherAno(){
+        for(int i = 2000; i < anomaximo; i++){
+            jComboBoxAno.addItem(i);
+            
+        }
+        jComboBoxAno.setSelectedItem(anoatual);
+    }
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        if(jTable1.getSelectedRow() > -1){
            if(Msg.confirmacao(this, "Deseja realmente excluir esse registro?")){
@@ -203,10 +248,34 @@ public class TelainfoPerm extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jComboBoxAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxAnoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        
+        atualizaTable();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
       TelaMarcarPermcath t = new TelaMarcarPermcath(this, true);
-      t.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+      t.preencherCampos(lista.get(jTable1.getSelectedRow()));
+      t.setInserir(true);
+      t.setVisible(true);      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jRadioButtonNomepacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNomepacActionPerformed
+        camposelecionado = "a.nome";        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonNomepacActionPerformed
+
+    private void jRadioButtonHopsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHopsActionPerformed
+        camposelecionado = "a.hospital";        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonHopsActionPerformed
+
+    private void jRadioButtonNumpermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNumpermActionPerformed
+        camposelecionado = "a.numperm";        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonNumpermActionPerformed
 
     
     
@@ -216,34 +285,66 @@ public class TelainfoPerm extends javax.swing.JDialog {
     protected void atualizaTable(){
         
         try {
+            
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
-            
-            lista = new AgendamentoPermcathDao().getList(txtPesquisa.getText());
+            if(jRadioButtonNomepac.isSelected()){
+            lista = new AgendamentoPermcathDao().getListdata(txtPesquisa.getText(), jMonthChooser1.getMonth() + 1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
             for(Agendamentopermcath a : lista){
                 model.addRow(new Object[] {
-                    a.getNome(), Utils.convertData(a.getDataencaminhamento()), a.getHospital()
+                    a.getNome(), Utils.convertData(a.getDataencaminhamento()), a.getHospital(), a.getNumperm()
                 }
                         );
                 
             }
+                if(lista.size() < 1){
+                     Msg.informacao(this, "A pesquisa não retornou resultados.");
+            }
+            }else if(jRadioButtonHops.isSelected()){
+            lista = new AgendamentoPermcathDao().getListdataHosp(txtPesquisa.getText(), jMonthChooser1.getMonth() +1 , Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
+            for(Agendamentopermcath a : lista){
+                model.addRow(new Object[] {
+                    a.getNome(), Utils.convertData(a.getDataencaminhamento()), a.getHospital(), a.getNumperm()
+                }
+                        );
+                
+            }
+                if(lista.size() < 1){
+                     Msg.informacao(this, "A pesquisa não retornou resultados.");
+            }
+            }else if(jRadioButtonNumperm.isSelected()){
+                lista = new AgendamentoPermcathDao().getListdataNumPerm(txtPesquisa.getText(), jMonthChooser1.getMonth() +1, Integer.parseInt(jComboBoxAno.getSelectedItem().toString()));
+                for(Agendamentopermcath a : lista){
+                model.addRow(new Object[] {
+                    a.getNome(), Utils.convertData(a.getDataencaminhamento()), a.getHospital(), a.getNumperm()
+                }
+                        );
+                
+            }
+                 if(lista.size() < 1){
+                     Msg.informacao(this, "A pesquisa não retornou resultados.");
+            }
+            }
+            
+           
+            
         }catch (Exception e){
-            Msg.ERRO(this, "Erro ao atualizar tabela.");
+            Msg.ERRO(this, "Erro ao atualizar tabela.\n" + e);
         }
     }
     public void pegardatar(){
-        Date date = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        date = cal.getTime();
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-        date = cal.getTime();
-       jDateChooserInicial.setDate(date);
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        date = cal.getTime();
-        jDateChooserFinal.setDate(date);
-        atualizaTable();
+//        Date date = new Date();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(date);
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        date = cal.getTime();
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+//        date = cal.getTime();
+//       jDateChooserInicial.setDate(date);
+//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+//        date = cal.getTime();
+//        jDateChooserFinal.setDate(date);
+//        atualizaTable();
      
         
     }
@@ -288,20 +389,22 @@ public class TelainfoPerm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private com.toedter.calendar.JDateChooser jDateChooserFinal;
-    private com.toedter.calendar.JDateChooser jDateChooserInicial;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox jComboBoxAno;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButtonHops;
+    private javax.swing.JRadioButton jRadioButtonNomepac;
+    private javax.swing.JRadioButton jRadioButtonNumperm;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

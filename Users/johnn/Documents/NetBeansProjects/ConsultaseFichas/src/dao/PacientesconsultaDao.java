@@ -47,10 +47,11 @@ public class PacientesconsultaDao {
      
     }
     
-    public List getListficha(int tipoficha){
+    public List getListficha(int tipoficha, String pac){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT p from Pacientesconsulta p where p.tipodefichaIdtipodeficha.idtipodeficha =:tipoficha");
+       Query query = em.createQuery("SELECT p from Pacientesconsulta p where p.tipodefichaIdtipodeficha.idtipodeficha =:tipoficha and p.nome LIKE :likes");
        query.setParameter("tipoficha", tipoficha);
+       query.setParameter("likes", "%" + pac.trim() + "%");
        List<Pacientesconsulta> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;

@@ -7,6 +7,7 @@ package view;
 import dao.ControleFuncionario;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -55,7 +56,19 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pranchetafinal.png"))); // NOI18N
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 6, 108, -1));
+
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 48, 108, -1));
 
         jLabel2.setText("Usuário:");
@@ -97,8 +110,25 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Inicializar init = new Inicializar();
+       logar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            logar();
+        }
+    }//GEN-LAST:event_jPasswordField1KeyPressed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+           if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+               logar();
+           }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void logar(){
+         Inicializar init = new Inicializar();
         
         if(dao.ControleFuncionario.logarFuncionario(jTextField1.getText(), jPasswordField1.getText())){
            User a = dao.ControleFuncionario.getFuncionarioLogado();
@@ -108,8 +138,9 @@ public class TelaLogin extends javax.swing.JFrame {
        }else{
             Msg.ERRO(this, "Senha ou usuário errados.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
+    }
+   
+        
     /**
      * @param args the command line arguments
      */

@@ -8,6 +8,7 @@ package view;
 import dao.AgendamentoPermcathDao;
 import dao.AgendamentoRegulacaoDao;
 import java.awt.Dimension;
+import java.util.Date;
 import model.Agendamentopermcath;
 import model.Regulacao;
 import utils.Msg;
@@ -37,7 +38,7 @@ public class TelaMarcarRegulacao extends javax.swing.JDialog {
         agendarpermDao = new AgendamentoRegulacaoDao();
         pai = parent;
         jDateChooser1.getJCalendar().setPreferredSize(new Dimension(300, 200));
-        
+        jDateChooser1.setDate(new Date());
     }
 
     /**
@@ -53,7 +54,7 @@ public class TelaMarcarRegulacao extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy" , "##/##/####" , ' ' );
         jLabel1 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();

@@ -49,11 +49,11 @@ public class MovimentacaoConsultorioDao {
      
     }
     
-     public List getListData(String mov, Date data01, Date data02){
+     public List getListData(String mov, int mes, int ano){
        em.getTransaction().begin();
-       Query query = em.createQuery("SELECT m from Movimentacaoconsultorio m where m.data BETWEEN :data01 and :data02 order by m.data ");
-       query.setParameter("data01", data01);
-       query.setParameter("data02", data02);
+       Query query = em.createQuery("SELECT m from Movimentacaoconsultorio m where month(m.data) = :mes and year(m.data) =:ano order by m.data");
+       query.setParameter("mes", mes);
+       query.setParameter("ano", ano);
        List<Movimentacaoconsultorio> lista = query.getResultList();
        em.getTransaction().commit();
        return lista;

@@ -89,6 +89,10 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jRadioButtonFichaRecente = new javax.swing.JRadioButton();
+        jRadioButtonFichaAntiga = new javax.swing.JRadioButton();
+        jRadioButtonArquivoMorto = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButtonCaixa = new javax.swing.JButton();
@@ -101,14 +105,12 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jButtonCaixa3 = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jButtonCaixa4 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jButtonCaixa2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jRadioButtonFichaRecente = new javax.swing.JRadioButton();
-        jRadioButtonFichaAntiga = new javax.swing.JRadioButton();
-        jRadioButtonArquivoMorto = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Recepção");
@@ -177,6 +179,103 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
+
+        buttonGroup1.add(jRadioButtonFichaRecente);
+        jRadioButtonFichaRecente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButtonFichaRecente.setText("Fichas recentes");
+        jRadioButtonFichaRecente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonFichaRecenteActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonFichaAntiga);
+        jRadioButtonFichaAntiga.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButtonFichaAntiga.setText("Fichas antigas");
+        jRadioButtonFichaAntiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonFichaAntigaActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonArquivoMorto);
+        jRadioButtonArquivoMorto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButtonArquivoMorto.setText("Arquivo morto");
+        jRadioButtonArquivoMorto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonArquivoMortoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jRadioButtonFichaRecente)
+                .addGap(5, 5, 5)
+                .addComponent(jRadioButtonFichaAntiga)
+                .addGap(5, 5, 5)
+                .addComponent(jRadioButtonArquivoMorto))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButtonFichaRecente)
+                    .addComponent(jRadioButtonFichaAntiga)
+                    .addComponent(jRadioButtonArquivoMorto)))
+        );
+
+        javax.swing.GroupLayout jPanelaLayout = new javax.swing.GroupLayout(jPanela);
+        jPanela.setLayout(jPanelaLayout);
+        jPanelaLayout.setHorizontalGroup(
+            jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelaLayout.createSequentialGroup()
+                .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanelaLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelaLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addGroup(jPanelaLayout.createSequentialGroup()
+                                .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6)))
+                        .addGap(0, 165, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelaLayout.setVerticalGroup(
+            jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelaLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addGap(2, 2, 2)
+                .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6))
+                .addGap(21, 21, 21)
+                .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton7))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
+        );
 
         jPanel4.setBackground(new java.awt.Color(60, 63, 64));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -249,6 +348,24 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jLabel27.setText("  ");
         jToolBar1.add(jLabel27);
 
+        jLabel29.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(187, 187, 186));
+        jLabel29.setText("l");
+        jToolBar1.add(jLabel29);
+
+        jButtonCaixa4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButtonCaixa4.setForeground(new java.awt.Color(187, 187, 186));
+        jButtonCaixa4.setText("Cadastros");
+        jButtonCaixa4.setFocusable(false);
+        jButtonCaixa4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCaixa4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCaixa4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCaixa4ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonCaixa4);
+
         jLabel22.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(187, 187, 186));
         jLabel22.setText("l");
@@ -270,110 +387,10 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCaixa2);
 
-        jPanel4.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
+        jPanel4.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pranchetafinal.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, -22, -1, 200));
-
-        buttonGroup1.add(jRadioButtonFichaRecente);
-        jRadioButtonFichaRecente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRadioButtonFichaRecente.setText("Fichas recentes");
-        jRadioButtonFichaRecente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonFichaRecenteActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRadioButtonFichaAntiga);
-        jRadioButtonFichaAntiga.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRadioButtonFichaAntiga.setText("Fichas antigas");
-        jRadioButtonFichaAntiga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonFichaAntigaActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRadioButtonArquivoMorto);
-        jRadioButtonArquivoMorto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRadioButtonArquivoMorto.setText("Arquivo morto");
-        jRadioButtonArquivoMorto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonArquivoMortoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jRadioButtonFichaRecente)
-                .addGap(5, 5, 5)
-                .addComponent(jRadioButtonFichaAntiga)
-                .addGap(5, 5, 5)
-                .addComponent(jRadioButtonArquivoMorto))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonFichaRecente)
-                    .addComponent(jRadioButtonFichaAntiga)
-                    .addComponent(jRadioButtonArquivoMorto)))
-        );
-
-        javax.swing.GroupLayout jPanelaLayout = new javax.swing.GroupLayout(jPanela);
-        jPanela.setLayout(jPanelaLayout);
-        jPanelaLayout.setHorizontalGroup(
-            jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanelaLayout.createSequentialGroup()
-                .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanelaLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelaLayout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)
-                            .addGroup(jPanelaLayout.createSequentialGroup()
-                                .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton6)))
-                        .addGap(0, 177, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanelaLayout.setVerticalGroup(
-            jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelaLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14)
-                .addGap(2, 2, 2)
-                .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addGap(21, 21, 21)
-                .addGroup(jPanelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton7))
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                .addGap(68, 68, 68))
-        );
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, 200));
 
         javax.swing.GroupLayout parentPanelLayout = new javax.swing.GroupLayout(parentPanel);
         parentPanel.setLayout(parentPanelLayout);
@@ -383,11 +400,13 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         parentPanelLayout.setVerticalGroup(
             parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(parentPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -398,11 +417,17 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(parentPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -444,7 +469,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) masterTable.getModel();
         model.setNumRows(0);
         
-        pacientelista = new PacientesconsultaDao().getListficha(tipoficha);
+        pacientelista = new PacientesconsultaDao().getListficha(tipoficha, jTextFieldPesquisa.getText());
         for(Pacientesconsulta p : pacientelista){
             model.addRow(new Object[]{
                 p.getNome(), p.getIdade(), utils.Utils.convertData(p.getDataNasc()) , p.getMedicosIdmedicos().getNome()
@@ -511,7 +536,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonFichaAntigaActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-      
+        preencherTable();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     
@@ -551,6 +576,10 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     private void jButtonCaixa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa3ActionPerformed
         Msg.informacao(this, "Este menu está em construção");   // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCaixa3ActionPerformed
+
+    private void jButtonCaixa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCaixa4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCaixa4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -629,6 +658,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCaixa1;
     private javax.swing.JButton jButtonCaixa2;
     private javax.swing.JButton jButtonCaixa3;
+    private javax.swing.JButton jButtonCaixa4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -641,6 +671,7 @@ public class telaPacienteConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanela;

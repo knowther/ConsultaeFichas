@@ -22,11 +22,19 @@ public class Utils {
   
     
     public static String convertDouble(double valor){
-        return new DecimalFormat("#0.00").format(valor);
+        return new DecimalFormat("¤ #,##0.00").format(valor);
     }
     public static String convertData(Date date){
         return new SimpleDateFormat("dd/MM/yyyy").format(date);
     }
+    
+    public static String convertAno(Date date){
+        return new SimpleDateFormat("yyyy").format(date);
+    }
+    public static String convertMes(Date date){
+        return new SimpleDateFormat("MM").format(date);
+    }
+    
     public static String convertHora(Date date){
         return new SimpleDateFormat("HH:mm:ss").format(date);
     }
